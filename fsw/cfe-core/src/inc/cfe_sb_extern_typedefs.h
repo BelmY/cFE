@@ -21,7 +21,7 @@
 #ifndef _CFE_SB_EXTERN_TYPEDEFS_H_
 #define _CFE_SB_EXTERN_TYPEDEFS_H_
 
-/* This header may be generated from an EDS file, 
+/* This header may be generated from an EDS file,
  * tools are available and the feature is enabled */
 #ifdef CFE_EDS_ENABLED_BUILD
 
@@ -40,15 +40,15 @@
 enum CFE_SB_QosPriority
 {
 
-   /**
-    * @brief Normal priority level
-    */
-   CFE_SB_QosPriority_LOW                             = 0,
+    /**
+     * @brief Normal priority level
+     */
+    CFE_SB_QosPriority_LOW = 0,
 
-   /**
-    * @brief High priority
-    */
-   CFE_SB_QosPriority_HIGH                            = 1
+    /**
+     * @brief High priority
+     */
+    CFE_SB_QosPriority_HIGH = 1
 };
 
 /**
@@ -57,8 +57,7 @@ enum CFE_SB_QosPriority
  *
  * @sa enum CFE_SB_QosPriority
  */
-typedef uint8                                            CFE_SB_QosPriority_Enum_t;
-
+typedef uint8 CFE_SB_QosPriority_Enum_t;
 
 /**
  * @brief Label definitions associated with CFE_SB_QosReliability_Enum_t
@@ -66,15 +65,15 @@ typedef uint8                                            CFE_SB_QosPriority_Enum
 enum CFE_SB_QosReliability
 {
 
-   /**
-    * @brief Normal (best-effort) reliability
-    */
-   CFE_SB_QosReliability_LOW                          = 0,
+    /**
+     * @brief Normal (best-effort) reliability
+     */
+    CFE_SB_QosReliability_LOW = 0,
 
-   /**
-    * @brief High reliability
-    */
-   CFE_SB_QosReliability_HIGH                         = 1
+    /**
+     * @brief High reliability
+     */
+    CFE_SB_QosReliability_HIGH = 1
 };
 
 /**
@@ -83,12 +82,12 @@ enum CFE_SB_QosReliability
  *
  * @sa enum CFE_SB_QosReliability
  */
-typedef uint8                                            CFE_SB_QosReliability_Enum_t;
+typedef uint8 CFE_SB_QosReliability_Enum_t;
 
 /**
  * @brief An integer type that should be used for indexing into the Routing Table
  */
-typedef uint16  CFE_SB_RouteId_Atom_t;
+typedef uint16 CFE_SB_RouteId_Atom_t;
 
 /**
  * @brief  CFE_SB_MsgId_Atom_t primitive type definition
@@ -114,4 +113,3 @@ typedef CFE_SB_MsgId_Atom_t CFE_SB_MsgId_t;
 #endif /* CFE_EDS_ENABLED_BUILD */
 
 #endif /* _CFE_SB_EXTERN_TYPEDEFS_H_ */
-

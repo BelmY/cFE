@@ -33,7 +33,6 @@
 
 #include "cfe_platform_cfg.h" /* Define platform configuration parameters */
 
-
 /*****************************************************************************/
 /** cFE Core task entry point prototypes *************************************/
 /*****************************************************************************/
@@ -52,7 +51,7 @@
 ** \par Assumptions, External Events, and Notes:
 **          None
 **
-** 
+**
 ******************************************************************************/
 extern void CFE_TIME_TaskMain(void);
 
@@ -66,7 +65,7 @@ extern void CFE_TIME_TaskMain(void);
 ** \par Assumptions, External Events, and Notes:
 **          None
 **
-** 
+**
 ******************************************************************************/
 extern void CFE_SB_TaskMain(void);
 
@@ -80,7 +79,7 @@ extern void CFE_SB_TaskMain(void);
 ** \par Assumptions, External Events, and Notes:
 **          None
 **
-** 
+**
 ******************************************************************************/
 extern void CFE_EVS_TaskMain(void);
 
@@ -94,7 +93,7 @@ extern void CFE_EVS_TaskMain(void);
 ** \par Assumptions, External Events, and Notes:
 **          None
 **
-** 
+**
 ******************************************************************************/
 extern void CFE_ES_TaskMain(void);
 
@@ -110,12 +109,9 @@ extern void CFE_ES_TaskMain(void);
 ** \par Assumptions, External Events, and Notes:
 **          None
 **
-** 
+**
 ******************************************************************************/
 extern void CFE_TBL_TaskMain(void);
-
-
-
 
 /*****************************************************************************/
 /** cFE Core task early init prototypes **************************************/
@@ -203,8 +199,6 @@ extern int32 CFE_ES_CDS_EarlyInit(void);
 ******************************************************************************/
 extern int32 CFE_FS_EarlyInit(void);
 
-
-
 /*****************************************************************************/
 /** cFE Core task clean up prototypes ****************************************/
 /*****************************************************************************/
@@ -264,7 +258,6 @@ extern int32 CFE_EVS_CleanUpApp(CFE_ES_ResourceID_t AppId);
 ******************************************************************************/
 extern int32 CFE_TIME_CleanUpApp(CFE_ES_ResourceID_t AppId);
 
-
 /*****************************************************************************/
 /** cFE Core task other function call prototypes *****************************/
 /*****************************************************************************/
@@ -290,7 +283,8 @@ extern int32 CFE_TIME_CleanUpApp(CFE_ES_ResourceID_t AppId);
 **        -# This function assumes input parameters are error free and have met size/value restrictions.
 **        -# The calling function is responsible for issuing any event messages associated with errors.
 **
-** \param[in, out]   HandlePtr   Pointer Application's variable that will contain the CDS Memory Block Handle. *HandlePtr is the handle of the CDS block that can be used in #CFE_ES_CopyToCDS and #CFE_ES_RestoreFromCDS.
+** \param[in, out]   HandlePtr   Pointer Application's variable that will contain the CDS Memory Block Handle.
+**HandlePtr is the handle of the CDS block that can be used in #CFE_ES_CopyToCDS and #CFE_ES_RestoreFromCDS.
 **
 ** \param[in]   UserBlockSize   The number of bytes needed in the CDS.
 **
@@ -330,9 +324,6 @@ int32 CFE_ES_RegisterCDSEx(CFE_ES_CDSHandle_t *HandlePtr, size_t UserBlockSize, 
 ** \return Any of the return values from #CFE_ES_PutCDSBlock
 **
 ******************************************************************************/
-int32  CFE_ES_DeleteCDS(const char *CDSName, bool CalledByTblServices);
-
-
-
+int32 CFE_ES_DeleteCDS(const char *CDSName, bool CalledByTblServices);
 
 #endif /* CFE_PRIVATE_H_ */

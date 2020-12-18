@@ -69,9 +69,8 @@ typedef struct
     /**
      * Optional Mutex for serializing get/put operations
      */
-    osal_id_t          MutexId;
+    osal_id_t MutexId;
 } CFE_ES_MemPoolRecord_t;
-
 
 /**
  * @brief Obtain an index value correlating to an ES Memory Pool ID
@@ -106,7 +105,7 @@ int32 CFE_ES_MemPoolID_ToIndex(CFE_ES_MemHandle_t PoolID, uint32 *Idx);
  * @param[in]   PoolID   the Pool ID to locate
  * @return pointer to Pool Table entry for the given Pool ID
  */
-CFE_ES_MemPoolRecord_t* CFE_ES_LocateMemPoolRecordByID(CFE_ES_MemHandle_t PoolID);
+CFE_ES_MemPoolRecord_t *CFE_ES_LocateMemPoolRecordByID(CFE_ES_MemHandle_t PoolID);
 
 /**
  * @brief Check if a Memory Pool record is in use or free/empty
@@ -164,12 +163,9 @@ static inline void CFE_ES_MemPoolRecordSetFree(CFE_ES_MemPoolRecord_t *PoolRecPt
     PoolRecPtr->PoolID = CFE_ES_RESOURCEID_UNDEFINED;
 }
 
-
 static inline bool CFE_ES_MemPoolRecordIsMatch(const CFE_ES_MemPoolRecord_t *PoolRecPtr, CFE_ES_MemHandle_t PoolID)
 {
     return (PoolRecPtr != NULL && CFE_ES_ResourceID_Equal(PoolRecPtr->PoolID, PoolID));
 }
 
-
-
-#endif  /* _CFE_ES_MEMPOOL_H_ */
+#endif /* _CFE_ES_MEMPOOL_H_ */

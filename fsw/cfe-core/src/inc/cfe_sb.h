@@ -44,15 +44,14 @@
 #include "ccsds.h"
 #include "cfe_time.h"
 
-
 /*
 ** Defines
 */
-#define CFE_SB_POLL                     0      /**< \brief Option used with #CFE_SB_ReceiveBuffer to request immediate pipe status */
-#define CFE_SB_PEND_FOREVER            -1      /**< \brief Option used with #CFE_SB_ReceiveBuffer to force a wait for next message */
-#define CFE_SB_SUB_ENTRIES_PER_PKT      20     /**< \brief Configuration parameter used by SBN App */
-#define CFE_SB_SUBSCRIPTION             0      /**< \brief Subtype specifier used in #CFE_SB_SingleSubscriptionTlm_t by SBN App */
-#define CFE_SB_UNSUBSCRIPTION           1      /**< \brief Subtype specified used in #CFE_SB_SingleSubscriptionTlm_t by SBN App */
+#define CFE_SB_POLL                0 /**< \brief Option used with #CFE_SB_ReceiveBuffer to request immediate pipe status */
+#define CFE_SB_PEND_FOREVER        -1 /**< \brief Option used with #CFE_SB_ReceiveBuffer to force a wait for next message */
+#define CFE_SB_SUB_ENTRIES_PER_PKT 20 /**< \brief Configuration parameter used by SBN App */
+#define CFE_SB_SUBSCRIPTION        0 /**< \brief Subtype specifier used in #CFE_SB_SingleSubscriptionTlm_t by SBN App */
+#define CFE_SB_UNSUBSCRIPTION      1 /**< \brief Subtype specified used in #CFE_SB_SingleSubscriptionTlm_t by SBN App */
 
 /* ------------------------------------------------------ */
 /* Macro Constants for use with the CFE_SB_MsgId_t type   */
@@ -68,7 +67,7 @@
  *
  * \sa CFE_SB_ValueToMsgId()
  */
-#define CFE_SB_MSGID_WRAP_VALUE(val)     ((CFE_SB_MsgId_t)(val))
+#define CFE_SB_MSGID_WRAP_VALUE(val) ((CFE_SB_MsgId_t)(val))
 
 /**
  * \brief Translation macro to convert to MsgId integer values from opaque/abstract API values
@@ -80,7 +79,7 @@
  *
  * \sa CFE_SB_MsgIdToValue()
  */
-#define CFE_SB_MSGID_UNWRAP_VALUE(mid)   ((CFE_SB_MsgId_Atom_t)(mid))
+#define CFE_SB_MSGID_UNWRAP_VALUE(mid) ((CFE_SB_MsgId_Atom_t)(mid))
 
 /**
  * \brief Reserved value for CFE_SB_MsgId_t that will not match any valid MsgId
@@ -88,7 +87,7 @@
  * This rvalue macro can be used for static/compile-time data initialization to ensure that
  * the initialized value does not alias to a valid MsgId object.
  */
-#define CFE_SB_MSGID_RESERVED            CFE_SB_MSGID_WRAP_VALUE(-1)
+#define CFE_SB_MSGID_RESERVED CFE_SB_MSGID_WRAP_VALUE(-1)
 
 /**
  * \brief A literal of the CFE_SB_MsgId_t type representing an invalid ID
@@ -101,38 +100,41 @@
  * purposes (rvalue), #CFE_SB_MSGID_RESERVED should be used instead.
  * However, in the current implementation, they are equivalent.
  */
-#define CFE_SB_INVALID_MSG_ID            CFE_SB_MSGID_RESERVED
+#define CFE_SB_INVALID_MSG_ID CFE_SB_MSGID_RESERVED
 
 #ifndef CFE_OMIT_DEPRECATED_6_8
 /**
  * \defgroup CFESBPktTypeDefs cFE SB Packet Type Defines
  * \{
  */
-#define CFE_SB_PKTTYPE_INVALID CFE_MSG_Type_Invalid /**< \brief #CFE_SB_GetPktType response if message type can not be determined */
-#define CFE_SB_PKTTYPE_CMD     CFE_MSG_Type_Cmd     /**< \brief #CFE_SB_GetPktType response for command packets */
-#define CFE_SB_PKTTYPE_TLM     CFE_MSG_Type_Tlm     /**< \brief #CFE_SB_GetPktType response for telemetry packets */
+#define CFE_SB_PKTTYPE_INVALID \
+    CFE_MSG_Type_Invalid /**< \brief #CFE_SB_GetPktType response if message type can not be determined */
+#define CFE_SB_PKTTYPE_CMD CFE_MSG_Type_Cmd /**< \brief #CFE_SB_GetPktType response for command packets */
+#define CFE_SB_PKTTYPE_TLM CFE_MSG_Type_Tlm /**< \brief #CFE_SB_GetPktType response for telemetry packets */
 /** \} */
 #endif /* CFE_OMIT_DEPRECATED_6_8 */
 
 /*
 ** Macro Definitions
 */
-#define CFE_BIT(x)   (1 << (x))               /**< \brief Places a one at bit positions 0 - 31*/
-#define CFE_SET(i,x) ((i) |= CFE_BIT(x))      /**< \brief Sets bit x of i */
-#define CFE_CLR(i,x) ((i) &= ~CFE_BIT(x))     /**< \brief Clears bit x of i */
-#define CFE_TST(i,x) (((i) & CFE_BIT(x)) != 0)/**< \brief true(non zero) if bit x of i is set */
+#define CFE_BIT(x)    (1 << (x))              /**< \brief Places a one at bit positions 0 - 31*/
+#define CFE_SET(i, x) ((i) |= CFE_BIT(x))     /**< \brief Sets bit x of i */
+#define CFE_CLR(i, x) ((i) &= ~CFE_BIT(x))    /**< \brief Clears bit x of i */
+#define CFE_TST(i, x) (((i)&CFE_BIT(x)) != 0) /**< \brief true(non zero) if bit x of i is set */
 
 /*
 ** Pipe option bit fields.
 */
-#define CFE_SB_PIPEOPTS_IGNOREMINE 0x00000001 /**< \brief Messages sent by the app that owns this pipe will not be sent to this pipe. */
+#define CFE_SB_PIPEOPTS_IGNOREMINE \
+    0x00000001 /**< \brief Messages sent by the app that owns this pipe will not be sent to this pipe. */
 
 /*
 ** Type Definitions
 */
 
 /** \brief Software Bus generic message */
-typedef union CFE_SB_Msg {
+typedef union CFE_SB_Msg
+{
     CFE_MSG_Message_t Msg;        /**< \brief Base message type without enforced alignment */
     long long int     LongInt;    /**< \brief Align to support Long Integer */
     long double       LongDouble; /**< \brief Align to support Long Double */
@@ -148,9 +150,9 @@ typedef CFE_MSG_CommandHeader_t CFE_SB_CmdHdr_t;
 /** \brief Deperecated type to minimize required changes */
 typedef CFE_MSG_TelemetryHeader_t CFE_SB_TlmHdr_t;
 
-#define CFE_SB_CMD_HDR_SIZE     (sizeof(CFE_MSG_CommandHeader_t))/**< \brief Size of command header */
-#define CFE_SB_TLM_HDR_SIZE     (sizeof(CFE_MSG_TelemetryHeader_t))/**< \brief Size of telemetry header */
-#endif /* CFE_OMIT_DEPRECATED_6_8 */
+#define CFE_SB_CMD_HDR_SIZE (sizeof(CFE_MSG_CommandHeader_t))   /**< \brief Size of command header */
+#define CFE_SB_TLM_HDR_SIZE (sizeof(CFE_MSG_TelemetryHeader_t)) /**< \brief Size of telemetry header */
+#endif                                                          /* CFE_OMIT_DEPRECATED_6_8 */
 
 /** \brief  CFE_SB_TimeOut_t to primitive type definition
 **
@@ -164,7 +166,7 @@ typedef uint32 CFE_SB_TimeOut_t;
 **
 ** Software Bus pipe identifier used in many SB APIs
 */
-typedef uint8  CFE_SB_PipeId_t;
+typedef uint8 CFE_SB_PipeId_t;
 
 #ifndef CFE_OMIT_DEPRECATED_6_8
 /** \brief  Pointer to an SB Message */
@@ -185,13 +187,14 @@ typedef cpuaddr CFE_SB_ZeroCopyHandle_t;
 ** Currently an unused parameter in #CFE_SB_SubscribeEx
 ** Intended to be used for interprocessor communication only
 **/
-typedef  struct {
-    uint8 Priority;/**< \brief  Specify high(1) or low(0) message priority for off-board routing, currently unused */
-    uint8 Reliability;/**< \brief  Specify high(1) or low(0) message transfer reliability for off-board routing, currently unused */
-}CFE_SB_Qos_t;
+typedef struct
+{
+    uint8 Priority; /**< \brief  Specify high(1) or low(0) message priority for off-board routing, currently unused */
+    uint8 Reliability; /**< \brief  Specify high(1) or low(0) message transfer reliability for off-board routing,
+                          currently unused */
+} CFE_SB_Qos_t;
 
-extern CFE_SB_Qos_t CFE_SB_Default_Qos;/**< \brief  Defines a default priority and reliabilty for off-board routing */
-
+extern CFE_SB_Qos_t CFE_SB_Default_Qos; /**< \brief  Defines a default priority and reliabilty for off-board routing */
 
 /****************** Function Prototypes **********************/
 
@@ -233,7 +236,7 @@ extern CFE_SB_Qos_t CFE_SB_Default_Qos;/**< \brief  Defines a default priority a
 **
 ** \sa #CFE_SB_DeletePipe #CFE_SB_GetPipeOpts #CFE_SB_SetPipeOpts #CFE_SB_GetPipeIdByName
 **/
-CFE_Status_t  CFE_SB_CreatePipe(CFE_SB_PipeId_t *PipeIdPtr, uint16 Depth, const char *PipeName);
+CFE_Status_t CFE_SB_CreatePipe(CFE_SB_PipeId_t *PipeIdPtr, uint16 Depth, const char *PipeName);
 
 /*****************************************************************************/
 /**
@@ -262,7 +265,7 @@ CFE_Status_t  CFE_SB_CreatePipe(CFE_SB_PipeId_t *PipeIdPtr, uint16 Depth, const 
 **
 ** \sa #CFE_SB_CreatePipe #CFE_SB_GetPipeOpts #CFE_SB_SetPipeOpts #CFE_SB_GetPipeIdByName
 **/
-CFE_Status_t  CFE_SB_DeletePipe(CFE_SB_PipeId_t PipeId);
+CFE_Status_t CFE_SB_DeletePipe(CFE_SB_PipeId_t PipeId);
 
 /*****************************************************************************/
 /**
@@ -282,7 +285,7 @@ CFE_Status_t  CFE_SB_DeletePipe(CFE_SB_PipeId_t PipeId);
 **
 ** \sa #CFE_SB_CreatePipe #CFE_SB_DeletePipe #CFE_SB_GetPipeOpts #CFE_SB_GetPipeIdByName #CFE_SB_PIPEOPTS_IGNOREMINE
 **/
-CFE_Status_t  CFE_SB_SetPipeOpts(CFE_SB_PipeId_t PipeId, uint8 Opts);
+CFE_Status_t CFE_SB_SetPipeOpts(CFE_SB_PipeId_t PipeId, uint8 Opts);
 
 /*****************************************************************************/
 /**
@@ -301,7 +304,7 @@ CFE_Status_t  CFE_SB_SetPipeOpts(CFE_SB_PipeId_t PipeId, uint8 Opts);
 **
 ** \sa #CFE_SB_CreatePipe #CFE_SB_DeletePipe #CFE_SB_SetPipeOpts #CFE_SB_GetPipeIdByName #CFE_SB_PIPEOPTS_IGNOREMINE
 **/
-CFE_Status_t  CFE_SB_GetPipeOpts(CFE_SB_PipeId_t PipeId, uint8 *OptPtr);
+CFE_Status_t CFE_SB_GetPipeOpts(CFE_SB_PipeId_t PipeId, uint8 *OptPtr);
 
 /*****************************************************************************/
 /**
@@ -341,7 +344,7 @@ CFE_Status_t CFE_SB_GetPipeName(char *PipeNameBuf, size_t PipeNameSize, CFE_SB_P
 **
 ** \sa #CFE_SB_CreatePipe #CFE_SB_DeletePipe #CFE_SB_SetPipeOpts #CFE_SB_PIPEOPTS_IGNOREMINE
 **/
-CFE_Status_t  CFE_SB_GetPipeIdByName(CFE_SB_PipeId_t *PipeIdPtr, const char *PipeName);
+CFE_Status_t CFE_SB_GetPipeIdByName(CFE_SB_PipeId_t *PipeIdPtr, const char *PipeName);
 /**@}*/
 
 /** @defgroup CFEAPISBSubscription cFE Message Subscription Control APIs
@@ -386,7 +389,7 @@ CFE_Status_t  CFE_SB_GetPipeIdByName(CFE_SB_PipeId_t *PipeIdPtr, const char *Pip
 **
 ** \sa #CFE_SB_Subscribe, #CFE_SB_SubscribeLocal, #CFE_SB_Unsubscribe, #CFE_SB_UnsubscribeLocal
 **/
-CFE_Status_t  CFE_SB_SubscribeEx(CFE_SB_MsgId_t MsgId, CFE_SB_PipeId_t PipeId, CFE_SB_Qos_t Quality, uint16 MsgLim);
+CFE_Status_t CFE_SB_SubscribeEx(CFE_SB_MsgId_t MsgId, CFE_SB_PipeId_t PipeId, CFE_SB_Qos_t Quality, uint16 MsgLim);
 
 /*****************************************************************************/
 /**
@@ -480,7 +483,7 @@ CFE_Status_t CFE_SB_SubscribeLocal(CFE_SB_MsgId_t MsgId, CFE_SB_PipeId_t PipeId,
 **
 ** \sa #CFE_SB_Subscribe, #CFE_SB_SubscribeEx, #CFE_SB_SubscribeLocal, #CFE_SB_UnsubscribeLocal
 **/
-CFE_Status_t  CFE_SB_Unsubscribe(CFE_SB_MsgId_t MsgId, CFE_SB_PipeId_t PipeId);
+CFE_Status_t CFE_SB_Unsubscribe(CFE_SB_MsgId_t MsgId, CFE_SB_PipeId_t PipeId);
 
 /*****************************************************************************/
 /**
@@ -541,7 +544,7 @@ CFE_Status_t CFE_SB_UnsubscribeLocal(CFE_SB_MsgId_t MsgId, CFE_SB_PipeId_t PipeI
 ** \retval #CFE_SB_MSG_TOO_BIG  \copybrief CFE_SB_MSG_TOO_BIG
 ** \retval #CFE_SB_BUF_ALOC_ERR \copybrief CFE_SB_BUF_ALOC_ERR
 **/
-CFE_Status_t  CFE_SB_TransmitMsg(CFE_MSG_Message_t *MsgPtr, bool IncrementSequenceCount);
+CFE_Status_t CFE_SB_TransmitMsg(CFE_MSG_Message_t *MsgPtr, bool IncrementSequenceCount);
 
 #ifndef CFE_OMIT_DEPRECATED_6_8
 /*****************************************************************************/
@@ -572,7 +575,7 @@ CFE_Status_t  CFE_SB_TransmitMsg(CFE_MSG_Message_t *MsgPtr, bool IncrementSequen
 ** \retval #CFE_SB_MSG_TOO_BIG  \copybrief CFE_SB_MSG_TOO_BIG
 ** \retval #CFE_SB_BUF_ALOC_ERR \copybrief CFE_SB_BUF_ALOC_ERR
 **/
-CFE_Status_t  CFE_SB_SendMsg(CFE_MSG_Message_t *MsgPtr);
+CFE_Status_t CFE_SB_SendMsg(CFE_MSG_Message_t *MsgPtr);
 
 /*****************************************************************************/
 /**
@@ -602,7 +605,7 @@ CFE_Status_t  CFE_SB_SendMsg(CFE_MSG_Message_t *MsgPtr);
 ** \retval #CFE_SB_MSG_TOO_BIG  \copybrief CFE_SB_MSG_TOO_BIG
 ** \retval #CFE_SB_BUF_ALOC_ERR \copybrief CFE_SB_BUF_ALOC_ERR
 **/
-CFE_Status_t  CFE_SB_PassMsg(CFE_MSG_Message_t *MsgPtr);
+CFE_Status_t CFE_SB_PassMsg(CFE_MSG_Message_t *MsgPtr);
 #endif /* CFE_OMIT_DEPRECATED_6_8 */
 
 /*****************************************************************************/
@@ -691,8 +694,7 @@ CFE_Status_t CFE_SB_RcvMsg(CFE_SB_Buffer_t **BufPtr, CFE_SB_PipeId_t PipeId, int
 ** \return A pointer to a memory buffer that message data can be written to
 **         for use with #CFE_SB_TransmitBuffer.
 **/
-CFE_SB_Buffer_t *CFE_SB_ZeroCopyGetPtr(size_t  MsgSize,
-                                       CFE_SB_ZeroCopyHandle_t *BufferHandle);
+CFE_SB_Buffer_t *CFE_SB_ZeroCopyGetPtr(size_t MsgSize, CFE_SB_ZeroCopyHandle_t *BufferHandle);
 
 /*****************************************************************************/
 /**
@@ -758,8 +760,7 @@ CFE_Status_t CFE_SB_ZeroCopyReleasePtr(CFE_SB_Buffer_t *Ptr2Release, CFE_SB_Zero
 ** \retval #CFE_SB_MSG_TOO_BIG  \copybrief CFE_SB_MSG_TOO_BIG
 ** \retval #CFE_SB_BUF_ALOC_ERR \copybrief CFE_SB_BUF_ALOC_ERR
 **/
-CFE_Status_t CFE_SB_TransmitBuffer(CFE_SB_Buffer_t *BufPtr,
-                                   CFE_SB_ZeroCopyHandle_t ZeroCopyHandle,
+CFE_Status_t CFE_SB_TransmitBuffer(CFE_SB_Buffer_t *BufPtr, CFE_SB_ZeroCopyHandle_t ZeroCopyHandle,
                                    bool IncrementSequenceCount);
 
 #ifndef CFE_OMIT_DEPRECATED_6_8
@@ -877,10 +878,7 @@ CFE_Status_t CFE_SB_ZeroCopyPass(CFE_SB_Buffer_t *BufPtr, CFE_SB_ZeroCopyHandle_
 **                     \arg true - fill sequence count and packet data with zeroes.
 **                     \arg false - leave sequence count and packet data unchanged.
 **/
-void CFE_SB_InitMsg(void           *MsgPtr,
-                    CFE_SB_MsgId_t MsgId,
-                    size_t         Length,
-                    bool           Clear );
+void CFE_SB_InitMsg(void *MsgPtr, CFE_SB_MsgId_t MsgId, size_t Length, bool Clear);
 
 /*****************************************************************************/
 /**
@@ -898,8 +896,7 @@ void CFE_SB_InitMsg(void           *MsgPtr,
 **
 ** \param[in]  MsgId   The message ID to put into the message header.
 **/
-void CFE_SB_SetMsgId(CFE_MSG_Message_t *MsgPtr,
-                     CFE_SB_MsgId_t MsgId);
+void CFE_SB_SetMsgId(CFE_MSG_Message_t *MsgPtr, CFE_SB_MsgId_t MsgId);
 #endif /* CFE_OMIT_DEPRECATED_6_8 */
 
 /*****************************************************************************/
@@ -922,7 +919,7 @@ void CFE_SB_SetMsgId(CFE_MSG_Message_t *MsgPtr,
 **
 ** \param[in]  DataLength  The length to set (size of the user data, in bytes).
 **/
-void CFE_SB_SetUserDataLength(CFE_MSG_Message_t *MsgPtr,size_t DataLength);
+void CFE_SB_SetUserDataLength(CFE_MSG_Message_t *MsgPtr, size_t DataLength);
 
 #ifndef CFE_OMIT_DEPRECATED_6_8
 /*****************************************************************************/
@@ -946,7 +943,7 @@ void CFE_SB_SetUserDataLength(CFE_MSG_Message_t *MsgPtr,size_t DataLength);
 ** \param[in]  TotalLength The length to set (total size of the message, in bytes,
 **                         including headers).
 **/
-void CFE_SB_SetTotalMsgLength(CFE_MSG_Message_t *MsgPtr,size_t TotalLength);
+void CFE_SB_SetTotalMsgLength(CFE_MSG_Message_t *MsgPtr, size_t TotalLength);
 
 /*****************************************************************************/
 /**
@@ -978,7 +975,6 @@ void CFE_SB_SetTotalMsgLength(CFE_MSG_Message_t *MsgPtr,size_t TotalLength);
 **/
 CFE_Status_t CFE_SB_SetMsgTime(CFE_MSG_Message_t *MsgPtr, CFE_TIME_SysTime_t Time);
 #endif /* CFE_OMIT_DEPRECATED_6_8 */
-
 
 /*****************************************************************************/
 /**
@@ -1057,7 +1053,8 @@ CFE_Status_t CFE_SB_SetCmdCode(CFE_MSG_Message_t *MsgPtr, uint16 CmdCode);
 ** \return Number of characters copied or error code, see \ref CFEReturnCodes
 **
 */
-int32 CFE_SB_MessageStringSet(char *DestStringPtr, const char *SourceStringPtr, size_t DestMaxSize, size_t SourceMaxSize);
+int32 CFE_SB_MessageStringSet(char *DestStringPtr, const char *SourceStringPtr, size_t DestMaxSize,
+                              size_t SourceMaxSize);
 /**@}*/
 
 /** @defgroup CFEAPIGetMessage cFE Getting Message Characteristics APIs
@@ -1224,7 +1221,8 @@ CFE_TIME_SysTime_t CFE_SB_GetMsgTime(CFE_MSG_Message_t *MsgPtr);
 ** \return Number of characters copied or error code, see \ref CFEReturnCodes
 **
 */
-int32 CFE_SB_MessageStringGet(char *DestStringPtr, const char *SourceStringPtr, const char *DefaultString, size_t DestMaxSize, size_t SourceMaxSize);
+int32 CFE_SB_MessageStringGet(char *DestStringPtr, const char *SourceStringPtr, const char *DefaultString,
+                              size_t DestMaxSize, size_t SourceMaxSize);
 /**@}*/
 
 #ifndef CFE_OMIT_DEPRECATED_6_8
@@ -1321,7 +1319,6 @@ bool CFE_SB_ValidateChecksum(CFE_MSG_Message_t *MsgPtr);
  * \retval false Message ID is not within the valid range
  */
 bool CFE_SB_IsValidMsgId(CFE_SB_MsgId_t MsgId);
-
 
 /*****************************************************************************/
 /**
@@ -1425,5 +1422,5 @@ uint32 CFE_SB_GetPktType(CFE_SB_MsgId_t MsgId);
 
 /**@}*/
 
-#endif  /* _cfe_sb_ */
+#endif /* _cfe_sb_ */
 /*****************************************************************************/

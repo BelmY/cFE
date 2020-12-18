@@ -25,7 +25,7 @@
 **      This header file contains prototypes for private functions and type
 **      definitions for FS internal use.
 **
-** Author:  A. Cudmore/NASA GSFC 
+** Author:  A. Cudmore/NASA GSFC
 **
 **
 ******************************************************************************/
@@ -44,20 +44,19 @@
 ** Macro Definitions
 */
 
-
 /*
 ** Type Definitions
 */
 
 /******************************************************************************
-**  Typedef: CFE_FS_t 
+**  Typedef: CFE_FS_t
 **
 **  Purpose:
 **     This structure contains the FS global variables.
 */
-typedef struct 
+typedef struct
 {
-    osal_id_t              SharedDataMutexId;
+    osal_id_t SharedDataMutexId;
 
 } CFE_FS_t;
 
@@ -65,11 +64,10 @@ typedef struct
 ** FS Function Prototypes
 */
 
-extern void CFE_FS_LockSharedData(const char *FunctionName );
-extern void CFE_FS_UnlockSharedData(const char *FunctionName );
+extern void CFE_FS_LockSharedData(const char *FunctionName);
+extern void CFE_FS_UnlockSharedData(const char *FunctionName);
 extern void CFE_FS_ByteSwapCFEHeader(CFE_FS_Header_t *Hdr);
 extern void CFE_FS_ByteSwapUint32(uint32 *Uint32ToSwapPtr);
-
 
 #endif /* _cfe_fs_priv_ */
 /*****************************************************************************/

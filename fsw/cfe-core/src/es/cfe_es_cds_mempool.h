@@ -19,11 +19,11 @@
 */
 
 /*
-**  File: 
+**  File:
 **  cfe_es_cds_mempool.h
 **
 **  Purpose:
-**  This file contains the Internal interface for the cFE Critical Data Store 
+**  This file contains the Internal interface for the cFE Critical Data Store
 **  memory pool functions.
 **
 **  References:
@@ -33,7 +33,6 @@
 **  Notes:
 **
 */
-
 
 #ifndef _cfe_es_cds_mempool_
 #define _cfe_es_cds_mempool_
@@ -47,8 +46,7 @@
 /*
 ** Macro Definitions
 */
-#define CFE_ES_CDS_NUM_BLOCK_SIZES     17
-
+#define CFE_ES_CDS_NUM_BLOCK_SIZES 17
 
 /*****************************************************************************/
 /*
@@ -67,7 +65,7 @@
 **          None
 **
 ** \return #CFE_SUCCESS                     \copydoc CFE_SUCCESS
-**                     
+**
 ******************************************************************************/
 int32 CFE_ES_CreateCDSPool(size_t CDSPoolSize, size_t StartOffset);
 
@@ -79,4 +77,4 @@ int32 CFE_ES_CDSBlockRead(void *DataRead, CFE_ES_CDSHandle_t Handle);
 
 size_t CFE_ES_CDSReqdMinSize(uint32 MaxNumBlocksToSupport);
 
-#endif  /* _cfe_es_cds_mempool_ */
+#endif /* _cfe_es_cds_mempool_ */

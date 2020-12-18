@@ -19,7 +19,7 @@
 */
 
 /*
-**  File: 
+**  File:
 **  cfe_es_cds.h
 **
 **  Purpose:
@@ -33,7 +33,6 @@
 **  Notes:
 **
 */
-
 
 #ifndef _cfe_es_cds_
 #define _cfe_es_cds_
@@ -54,37 +53,36 @@
 
 /** \name Registry Mutex Definitions */
 /**  \{ */
-#define CFE_ES_CDS_MUT_REG_NAME       "CDS_MUTEX"   /**< \brief Name of Mutex controlling CDS Access */
-#define CFE_ES_CDS_MUT_REG_VALUE       0            /**< \brief Initial Value of CDS Access Mutex */
+#define CFE_ES_CDS_MUT_REG_NAME  "CDS_MUTEX" /**< \brief Name of Mutex controlling CDS Access */
+#define CFE_ES_CDS_MUT_REG_VALUE 0           /**< \brief Initial Value of CDS Access Mutex */
 /** \} */
 
 /** \name Registry Signature Definitions */
 /**  \{ */
-#define CFE_ES_CDS_SIGNATURE_LEN       8            /**< \brief Length of CDS signature field. */
-#define CFE_ES_CDS_SIGNATURE_BEGIN     "_CDSBeg_"   /**< \brief Fixed signature at beginning of CDS */
-#define CFE_ES_CDS_SIGNATURE_END       "_CDSEnd_"   /**< \brief Fixed signature at end of CDS */
+#define CFE_ES_CDS_SIGNATURE_LEN   8          /**< \brief Length of CDS signature field. */
+#define CFE_ES_CDS_SIGNATURE_BEGIN "_CDSBeg_" /**< \brief Fixed signature at beginning of CDS */
+#define CFE_ES_CDS_SIGNATURE_END   "_CDSEnd_" /**< \brief Fixed signature at end of CDS */
 /** \} */
-
 
 /*
  * Space in CDS should be aligned to a multiple of uint32
  * These helper macros round up to a whole number of words
  */
-#define CDS_SIZE_TO_U32WORDS(x)         (((x) + 3) / sizeof(uint32))
-#define CDS_RESERVE_SPACE(name,size)    uint32 name[CDS_SIZE_TO_U32WORDS(size)]
+#define CDS_SIZE_TO_U32WORDS(x)       (((x) + 3) / sizeof(uint32))
+#define CDS_RESERVE_SPACE(name, size) uint32 name[CDS_SIZE_TO_U32WORDS(size)]
 
 /* Define offset addresses for CDS data segments */
-#define CDS_SIG_BEGIN_OFFSET    offsetof(CFE_ES_CDS_PersistentHeader_t, SignatureBegin)
-#define CDS_REG_SIZE_OFFSET     offsetof(CFE_ES_CDS_PersistentHeader_t, RegistrySize)
-#define CDS_REG_OFFSET          offsetof(CFE_ES_CDS_PersistentHeader_t, RegistryContent)
-#define CDS_POOL_OFFSET         sizeof(CFE_ES_CDS_PersistentHeader_t)
+#define CDS_SIG_BEGIN_OFFSET offsetof(CFE_ES_CDS_PersistentHeader_t, SignatureBegin)
+#define CDS_REG_SIZE_OFFSET  offsetof(CFE_ES_CDS_PersistentHeader_t, RegistrySize)
+#define CDS_REG_OFFSET       offsetof(CFE_ES_CDS_PersistentHeader_t, RegistryContent)
+#define CDS_POOL_OFFSET      sizeof(CFE_ES_CDS_PersistentHeader_t)
 
 /*
  * Absolute Minimum CDS size conceivably supportable by the implementation.
  * This is the space required for the basic signatures and registry information.
  * It is not possible to create a CDS with a storage area smaller than this.
  */
-#define CDS_RESERVED_MIN_SIZE   sizeof(CFE_ES_CDS_PersistentHeader_t) + sizeof(CFE_ES_CDS_PersistentTrailer_t)
+#define CDS_RESERVED_MIN_SIZE sizeof(CFE_ES_CDS_PersistentHeader_t) + sizeof(CFE_ES_CDS_PersistentTrailer_t)
 
 /*
  * Absolute Maximum Block size conceivably supportable by the implementation.
@@ -94,14 +92,11 @@
  * This ensures the size is safe for a PSP that uses 32 bit CDS offsets.
  * (It is not anticipated that a CDS would need to exceed this size)
  */
-#define CDS_ABS_MAX_BLOCK_SIZE  ((size_t)(1 << 30) - sizeof(CFE_ES_CDS_BlockHeader_t))
-
-
+#define CDS_ABS_MAX_BLOCK_SIZE ((size_t)(1 << 30) - sizeof(CFE_ES_CDS_BlockHeader_t))
 
 /*
 ** Type Definitions
 */
-
 
 /**
  * The structure cached in RAM for each block within the CDS non-volatile memory
@@ -115,16 +110,16 @@ typedef struct
      * which has a CRC, and therefore the actual user data size is
      * less than this.
      */
-    CFE_ES_ResourceID_t       BlockID;      /**< Abstract ID associated with this CDS block */
-    size_t                    BlockOffset;  /**< Start offset of the block in CDS memory */
-    size_t                    BlockSize;    /**< Size, in bytes, of the CDS memory block */
-    char                      Name[CFE_MISSION_ES_CDS_MAX_FULL_NAME_LEN];
-    bool                      Table;        /**< \brief Flag that indicates whether CDS contains a Critical Table */
+    CFE_ES_ResourceID_t BlockID;     /**< Abstract ID associated with this CDS block */
+    size_t              BlockOffset; /**< Start offset of the block in CDS memory */
+    size_t              BlockSize;   /**< Size, in bytes, of the CDS memory block */
+    char                Name[CFE_MISSION_ES_CDS_MAX_FULL_NAME_LEN];
+    bool                Table; /**< \brief Flag that indicates whether CDS contains a Critical Table */
 } CFE_ES_CDS_RegRec_t;
 
 typedef struct CFE_ES_CDSBlockHeader
 {
-    uint32              Crc;        /**< CRC of content */
+    uint32 Crc; /**< CRC of content */
 } CFE_ES_CDS_BlockHeader_t;
 
 /*
@@ -133,12 +128,12 @@ typedef struct CFE_ES_CDSBlockHeader
  */
 typedef union CFE_ES_CDS_AccessCacheData
 {
-    char                     Sig[CFE_ES_CDS_SIGNATURE_LEN];  /**< A signature field (beginning or end) */
-    uint32                   RegistrySize;           /**< Registry Size Field */
-    uint32                   Zero[4];                /**< Used when clearing CDS content */
-    CFE_ES_GenPoolBD_t       Desc;                   /**< A generic block descriptor */
-    CFE_ES_CDS_BlockHeader_t BlockHeader;            /**< A user block header */
-    CFE_ES_CDS_RegRec_t      RegEntry;               /**< A registry entry */
+    char                     Sig[CFE_ES_CDS_SIGNATURE_LEN]; /**< A signature field (beginning or end) */
+    uint32                   RegistrySize;                  /**< Registry Size Field */
+    uint32                   Zero[4];                       /**< Used when clearing CDS content */
+    CFE_ES_GenPoolBD_t       Desc;                          /**< A generic block descriptor */
+    CFE_ES_CDS_BlockHeader_t BlockHeader;                   /**< A user block header */
+    CFE_ES_CDS_RegRec_t      RegEntry;                      /**< A registry entry */
 } CFE_ES_CDS_AccessCacheData_t;
 
 typedef struct CFE_ES_CDS_AccessCache
@@ -170,13 +165,12 @@ typedef struct
      */
     CFE_ES_CDS_AccessCache_t Cache;
 
-    osal_id_t            GenMutex;                           /**< \brief Mutex that controls access to CDS and registry */
-    size_t               TotalSize;                          /**< \brief Total size of the CDS as reported by BSP */
-    size_t               DataSize;                           /**< \brief Size of actual user data pool */
-    CFE_ES_ResourceID_t  LastCDSBlockId;                     /**< \brief Last issued CDS block ID */
-    CFE_ES_CDS_RegRec_t  Registry[CFE_PLATFORM_ES_CDS_MAX_NUM_ENTRIES];  /**< \brief CDS Registry (Local Copy) */
+    osal_id_t           GenMutex;       /**< \brief Mutex that controls access to CDS and registry */
+    size_t              TotalSize;      /**< \brief Total size of the CDS as reported by BSP */
+    size_t              DataSize;       /**< \brief Size of actual user data pool */
+    CFE_ES_ResourceID_t LastCDSBlockId; /**< \brief Last issued CDS block ID */
+    CFE_ES_CDS_RegRec_t Registry[CFE_PLATFORM_ES_CDS_MAX_NUM_ENTRIES]; /**< \brief CDS Registry (Local Copy) */
 } CFE_ES_CDS_Instance_t;
-
 
 /*
  * structs representing the intended layout of data
@@ -200,9 +194,6 @@ typedef struct CFE_ES_CDS_PersistentTrailer
     CDS_RESERVE_SPACE(SignatureEnd, CFE_ES_CDS_SIGNATURE_LEN);
 } CFE_ES_CDS_PersistentTrailer_t;
 
-
-
-
 /*****************************************************************************/
 /*
 ** Function prototypes
@@ -223,9 +214,7 @@ typedef struct CFE_ES_CDS_PersistentTrailer
  * @param[in]    Size   the CDS data size to fetch
  * @returns #CFE_SUCCESS on success, or appropriate error code.
  */
-int32 CFE_ES_CDS_CacheFetch(CFE_ES_CDS_AccessCache_t *Cache,
-        size_t Offset, size_t Size);
-
+int32 CFE_ES_CDS_CacheFetch(CFE_ES_CDS_AccessCache_t *Cache, size_t Offset, size_t Size);
 
 /**
  * @brief Write data from the RAM cache back to non-volatile storage
@@ -266,8 +255,7 @@ int32 CFE_ES_CDS_CacheFlush(CFE_ES_CDS_AccessCache_t *Cache);
  * @param[in]    Size   the CDS data size to fetch
  * @returns #CFE_SUCCESS on success, or appropriate error code.
  */
-int32 CFE_ES_CDS_CachePreload(CFE_ES_CDS_AccessCache_t *Cache, const void *Source,
-        size_t Offset, size_t Size);
+int32 CFE_ES_CDS_CachePreload(CFE_ES_CDS_AccessCache_t *Cache, const void *Source, size_t Offset, size_t Size);
 
 /**
  * @brief Get the registry array index correlating with a CDS block ID
@@ -295,7 +283,7 @@ int32 CFE_ES_CDSBlockID_ToIndex(CFE_ES_ResourceID_t BlockID, uint32 *Idx);
  * @param[in] BlockID the ID/handle of the CDS block to retrieve
  * @returns   Pointer to registry record, or NULL if ID/handle invalid.
  */
-CFE_ES_CDS_RegRec_t* CFE_ES_LocateCDSBlockRecordByID(CFE_ES_ResourceID_t BlockID);
+CFE_ES_CDS_RegRec_t *CFE_ES_LocateCDSBlockRecordByID(CFE_ES_ResourceID_t BlockID);
 
 /**
  * @brief Check if a Memory Pool record is in use or free/empty
@@ -391,7 +379,6 @@ static inline size_t CFE_ES_CDSBlockRecordGetUserSize(const CFE_ES_CDS_RegRec_t 
     return (CDSBlockRecPtr->BlockSize - sizeof(CFE_ES_CDS_BlockHeader_t));
 }
 
-
 /*****************************************************************************/
 /**
 ** \brief Initializes CDS data constructs
@@ -410,7 +397,6 @@ static inline size_t CFE_ES_CDSBlockRecordGetUserSize(const CFE_ES_CDS_RegRec_t 
 **
 ******************************************************************************/
 int32 CFE_ES_CDS_EarlyInit(void);
-
 
 /*****************************************************************************/
 /**
@@ -447,7 +433,6 @@ int32 CFE_ES_ValidateCDS(void);
 ******************************************************************************/
 int32 CFE_ES_InitCDSRegistry(void);
 
-
 /*****************************************************************************/
 /**
 ** \brief Rebuilds memory pool for CDS and recovers existing registry
@@ -477,11 +462,9 @@ int32 CFE_ES_RebuildCDS(void);
 **
 ** \return #CFE_SUCCESS                     \copydoc CFE_SUCCESS
 ** \return Any of the return values from #CFE_PSP_WriteToCDS
-**                     
+**
 ******************************************************************************/
 int32 CFE_ES_UpdateCDSRegistry(void);
-
-
 
 /*****************************************************************************/
 /**
@@ -496,12 +479,13 @@ int32 CFE_ES_UpdateCDSRegistry(void);
 **        Note: AppName portion will be truncated to OS_MAX_API_NAME.
 **
 ** \param[in, out]  FullCDSName pointer to character buffer of #CFE_ES_CDS_MAX_FULL_NAME_LEN size
-**                         that will be filled with the processor specific CDS Name. *FullCDSName is the processor specific CDS Name of the form "AppName.CDSName".
-** 
+**                         that will be filled with the processor specific CDS Name. *FullCDSName is the processor
+*specific CDS Name of the form "AppName.CDSName".
+**
 ** \param[in]  CDSName pointer to character string containing the Application's local name for
 **                     the CDS.
 **
-** \param[in]  ThisAppId the Application ID of the Application making the call. 
+** \param[in]  ThisAppId the Application ID of the Application making the call.
 **
 **
 ******************************************************************************/
@@ -520,7 +504,7 @@ void CFE_ES_FormCDSName(char *FullCDSName, const char *CDSName, CFE_ES_ResourceI
 **
 ** \param[in]  CDSName - Pointer to character string containing complete
 **                       CDS Name (of the format "AppName.CDSName").
-** 
+**
 ** \retval NULL if not found, Non null entry pointer on success
 **
 ******************************************************************************/
@@ -539,9 +523,9 @@ CFE_ES_CDS_RegRec_t *CFE_ES_LocateCDSBlockRecordByName(const char *CDSName);
 ** \par Assumptions, External Events, and Notes:
 **          None
 **
-** \retval #CFE_SUCCESS                     \copydoc CFE_SUCCESS                     
+** \retval #CFE_SUCCESS                     \copydoc CFE_SUCCESS
 ******************************************************************************/
-int32   CFE_ES_LockCDS(void);
+int32 CFE_ES_LockCDS(void);
 
 /*****************************************************************************/
 /**
@@ -555,9 +539,9 @@ int32   CFE_ES_LockCDS(void);
 **          None
 **
 ** \retval #CFE_SUCCESS                     \copydoc CFE_SUCCESS
-**                     
+**
 ******************************************************************************/
-int32   CFE_ES_UnlockCDS(void);
+int32 CFE_ES_UnlockCDS(void);
 
 /*****************************************************************************/
 /**
@@ -647,6 +631,4 @@ int32 CFE_ES_ClearCDS(void);
 ******************************************************************************/
 int32 CFE_ES_InitCDSSignatures(void);
 
-
-
-#endif  /* _cfe_es_cds_ */
+#endif /* _cfe_es_cds_ */

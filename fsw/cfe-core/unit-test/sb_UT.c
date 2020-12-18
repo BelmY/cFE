@@ -50,7 +50,7 @@
  * This also implicitly includes a call to SB_ResetUnitTest() as a setup function,
  * so the test routines do _not_ need to do this explictly on every test case.
  */
-#define SB_UT_ADD_SUBTEST(Func)    UT_AddSubTest(Func, SB_ResetUnitTest, NULL, __func__, #Func)
+#define SB_UT_ADD_SUBTEST(Func) UT_AddSubTest(Func, SB_ResetUnitTest, NULL, __func__, #Func)
 
 /*
  * MSG ID constants for unit testing:
@@ -59,22 +59,22 @@
  * The following constants are of the CFE_SB_MsgId_t type
  */
 
-const CFE_SB_MsgId_t SB_UT_CMD_MID  = CFE_SB_MSGID_WRAP_VALUE(SB_UT_CMD_MID_VALUE_BASE);
-const CFE_SB_MsgId_t SB_UT_TLM_MID  = CFE_SB_MSGID_WRAP_VALUE(SB_UT_TLM_MID_VALUE_BASE);
+const CFE_SB_MsgId_t SB_UT_CMD_MID = CFE_SB_MSGID_WRAP_VALUE(SB_UT_CMD_MID_VALUE_BASE);
+const CFE_SB_MsgId_t SB_UT_TLM_MID = CFE_SB_MSGID_WRAP_VALUE(SB_UT_TLM_MID_VALUE_BASE);
 
-const CFE_SB_MsgId_t SB_UT_CMD_MID1 = CFE_SB_MSGID_WRAP_VALUE(SB_UT_CMD_MID_VALUE_BASE+1);
-const CFE_SB_MsgId_t SB_UT_CMD_MID2 = CFE_SB_MSGID_WRAP_VALUE(SB_UT_CMD_MID_VALUE_BASE+2);
-const CFE_SB_MsgId_t SB_UT_CMD_MID3 = CFE_SB_MSGID_WRAP_VALUE(SB_UT_CMD_MID_VALUE_BASE+3);
-const CFE_SB_MsgId_t SB_UT_CMD_MID4 = CFE_SB_MSGID_WRAP_VALUE(SB_UT_CMD_MID_VALUE_BASE+4);
-const CFE_SB_MsgId_t SB_UT_CMD_MID5 = CFE_SB_MSGID_WRAP_VALUE(SB_UT_CMD_MID_VALUE_BASE+5);
-const CFE_SB_MsgId_t SB_UT_CMD_MID6 = CFE_SB_MSGID_WRAP_VALUE(SB_UT_CMD_MID_VALUE_BASE+6);
+const CFE_SB_MsgId_t SB_UT_CMD_MID1 = CFE_SB_MSGID_WRAP_VALUE(SB_UT_CMD_MID_VALUE_BASE + 1);
+const CFE_SB_MsgId_t SB_UT_CMD_MID2 = CFE_SB_MSGID_WRAP_VALUE(SB_UT_CMD_MID_VALUE_BASE + 2);
+const CFE_SB_MsgId_t SB_UT_CMD_MID3 = CFE_SB_MSGID_WRAP_VALUE(SB_UT_CMD_MID_VALUE_BASE + 3);
+const CFE_SB_MsgId_t SB_UT_CMD_MID4 = CFE_SB_MSGID_WRAP_VALUE(SB_UT_CMD_MID_VALUE_BASE + 4);
+const CFE_SB_MsgId_t SB_UT_CMD_MID5 = CFE_SB_MSGID_WRAP_VALUE(SB_UT_CMD_MID_VALUE_BASE + 5);
+const CFE_SB_MsgId_t SB_UT_CMD_MID6 = CFE_SB_MSGID_WRAP_VALUE(SB_UT_CMD_MID_VALUE_BASE + 6);
 
-const CFE_SB_MsgId_t SB_UT_TLM_MID1 = CFE_SB_MSGID_WRAP_VALUE(SB_UT_TLM_MID_VALUE_BASE+1);
-const CFE_SB_MsgId_t SB_UT_TLM_MID2 = CFE_SB_MSGID_WRAP_VALUE(SB_UT_TLM_MID_VALUE_BASE+2);
-const CFE_SB_MsgId_t SB_UT_TLM_MID3 = CFE_SB_MSGID_WRAP_VALUE(SB_UT_TLM_MID_VALUE_BASE+3);
-const CFE_SB_MsgId_t SB_UT_TLM_MID4 = CFE_SB_MSGID_WRAP_VALUE(SB_UT_TLM_MID_VALUE_BASE+4);
-const CFE_SB_MsgId_t SB_UT_TLM_MID5 = CFE_SB_MSGID_WRAP_VALUE(SB_UT_TLM_MID_VALUE_BASE+5);
-const CFE_SB_MsgId_t SB_UT_TLM_MID6 = CFE_SB_MSGID_WRAP_VALUE(SB_UT_TLM_MID_VALUE_BASE+6);
+const CFE_SB_MsgId_t SB_UT_TLM_MID1 = CFE_SB_MSGID_WRAP_VALUE(SB_UT_TLM_MID_VALUE_BASE + 1);
+const CFE_SB_MsgId_t SB_UT_TLM_MID2 = CFE_SB_MSGID_WRAP_VALUE(SB_UT_TLM_MID_VALUE_BASE + 2);
+const CFE_SB_MsgId_t SB_UT_TLM_MID3 = CFE_SB_MSGID_WRAP_VALUE(SB_UT_TLM_MID_VALUE_BASE + 3);
+const CFE_SB_MsgId_t SB_UT_TLM_MID4 = CFE_SB_MSGID_WRAP_VALUE(SB_UT_TLM_MID_VALUE_BASE + 4);
+const CFE_SB_MsgId_t SB_UT_TLM_MID5 = CFE_SB_MSGID_WRAP_VALUE(SB_UT_TLM_MID_VALUE_BASE + 5);
+const CFE_SB_MsgId_t SB_UT_TLM_MID6 = CFE_SB_MSGID_WRAP_VALUE(SB_UT_TLM_MID_VALUE_BASE + 6);
 
 /*
  * A MsgId value which still qualifies as valid
@@ -97,14 +97,14 @@ const CFE_SB_MsgId_t SB_UT_FIRST_VALID_MID = CFE_SB_MSGID_WRAP_VALUE(0);
  *
  * The specific value depends on how MsgId is actually defined internally
  */
-const CFE_SB_MsgId_t SB_UT_INTERMEDIATE_VALID_MID = CFE_SB_MSGID_WRAP_VALUE(CFE_PLATFORM_SB_HIGHEST_VALID_MSGID / 2 + 1);
+const CFE_SB_MsgId_t SB_UT_INTERMEDIATE_VALID_MID =
+    CFE_SB_MSGID_WRAP_VALUE(CFE_PLATFORM_SB_HIGHEST_VALID_MSGID / 2 + 1);
 
 /*
  * A MsgId value which is not valid but also not equal to CFE_SB_INVALID_MSG_ID
  * Like CFE_SB_INVALID_MSG_ID, this should also _not_ pass the validity check.
  */
 const CFE_SB_MsgId_t SB_UT_ALTERNATE_INVALID_MID = CFE_SB_MSGID_WRAP_VALUE(CFE_PLATFORM_SB_HIGHEST_VALID_MSGID + 1);
-
 
 /*
  * A MsgId value which is valid per CCSDS but does not have the secondary header bit set
@@ -185,7 +185,7 @@ void Test_SB_AppInit_ESRegFail(void)
     int32 ForcedRtnVal = -1;
 
     UT_SetDeferredRetcode(UT_KEY(CFE_ES_RegisterApp), 1, ForcedRtnVal);
-	ASSERT_EQ(CFE_SB_AppInit(), ForcedRtnVal);
+    ASSERT_EQ(CFE_SB_AppInit(), ForcedRtnVal);
 
     EVTCNT(0);
 
@@ -210,14 +210,14 @@ void Test_SB_AppInit_EVSRegFail(void)
 */
 void Test_SB_AppInit_EVSSendEvtFail(void)
 {
-    int32 ForcedRtnVal = -1;
+    int32             ForcedRtnVal = -1;
     CFE_ES_TaskInfo_t TestTaskInfo;
 
     /* To get coverage on CFE_SB_GetAppTskName(), this ensures that the
      * path with different app/task names is followed on at least one event.
      */
     memset(&TestTaskInfo, 0, sizeof(TestTaskInfo));
-    strncpy((char*)TestTaskInfo.TaskName, "test", sizeof(TestTaskInfo.TaskName)-1);
+    strncpy((char *)TestTaskInfo.TaskName, "test", sizeof(TestTaskInfo.TaskName) - 1);
     UT_SetDataBuffer(UT_KEY(CFE_ES_GetTaskInfo), &TestTaskInfo, sizeof(TestTaskInfo), false);
 
     /* There are three events prior to init, pipe created (1) and subscription
@@ -291,7 +291,7 @@ void Test_SB_AppInit_Sub2Fail(void)
 */
 void Test_SB_AppInit_GetPoolFail(void)
 {
-    CFE_SB_PipeId_t PipeId = 0;
+    CFE_SB_PipeId_t PipeId       = 0;
     int32           ForcedRtnVal = -1;
 
     UT_SetDeferredRetcode(UT_KEY(CFE_ES_GetPoolBuf), 4, ForcedRtnVal);
@@ -309,7 +309,7 @@ void Test_SB_AppInit_GetPoolFail(void)
 */
 void Test_SB_AppInit_PutPoolFail(void)
 {
-    CFE_SB_PipeId_t PipeId = 0;
+    CFE_SB_PipeId_t PipeId       = 0;
     int32           ForcedRtnVal = -1;
 
     UT_SetDeferredRetcode(UT_KEY(CFE_ES_PutPoolBuf), 1, ForcedRtnVal);
@@ -421,8 +421,8 @@ void Test_SB_Cmds_Noop(void)
         CFE_SB_NoopCmd_t Cmd;
     } Noop;
     CFE_MSG_FcnCode_t FcnCode = CFE_SB_NOOP_CC;
-    CFE_SB_MsgId_t    MsgId = CFE_SB_ValueToMsgId(CFE_SB_CMD_MID);
-    CFE_MSG_Size_t    Size = sizeof(Noop.Cmd);
+    CFE_SB_MsgId_t    MsgId   = CFE_SB_ValueToMsgId(CFE_SB_CMD_MID);
+    CFE_MSG_Size_t    Size    = sizeof(Noop.Cmd);
 
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &MsgId, sizeof(MsgId), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &Size, sizeof(Size), false);
@@ -446,8 +446,8 @@ void Test_SB_Cmds_RstCtrs(void)
         CFE_SB_ResetCountersCmd_t Cmd;
     } ResetCounters;
     CFE_MSG_FcnCode_t FcnCode = CFE_SB_RESET_COUNTERS_CC;
-    CFE_SB_MsgId_t    MsgId = CFE_SB_ValueToMsgId(CFE_SB_CMD_MID);
-    CFE_MSG_Size_t    Size = sizeof(ResetCounters.Cmd);
+    CFE_SB_MsgId_t    MsgId   = CFE_SB_ValueToMsgId(CFE_SB_CMD_MID);
+    CFE_MSG_Size_t    Size    = sizeof(ResetCounters.Cmd);
 
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &MsgId, sizeof(MsgId), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &Size, sizeof(Size), false);
@@ -476,13 +476,13 @@ void Test_SB_Cmds_Stats(void)
 
     /* For internal TransmitMsg call */
     MsgId = CFE_SB_ValueToMsgId(CFE_SB_STATS_TLM_MID);
-    Size = sizeof(CFE_SB.StatTlmMsg);
+    Size  = sizeof(CFE_SB.StatTlmMsg);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &MsgId, sizeof(MsgId), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &Size, sizeof(Size), false);
 
     /* For Generic command processing */
-    MsgId = CFE_SB_ValueToMsgId(CFE_SB_CMD_MID);
-    Size = sizeof(SendSbStats.Cmd);
+    MsgId   = CFE_SB_ValueToMsgId(CFE_SB_CMD_MID);
+    Size    = sizeof(SendSbStats.Cmd);
     FcnCode = CFE_SB_SEND_SB_STATS_CC;
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &MsgId, sizeof(MsgId), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &Size, sizeof(Size), false);
@@ -507,10 +507,10 @@ void Test_SB_Cmds_RoutingInfoDef(void)
         CFE_SB_Buffer_t             SBBuf;
         CFE_SB_SendRoutingInfoCmd_t Cmd;
     } SendRoutingInfo;
-    CFE_SB_PipeId_t   PipeId = 0;
+    CFE_SB_PipeId_t   PipeId  = 0;
     CFE_MSG_FcnCode_t FcnCode = CFE_SB_SEND_ROUTING_INFO_CC;
-    CFE_SB_MsgId_t    MsgId = CFE_SB_ValueToMsgId(CFE_SB_CMD_MID);
-    CFE_MSG_Size_t    Size = sizeof(SendRoutingInfo.Cmd);
+    CFE_SB_MsgId_t    MsgId   = CFE_SB_ValueToMsgId(CFE_SB_CMD_MID);
+    CFE_MSG_Size_t    Size    = sizeof(SendRoutingInfo.Cmd);
 
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &MsgId, sizeof(MsgId), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &Size, sizeof(Size), false);
@@ -547,8 +547,8 @@ void Test_SB_Cmds_RoutingInfoSpec(void)
         CFE_SB_SendRoutingInfoCmd_t Cmd;
     } SendRoutingInfo;
     CFE_MSG_FcnCode_t FcnCode = CFE_SB_SEND_ROUTING_INFO_CC;
-    CFE_SB_MsgId_t    MsgId = CFE_SB_ValueToMsgId(CFE_SB_CMD_MID);
-    CFE_MSG_Size_t    Size = sizeof(SendRoutingInfo.Cmd);
+    CFE_SB_MsgId_t    MsgId   = CFE_SB_ValueToMsgId(CFE_SB_CMD_MID);
+    CFE_MSG_Size_t    Size    = sizeof(SendRoutingInfo.Cmd);
 
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &MsgId, sizeof(MsgId), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &Size, sizeof(Size), false);
@@ -575,8 +575,8 @@ void Test_SB_Cmds_RoutingInfoCreateFail(void)
         CFE_SB_SendRoutingInfoCmd_t Cmd;
     } SendRoutingInfo;
     CFE_MSG_FcnCode_t FcnCode = CFE_SB_SEND_ROUTING_INFO_CC;
-    CFE_SB_MsgId_t    MsgId = CFE_SB_ValueToMsgId(CFE_SB_CMD_MID);
-    CFE_MSG_Size_t    Size = sizeof(SendRoutingInfo.Cmd);
+    CFE_SB_MsgId_t    MsgId   = CFE_SB_ValueToMsgId(CFE_SB_CMD_MID);
+    CFE_MSG_Size_t    Size    = sizeof(SendRoutingInfo.Cmd);
 
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &MsgId, sizeof(MsgId), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &Size, sizeof(Size), false);
@@ -649,13 +649,13 @@ void Test_SB_Cmds_PipeInfoDef(void)
         CFE_SB_Buffer_t          SBBuf;
         CFE_SB_SendPipeInfoCmd_t Cmd;
     } SendPipeInfo;
-    CFE_SB_PipeId_t           PipeId1;
-    CFE_SB_PipeId_t           PipeId2;
-    CFE_SB_PipeId_t           PipeId3;
-    uint16                    PipeDepth = 10;
-    CFE_MSG_FcnCode_t         FcnCode = CFE_SB_SEND_PIPE_INFO_CC;
-    CFE_SB_MsgId_t            MsgId = CFE_SB_ValueToMsgId(CFE_SB_CMD_MID);
-    CFE_MSG_Size_t            Size = sizeof(SendPipeInfo.Cmd);
+    CFE_SB_PipeId_t   PipeId1;
+    CFE_SB_PipeId_t   PipeId2;
+    CFE_SB_PipeId_t   PipeId3;
+    uint16            PipeDepth = 10;
+    CFE_MSG_FcnCode_t FcnCode   = CFE_SB_SEND_PIPE_INFO_CC;
+    CFE_SB_MsgId_t    MsgId     = CFE_SB_ValueToMsgId(CFE_SB_CMD_MID);
+    CFE_MSG_Size_t    Size      = sizeof(SendPipeInfo.Cmd);
 
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &MsgId, sizeof(MsgId), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &Size, sizeof(Size), false);
@@ -690,15 +690,14 @@ void Test_SB_Cmds_PipeInfoSpec(void)
         CFE_SB_Buffer_t          SBBuf;
         CFE_SB_SendPipeInfoCmd_t Cmd;
     } SendPipeInfo;
-    CFE_MSG_FcnCode_t         FcnCode = CFE_SB_SEND_PIPE_INFO_CC;
-    CFE_SB_MsgId_t            MsgId = CFE_SB_ValueToMsgId(CFE_SB_CMD_MID);
-    CFE_MSG_Size_t            Size = sizeof(SendPipeInfo.Cmd);
+    CFE_MSG_FcnCode_t FcnCode = CFE_SB_SEND_PIPE_INFO_CC;
+    CFE_SB_MsgId_t    MsgId   = CFE_SB_ValueToMsgId(CFE_SB_CMD_MID);
+    CFE_MSG_Size_t    Size    = sizeof(SendPipeInfo.Cmd);
 
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &MsgId, sizeof(MsgId), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &Size, sizeof(Size), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetFcnCode), &FcnCode, sizeof(FcnCode), false);
-    strncpy((char *)SendPipeInfo.Cmd.Payload.Filename, "PipeTstFile",
-            sizeof(SendPipeInfo.Cmd.Payload.Filename));
+    strncpy((char *)SendPipeInfo.Cmd.Payload.Filename, "PipeTstFile", sizeof(SendPipeInfo.Cmd.Payload.Filename));
     CFE_SB_ProcessCmdPipePkt(&SendPipeInfo.SBBuf);
 
     EVTCNT(1);
@@ -775,19 +774,19 @@ void Test_SB_Cmds_MapInfoDef(void)
         CFE_SB_Buffer_t         SBBuf;
         CFE_SB_SendMapInfoCmd_t Cmd;
     } SendMapInfo;
-    CFE_SB_PipeId_t           PipeId1;
-    CFE_SB_PipeId_t           PipeId2;
-    CFE_SB_PipeId_t           PipeId3;
-    CFE_SB_MsgId_t            MsgId0 = SB_UT_TLM_MID1;
-    CFE_SB_MsgId_t            MsgId1 = SB_UT_TLM_MID2;
-    CFE_SB_MsgId_t            MsgId2 = SB_UT_TLM_MID3;
-    CFE_SB_MsgId_t            MsgId3 = SB_UT_TLM_MID4;
-    CFE_SB_MsgId_t            MsgId4 = SB_UT_TLM_MID5;
-    CFE_SB_MsgId_t            MsgId5 = SB_UT_TLM_MID6;
-    uint16                    PipeDepth = 10;
-    CFE_MSG_FcnCode_t         FcnCode = CFE_SB_SEND_MAP_INFO_CC;
-    CFE_SB_MsgId_t            MsgId = CFE_SB_ValueToMsgId(CFE_SB_CMD_MID);
-    CFE_MSG_Size_t            Size = sizeof(SendMapInfo.Cmd);
+    CFE_SB_PipeId_t   PipeId1;
+    CFE_SB_PipeId_t   PipeId2;
+    CFE_SB_PipeId_t   PipeId3;
+    CFE_SB_MsgId_t    MsgId0    = SB_UT_TLM_MID1;
+    CFE_SB_MsgId_t    MsgId1    = SB_UT_TLM_MID2;
+    CFE_SB_MsgId_t    MsgId2    = SB_UT_TLM_MID3;
+    CFE_SB_MsgId_t    MsgId3    = SB_UT_TLM_MID4;
+    CFE_SB_MsgId_t    MsgId4    = SB_UT_TLM_MID5;
+    CFE_SB_MsgId_t    MsgId5    = SB_UT_TLM_MID6;
+    uint16            PipeDepth = 10;
+    CFE_MSG_FcnCode_t FcnCode   = CFE_SB_SEND_MAP_INFO_CC;
+    CFE_SB_MsgId_t    MsgId     = CFE_SB_ValueToMsgId(CFE_SB_CMD_MID);
+    CFE_MSG_Size_t    Size      = sizeof(SendMapInfo.Cmd);
 
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &MsgId, sizeof(MsgId), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &Size, sizeof(Size), false);
@@ -832,15 +831,14 @@ void Test_SB_Cmds_MapInfoSpec(void)
         CFE_SB_Buffer_t         SBBuf;
         CFE_SB_SendMapInfoCmd_t Cmd;
     } SendMapInfo;
-    CFE_MSG_FcnCode_t         FcnCode = CFE_SB_SEND_MAP_INFO_CC;
-    CFE_SB_MsgId_t            MsgId = CFE_SB_ValueToMsgId(CFE_SB_CMD_MID);
-    CFE_MSG_Size_t            Size = sizeof(SendMapInfo.Cmd);
+    CFE_MSG_FcnCode_t FcnCode = CFE_SB_SEND_MAP_INFO_CC;
+    CFE_SB_MsgId_t    MsgId   = CFE_SB_ValueToMsgId(CFE_SB_CMD_MID);
+    CFE_MSG_Size_t    Size    = sizeof(SendMapInfo.Cmd);
 
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &MsgId, sizeof(MsgId), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &Size, sizeof(Size), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetFcnCode), &FcnCode, sizeof(FcnCode), false);
-    strncpy((char *)SendMapInfo.Cmd.Payload.Filename, "MapTstFile",
-            sizeof(SendMapInfo.Cmd.Payload.Filename));
+    strncpy((char *)SendMapInfo.Cmd.Payload.Filename, "MapTstFile", sizeof(SendMapInfo.Cmd.Payload.Filename));
 
     CFE_SB_ProcessCmdPipePkt(&SendMapInfo.SBBuf);
 
@@ -887,12 +885,12 @@ void Test_SB_Cmds_MapInfoWriteFail(void)
     CFE_SB_PipeId_t PipeId1;
     CFE_SB_PipeId_t PipeId2;
     CFE_SB_PipeId_t PipeId3;
-    CFE_SB_MsgId_t  MsgId0 = SB_UT_TLM_MID1;
-    CFE_SB_MsgId_t  MsgId1 = SB_UT_TLM_MID2;
-    CFE_SB_MsgId_t  MsgId2 = SB_UT_TLM_MID3;
-    CFE_SB_MsgId_t  MsgId3 = SB_UT_TLM_MID4;
-    CFE_SB_MsgId_t  MsgId4 = SB_UT_TLM_MID5;
-    CFE_SB_MsgId_t  MsgId5 = SB_UT_TLM_MID6;
+    CFE_SB_MsgId_t  MsgId0    = SB_UT_TLM_MID1;
+    CFE_SB_MsgId_t  MsgId1    = SB_UT_TLM_MID2;
+    CFE_SB_MsgId_t  MsgId2    = SB_UT_TLM_MID3;
+    CFE_SB_MsgId_t  MsgId3    = SB_UT_TLM_MID4;
+    CFE_SB_MsgId_t  MsgId4    = SB_UT_TLM_MID5;
+    CFE_SB_MsgId_t  MsgId5    = SB_UT_TLM_MID6;
     uint16          PipeDepth = 10;
 
     /* Create some map info */
@@ -935,12 +933,12 @@ void Test_SB_Cmds_EnRouteValParam(void)
         CFE_SB_Buffer_t         SBBuf;
         CFE_SB_EnableRouteCmd_t Cmd;
     } EnableRoute;
-    CFE_SB_PipeId_t    PipeId;
-    CFE_SB_MsgId_t     MsgId = SB_UT_TLM_MID;
-    uint16             PipeDepth = 5;
-    CFE_MSG_FcnCode_t  FcnCode = CFE_SB_ENABLE_ROUTE_CC;
-    CFE_SB_MsgId_t     MsgIdCmd = CFE_SB_ValueToMsgId(CFE_SB_CMD_MID);
-    CFE_MSG_Size_t     Size = sizeof(EnableRoute.Cmd);
+    CFE_SB_PipeId_t   PipeId;
+    CFE_SB_MsgId_t    MsgId     = SB_UT_TLM_MID;
+    uint16            PipeDepth = 5;
+    CFE_MSG_FcnCode_t FcnCode   = CFE_SB_ENABLE_ROUTE_CC;
+    CFE_SB_MsgId_t    MsgIdCmd  = CFE_SB_ValueToMsgId(CFE_SB_CMD_MID);
+    CFE_MSG_Size_t    Size      = sizeof(EnableRoute.Cmd);
 
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &MsgIdCmd, sizeof(MsgIdCmd), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &Size, sizeof(Size), false);
@@ -949,7 +947,7 @@ void Test_SB_Cmds_EnRouteValParam(void)
     SETUP(CFE_SB_CreatePipe(&PipeId, PipeDepth, "EnRouteTestPipe"));
     SETUP(CFE_SB_Subscribe(MsgId, PipeId));
     EnableRoute.Cmd.Payload.MsgId = MsgId;
-    EnableRoute.Cmd.Payload.Pipe = PipeId;
+    EnableRoute.Cmd.Payload.Pipe  = PipeId;
 
     CFE_SB_ProcessCmdPipePkt(&EnableRoute.SBBuf);
 
@@ -975,13 +973,13 @@ void Test_SB_Cmds_EnRouteNonExist(void)
         CFE_SB_Buffer_t         SBBuf;
         CFE_SB_EnableRouteCmd_t Cmd;
     } EnableRoute;
-    CFE_SB_PipeId_t    PipeId1;
-    CFE_SB_PipeId_t    PipeId2;
-    CFE_SB_MsgId_t     MsgId = SB_UT_TLM_MID;
-    uint16             PipeDepth = 5;
-    CFE_MSG_FcnCode_t  FcnCode = CFE_SB_ENABLE_ROUTE_CC;
-    CFE_SB_MsgId_t     MsgIdCmd = CFE_SB_ValueToMsgId(CFE_SB_CMD_MID);
-    CFE_MSG_Size_t     Size = sizeof(EnableRoute.Cmd);
+    CFE_SB_PipeId_t   PipeId1;
+    CFE_SB_PipeId_t   PipeId2;
+    CFE_SB_MsgId_t    MsgId     = SB_UT_TLM_MID;
+    uint16            PipeDepth = 5;
+    CFE_MSG_FcnCode_t FcnCode   = CFE_SB_ENABLE_ROUTE_CC;
+    CFE_SB_MsgId_t    MsgIdCmd  = CFE_SB_ValueToMsgId(CFE_SB_CMD_MID);
+    CFE_MSG_Size_t    Size      = sizeof(EnableRoute.Cmd);
 
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &MsgIdCmd, sizeof(MsgIdCmd), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &Size, sizeof(Size), false);
@@ -991,7 +989,7 @@ void Test_SB_Cmds_EnRouteNonExist(void)
     SETUP(CFE_SB_CreatePipe(&PipeId2, PipeDepth, "EnRouteTestPipe2"));
     SETUP(CFE_SB_Subscribe(MsgId, PipeId1));
     EnableRoute.Cmd.Payload.MsgId = MsgId;
-    EnableRoute.Cmd.Payload.Pipe = PipeId2;
+    EnableRoute.Cmd.Payload.Pipe  = PipeId2;
 
     CFE_SB_ProcessCmdPipePkt(&EnableRoute.SBBuf);
 
@@ -1016,16 +1014,16 @@ void Test_SB_Cmds_EnRouteInvParam(void)
         CFE_SB_Buffer_t         SBBuf;
         CFE_SB_EnableRouteCmd_t Cmd;
     } EnableRoute;
-    CFE_MSG_FcnCode_t  FcnCode = CFE_SB_ENABLE_ROUTE_CC;
-    CFE_SB_MsgId_t     MsgIdCmd = CFE_SB_ValueToMsgId(CFE_SB_CMD_MID);
-    CFE_MSG_Size_t     Size = sizeof(EnableRoute.Cmd);
+    CFE_MSG_FcnCode_t FcnCode  = CFE_SB_ENABLE_ROUTE_CC;
+    CFE_SB_MsgId_t    MsgIdCmd = CFE_SB_ValueToMsgId(CFE_SB_CMD_MID);
+    CFE_MSG_Size_t    Size     = sizeof(EnableRoute.Cmd);
 
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &MsgIdCmd, sizeof(MsgIdCmd), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &Size, sizeof(Size), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetFcnCode), &FcnCode, sizeof(FcnCode), false);
 
     EnableRoute.Cmd.Payload.MsgId = SB_UT_LAST_VALID_MID;
-    EnableRoute.Cmd.Payload.Pipe = 3;
+    EnableRoute.Cmd.Payload.Pipe  = 3;
 
     CFE_SB_ProcessCmdPipePkt(&EnableRoute.SBBuf);
 
@@ -1045,16 +1043,16 @@ void Test_SB_Cmds_EnRouteInvParam2(void)
         CFE_SB_Buffer_t         SBBuf;
         CFE_SB_EnableRouteCmd_t Cmd;
     } EnableRoute;
-    CFE_MSG_FcnCode_t  FcnCode = CFE_SB_ENABLE_ROUTE_CC;
-    CFE_SB_MsgId_t     MsgIdCmd = CFE_SB_ValueToMsgId(CFE_SB_CMD_MID);
-    CFE_MSG_Size_t     Size = sizeof(EnableRoute.Cmd);
+    CFE_MSG_FcnCode_t FcnCode  = CFE_SB_ENABLE_ROUTE_CC;
+    CFE_SB_MsgId_t    MsgIdCmd = CFE_SB_ValueToMsgId(CFE_SB_CMD_MID);
+    CFE_MSG_Size_t    Size     = sizeof(EnableRoute.Cmd);
 
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &MsgIdCmd, sizeof(MsgIdCmd), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &Size, sizeof(Size), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetFcnCode), &FcnCode, sizeof(FcnCode), false);
 
     EnableRoute.Cmd.Payload.MsgId = CFE_SB_INVALID_MSG_ID;
-    EnableRoute.Cmd.Payload.Pipe = 3;
+    EnableRoute.Cmd.Payload.Pipe  = 3;
 
     CFE_SB_ProcessCmdPipePkt(&EnableRoute.SBBuf);
 
@@ -1075,16 +1073,16 @@ void Test_SB_Cmds_EnRouteInvParam3(void)
         CFE_SB_Buffer_t         SBBuf;
         CFE_SB_EnableRouteCmd_t Cmd;
     } EnableRoute;
-    CFE_MSG_FcnCode_t  FcnCode = CFE_SB_ENABLE_ROUTE_CC;
-    CFE_SB_MsgId_t     MsgIdCmd = CFE_SB_ValueToMsgId(CFE_SB_CMD_MID);
-    CFE_MSG_Size_t     Size = sizeof(EnableRoute.Cmd);
+    CFE_MSG_FcnCode_t FcnCode  = CFE_SB_ENABLE_ROUTE_CC;
+    CFE_SB_MsgId_t    MsgIdCmd = CFE_SB_ValueToMsgId(CFE_SB_CMD_MID);
+    CFE_MSG_Size_t    Size     = sizeof(EnableRoute.Cmd);
 
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &MsgIdCmd, sizeof(MsgIdCmd), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &Size, sizeof(Size), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetFcnCode), &FcnCode, sizeof(FcnCode), false);
 
     EnableRoute.Cmd.Payload.MsgId = SB_UT_ALTERNATE_INVALID_MID;
-    EnableRoute.Cmd.Payload.Pipe = 0;
+    EnableRoute.Cmd.Payload.Pipe  = 0;
 
     CFE_SB_ProcessCmdPipePkt(&EnableRoute.SBBuf);
 
@@ -1101,15 +1099,15 @@ void Test_SB_Cmds_DisRouteValParam(void)
 {
     union
     {
-        CFE_SB_Buffer_t         SBBuf;
+        CFE_SB_Buffer_t          SBBuf;
         CFE_SB_DisableRouteCmd_t Cmd;
     } DisableRoute;
-    CFE_SB_PipeId_t    PipeId;
-    CFE_SB_MsgId_t     MsgId = SB_UT_TLM_MID;
-    uint16             PipeDepth = 5;
-    CFE_MSG_FcnCode_t  FcnCode = CFE_SB_DISABLE_ROUTE_CC;
-    CFE_SB_MsgId_t     MsgIdCmd = CFE_SB_ValueToMsgId(CFE_SB_CMD_MID);
-    CFE_MSG_Size_t     Size = sizeof(DisableRoute.Cmd);
+    CFE_SB_PipeId_t   PipeId;
+    CFE_SB_MsgId_t    MsgId     = SB_UT_TLM_MID;
+    uint16            PipeDepth = 5;
+    CFE_MSG_FcnCode_t FcnCode   = CFE_SB_DISABLE_ROUTE_CC;
+    CFE_SB_MsgId_t    MsgIdCmd  = CFE_SB_ValueToMsgId(CFE_SB_CMD_MID);
+    CFE_MSG_Size_t    Size      = sizeof(DisableRoute.Cmd);
 
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &MsgIdCmd, sizeof(MsgIdCmd), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &Size, sizeof(Size), false);
@@ -1118,7 +1116,7 @@ void Test_SB_Cmds_DisRouteValParam(void)
     SETUP(CFE_SB_CreatePipe(&PipeId, PipeDepth, "DisRouteTestPipe"));
     SETUP(CFE_SB_Subscribe(MsgId, PipeId));
     DisableRoute.Cmd.Payload.MsgId = MsgId;
-    DisableRoute.Cmd.Payload.Pipe = PipeId;
+    DisableRoute.Cmd.Payload.Pipe  = PipeId;
 
     CFE_SB_ProcessCmdPipePkt(&DisableRoute.SBBuf);
 
@@ -1141,15 +1139,15 @@ void Test_SB_Cmds_DisRouteNonExist(void)
 {
     union
     {
-        CFE_SB_Buffer_t         SBBuf;
+        CFE_SB_Buffer_t          SBBuf;
         CFE_SB_DisableRouteCmd_t Cmd;
     } DisableRoute;
-    CFE_SB_PipeId_t    PipeId1, PipeId2;
-    CFE_SB_MsgId_t     MsgId = SB_UT_TLM_MID;
-    uint16             PipeDepth = 5;
-    CFE_MSG_FcnCode_t  FcnCode = CFE_SB_DISABLE_ROUTE_CC;
-    CFE_SB_MsgId_t     MsgIdCmd = CFE_SB_ValueToMsgId(CFE_SB_CMD_MID);
-    CFE_MSG_Size_t     Size = sizeof(DisableRoute.Cmd);
+    CFE_SB_PipeId_t   PipeId1, PipeId2;
+    CFE_SB_MsgId_t    MsgId     = SB_UT_TLM_MID;
+    uint16            PipeDepth = 5;
+    CFE_MSG_FcnCode_t FcnCode   = CFE_SB_DISABLE_ROUTE_CC;
+    CFE_SB_MsgId_t    MsgIdCmd  = CFE_SB_ValueToMsgId(CFE_SB_CMD_MID);
+    CFE_MSG_Size_t    Size      = sizeof(DisableRoute.Cmd);
 
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &MsgIdCmd, sizeof(MsgIdCmd), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &Size, sizeof(Size), false);
@@ -1159,7 +1157,7 @@ void Test_SB_Cmds_DisRouteNonExist(void)
     SETUP(CFE_SB_CreatePipe(&PipeId2, PipeDepth, "DisRouteTestPipe2"));
     SETUP(CFE_SB_Subscribe(MsgId, PipeId1));
     DisableRoute.Cmd.Payload.MsgId = MsgId;
-    DisableRoute.Cmd.Payload.Pipe = PipeId2;
+    DisableRoute.Cmd.Payload.Pipe  = PipeId2;
 
     CFE_SB_ProcessCmdPipePkt(&DisableRoute.SBBuf);
 
@@ -1181,19 +1179,19 @@ void Test_SB_Cmds_DisRouteInvParam(void)
 {
     union
     {
-        CFE_SB_Buffer_t         SBBuf;
+        CFE_SB_Buffer_t          SBBuf;
         CFE_SB_DisableRouteCmd_t Cmd;
     } DisableRoute;
-    CFE_MSG_FcnCode_t  FcnCode = CFE_SB_DISABLE_ROUTE_CC;
-    CFE_SB_MsgId_t     MsgIdCmd = CFE_SB_ValueToMsgId(CFE_SB_CMD_MID);
-    CFE_MSG_Size_t     Size = sizeof(DisableRoute.Cmd);
+    CFE_MSG_FcnCode_t FcnCode  = CFE_SB_DISABLE_ROUTE_CC;
+    CFE_SB_MsgId_t    MsgIdCmd = CFE_SB_ValueToMsgId(CFE_SB_CMD_MID);
+    CFE_MSG_Size_t    Size     = sizeof(DisableRoute.Cmd);
 
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &MsgIdCmd, sizeof(MsgIdCmd), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &Size, sizeof(Size), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetFcnCode), &FcnCode, sizeof(FcnCode), false);
 
     DisableRoute.Cmd.Payload.MsgId = SB_UT_LAST_VALID_MID;
-    DisableRoute.Cmd.Payload.Pipe = 3;
+    DisableRoute.Cmd.Payload.Pipe  = 3;
 
     CFE_SB_ProcessCmdPipePkt(&DisableRoute.SBBuf);
 
@@ -1210,19 +1208,19 @@ void Test_SB_Cmds_DisRouteInvParam2(void)
 {
     union
     {
-        CFE_SB_Buffer_t         SBBuf;
+        CFE_SB_Buffer_t          SBBuf;
         CFE_SB_DisableRouteCmd_t Cmd;
     } DisableRoute;
-    CFE_MSG_FcnCode_t  FcnCode = CFE_SB_DISABLE_ROUTE_CC;
-    CFE_SB_MsgId_t     MsgIdCmd = CFE_SB_ValueToMsgId(CFE_SB_CMD_MID);
-    CFE_MSG_Size_t     Size = sizeof(DisableRoute.Cmd);
+    CFE_MSG_FcnCode_t FcnCode  = CFE_SB_DISABLE_ROUTE_CC;
+    CFE_SB_MsgId_t    MsgIdCmd = CFE_SB_ValueToMsgId(CFE_SB_CMD_MID);
+    CFE_MSG_Size_t    Size     = sizeof(DisableRoute.Cmd);
 
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &MsgIdCmd, sizeof(MsgIdCmd), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &Size, sizeof(Size), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetFcnCode), &FcnCode, sizeof(FcnCode), false);
 
     DisableRoute.Cmd.Payload.MsgId = CFE_SB_INVALID_MSG_ID;
-    DisableRoute.Cmd.Payload.Pipe = 3;
+    DisableRoute.Cmd.Payload.Pipe  = 3;
 
     CFE_SB_ProcessCmdPipePkt(&DisableRoute.SBBuf);
 
@@ -1240,19 +1238,19 @@ void Test_SB_Cmds_DisRouteInvParam3(void)
 {
     union
     {
-        CFE_SB_Buffer_t         SBBuf;
+        CFE_SB_Buffer_t          SBBuf;
         CFE_SB_DisableRouteCmd_t Cmd;
     } DisableRoute;
-    CFE_MSG_FcnCode_t  FcnCode = CFE_SB_DISABLE_ROUTE_CC;
-    CFE_SB_MsgId_t     MsgIdCmd = CFE_SB_ValueToMsgId(CFE_SB_CMD_MID);
-    CFE_MSG_Size_t     Size = sizeof(DisableRoute.Cmd);
+    CFE_MSG_FcnCode_t FcnCode  = CFE_SB_DISABLE_ROUTE_CC;
+    CFE_SB_MsgId_t    MsgIdCmd = CFE_SB_ValueToMsgId(CFE_SB_CMD_MID);
+    CFE_MSG_Size_t    Size     = sizeof(DisableRoute.Cmd);
 
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &MsgIdCmd, sizeof(MsgIdCmd), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &Size, sizeof(Size), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetFcnCode), &FcnCode, sizeof(FcnCode), false);
 
     DisableRoute.Cmd.Payload.MsgId = SB_UT_ALTERNATE_INVALID_MID;
-    DisableRoute.Cmd.Payload.Pipe = 0;
+    DisableRoute.Cmd.Payload.Pipe  = 0;
 
     CFE_SB_ProcessCmdPipePkt(&DisableRoute.SBBuf);
 
@@ -1269,7 +1267,7 @@ void Test_SB_Cmds_SendHK(void)
 {
     union
     {
-        CFE_SB_Buffer_t SBBuf;
+        CFE_SB_Buffer_t         SBBuf;
         CFE_MSG_CommandHeader_t Cmd;
     } Housekeeping;
     CFE_SB_MsgId_t MsgIdCmd;
@@ -1277,7 +1275,7 @@ void Test_SB_Cmds_SendHK(void)
 
     /* For internal TransmitMsg call */
     MsgIdCmd = CFE_SB_ValueToMsgId(CFE_SB_HK_TLM_MID);
-    Size = sizeof(CFE_SB.HKTlmMsg);
+    Size     = sizeof(CFE_SB.HKTlmMsg);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &MsgIdCmd, sizeof(MsgIdCmd), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &Size, sizeof(Size), false);
 
@@ -1301,19 +1299,19 @@ void Test_SB_Cmds_SendPrevSubs(void)
 {
     union
     {
-        CFE_SB_Buffer_t SBBuf;
+        CFE_SB_Buffer_t          SBBuf;
         CFE_SB_SendPrevSubsCmd_t Cmd;
     } SendPrevSubs;
-    CFE_SB_PipeId_t          PipeId1;
-    CFE_SB_PipeId_t          PipeId2;
-    CFE_SB_MsgId_t           MsgId = SB_UT_BARE_TLM_MID3;
-    uint16                   MsgLim = 4;
-    uint16                   PipeDepth = 50;
-    int32                    i;
-    int32                    NumEvts;
-    CFE_MSG_FcnCode_t        FcnCode = CFE_SB_SEND_PREV_SUBS_CC;
-    CFE_SB_MsgId_t           MsgIdCmd;
-    CFE_MSG_Size_t           Size;
+    CFE_SB_PipeId_t   PipeId1;
+    CFE_SB_PipeId_t   PipeId2;
+    CFE_SB_MsgId_t    MsgId     = SB_UT_BARE_TLM_MID3;
+    uint16            MsgLim    = 4;
+    uint16            PipeDepth = 50;
+    int32             i;
+    int32             NumEvts;
+    CFE_MSG_FcnCode_t FcnCode = CFE_SB_SEND_PREV_SUBS_CC;
+    CFE_SB_MsgId_t    MsgIdCmd;
+    CFE_MSG_Size_t    Size;
 
     SETUP(CFE_SB_CreatePipe(&PipeId1, PipeDepth, "TestPipe1"));
     SETUP(CFE_SB_CreatePipe(&PipeId2, PipeDepth, "TestPipe2"));
@@ -1324,7 +1322,7 @@ void Test_SB_Cmds_SendPrevSubs(void)
     {
         /* Skip subscribing to ALLSUBS mid. This is the one we are testing.
          * MsgID for this in CCSDS v.1 was 0x180d so this MID did not appear in the
-         * SB sub list. This results in multiple NO_SUBS_EID sent which we are not 
+         * SB sub list. This results in multiple NO_SUBS_EID sent which we are not
          * testing here so it is irrelevent
          * For CCSDS v.2 CFE_SB_ALLSUBS_TLM_MID (0x0d) now appears in the
          * SB subscription list and thus we must skip adding 0x0D to the list
@@ -1341,7 +1339,7 @@ void Test_SB_Cmds_SendPrevSubs(void)
 
     /* For 3 internal TransmitMsg calls */
     MsgIdCmd = CFE_SB_ValueToMsgId(CFE_SB_ALLSUBS_TLM_MID);
-    Size = sizeof(CFE_SB.PrevSubMsg);
+    Size     = sizeof(CFE_SB.PrevSubMsg);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &MsgIdCmd, sizeof(MsgIdCmd), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &Size, sizeof(Size), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &MsgIdCmd, sizeof(MsgIdCmd), false);
@@ -1351,14 +1349,14 @@ void Test_SB_Cmds_SendPrevSubs(void)
 
     /* Set buffers for gets */
     MsgIdCmd = CFE_SB_ValueToMsgId(CFE_SB_SUB_RPT_CTRL_MID);
-    Size = sizeof(SendPrevSubs.Cmd);
+    Size     = sizeof(SendPrevSubs.Cmd);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &MsgIdCmd, sizeof(MsgIdCmd), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &Size, sizeof(Size), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetFcnCode), &FcnCode, sizeof(FcnCode), false);
 
     CFE_SB_ProcessCmdPipePkt(&SendPrevSubs.SBBuf);
 
-    NumEvts += 8;  /* +2 for the subscribe, +6 for the SEND_PREV_SUBS_CC */
+    NumEvts += 8; /* +2 for the subscribe, +6 for the SEND_PREV_SUBS_CC */
 
     /* Event count is only exact if there were no collisions */
     if (UT_EventIsInHistory(CFE_SB_HASHCOLLISION_EID))
@@ -1383,7 +1381,7 @@ void Test_SB_Cmds_SendPrevSubs(void)
 
     /* For 3 internal TransmitMsg calls */
     MsgIdCmd = CFE_SB_ValueToMsgId(CFE_SB_ALLSUBS_TLM_MID);
-    Size = sizeof(CFE_SB.PrevSubMsg);
+    Size     = sizeof(CFE_SB.PrevSubMsg);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &MsgIdCmd, sizeof(MsgIdCmd), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &Size, sizeof(Size), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &MsgIdCmd, sizeof(MsgIdCmd), false);
@@ -1393,14 +1391,14 @@ void Test_SB_Cmds_SendPrevSubs(void)
 
     /* Set buffers for gets */
     MsgIdCmd = CFE_SB_ValueToMsgId(CFE_SB_SUB_RPT_CTRL_MID);
-    Size = sizeof(SendPrevSubs.Cmd);
+    Size     = sizeof(SendPrevSubs.Cmd);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &MsgIdCmd, sizeof(MsgIdCmd), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &Size, sizeof(Size), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetFcnCode), &FcnCode, sizeof(FcnCode), false);
 
     CFE_SB_ProcessCmdPipePkt(&SendPrevSubs.SBBuf);
 
-    NumEvts += 8;  /* +2 for the subscribe, +6 for the SEND_PREV_SUBS_CC */
+    NumEvts += 8; /* +2 for the subscribe, +6 for the SEND_PREV_SUBS_CC */
 
     /* Event count is only exact if there were no collisions */
     if (UT_EventIsInHistory(CFE_SB_HASHCOLLISION_EID))
@@ -1429,12 +1427,12 @@ void Test_SB_Cmds_SubRptOn(void)
 {
     union
     {
-        CFE_SB_Buffer_t SBBuf;
+        CFE_SB_Buffer_t                SBBuf;
         CFE_SB_EnableSubReportingCmd_t Cmd;
     } EnableSubReporting;
-    CFE_MSG_FcnCode_t              FcnCode = CFE_SB_ENABLE_SUB_REPORTING_CC;
-    CFE_SB_MsgId_t                 MsgIdCmd = CFE_SB_ValueToMsgId(CFE_SB_SUB_RPT_CTRL_MID);
-    CFE_MSG_Size_t                 Size = sizeof(EnableSubReporting.Cmd);
+    CFE_MSG_FcnCode_t FcnCode  = CFE_SB_ENABLE_SUB_REPORTING_CC;
+    CFE_SB_MsgId_t    MsgIdCmd = CFE_SB_ValueToMsgId(CFE_SB_SUB_RPT_CTRL_MID);
+    CFE_MSG_Size_t    Size     = sizeof(EnableSubReporting.Cmd);
 
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &MsgIdCmd, sizeof(MsgIdCmd), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &Size, sizeof(Size), false);
@@ -1453,12 +1451,12 @@ void Test_SB_Cmds_SubRptOff(void)
 {
     union
     {
-        CFE_SB_Buffer_t SBBuf;
+        CFE_SB_Buffer_t                 SBBuf;
         CFE_SB_DisableSubReportingCmd_t Cmd;
     } DisableSubReporting;
-    CFE_MSG_FcnCode_t            FcnCode = CFE_SB_DISABLE_SUB_REPORTING_CC;
-    CFE_SB_MsgId_t               MsgIdCmd = CFE_SB_ValueToMsgId(CFE_SB_SUB_RPT_CTRL_MID);
-    CFE_MSG_Size_t               Size = sizeof(DisableSubReporting.Cmd);
+    CFE_MSG_FcnCode_t FcnCode  = CFE_SB_DISABLE_SUB_REPORTING_CC;
+    CFE_SB_MsgId_t    MsgIdCmd = CFE_SB_ValueToMsgId(CFE_SB_SUB_RPT_CTRL_MID);
+    CFE_MSG_Size_t    Size     = sizeof(DisableSubReporting.Cmd);
 
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &MsgIdCmd, sizeof(MsgIdCmd), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &Size, sizeof(Size), false);
@@ -1475,7 +1473,7 @@ void Test_SB_Cmds_SubRptOff(void)
 */
 void Test_SB_Cmds_CmdUnexpCmdCode(void)
 {
-    CFE_MSG_FcnCode_t FcnCode = 99;
+    CFE_MSG_FcnCode_t FcnCode  = 99;
     CFE_SB_MsgId_t    MsgIdCmd = CFE_SB_ValueToMsgId(CFE_SB_CMD_MID);
 
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &MsgIdCmd, sizeof(MsgIdCmd), false);
@@ -1494,7 +1492,7 @@ void Test_SB_Cmds_CmdUnexpCmdCode(void)
 */
 void Test_SB_Cmds_SubRptUnexpCmdCode(void)
 {
-    CFE_MSG_FcnCode_t FcnCode = 99;
+    CFE_MSG_FcnCode_t FcnCode  = 99;
     CFE_SB_MsgId_t    MsgIdCmd = CFE_SB_ValueToMsgId(CFE_SB_SUB_RPT_CTRL_MID);
 
     /* Second GetFcnCode is for reporting */
@@ -1519,9 +1517,9 @@ void Test_SB_Cmds_BadCmdLength(void)
     /*
      * Just choosing "EnableRoute" command here as it has a non-empty payload
      */
-    CFE_MSG_FcnCode_t       FcnCode = CFE_SB_ENABLE_ROUTE_CC;
-    CFE_SB_MsgId_t          MsgIdCmd = CFE_SB_ValueToMsgId(CFE_SB_CMD_MID);
-    CFE_MSG_Size_t          Size = sizeof(CFE_SB_EnableRouteCmd_t) - 1;
+    CFE_MSG_FcnCode_t FcnCode  = CFE_SB_ENABLE_ROUTE_CC;
+    CFE_SB_MsgId_t    MsgIdCmd = CFE_SB_ValueToMsgId(CFE_SB_CMD_MID);
+    CFE_MSG_Size_t    Size     = sizeof(CFE_SB_EnableRouteCmd_t) - 1;
 
     /* Second GetMsgId and GetFcnCode are for reporting */
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &MsgIdCmd, sizeof(MsgIdCmd), false);
@@ -1543,7 +1541,7 @@ void Test_SB_Cmds_BadCmdLength(void)
 */
 void Test_SB_Cmds_UnexpMsgId(void)
 {
-    CFE_SB_MsgId_t  MsgIdCmd = SB_UT_TLM_MID;
+    CFE_SB_MsgId_t MsgIdCmd = SB_UT_TLM_MID;
 
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &MsgIdCmd, sizeof(MsgIdCmd), false);
 
@@ -1571,9 +1569,8 @@ void Test_SB_EarlyInit(void)
 void Test_SB_EarlyInit_SemCreateError(void)
 {
     UT_SetDeferredRetcode(UT_KEY(OS_MutSemCreate), 1, OS_ERR_NO_FREE_IDS);
-    UT_Report(__FILE__, __LINE__,
-              CFE_SB_EarlyInit() == OS_ERR_NO_FREE_IDS,
-              "CFE_SB_EarlyInit", "Sem Create error logic");
+    UT_Report(__FILE__, __LINE__, CFE_SB_EarlyInit() == OS_ERR_NO_FREE_IDS, "CFE_SB_EarlyInit",
+              "Sem Create error logic");
 } /* end Test_SB_EarlyInit_SemCreateError */
 
 /*
@@ -1582,9 +1579,8 @@ void Test_SB_EarlyInit_SemCreateError(void)
 void Test_SB_EarlyInit_PoolCreateError(void)
 {
     UT_SetDeferredRetcode(UT_KEY(CFE_ES_PoolCreateEx), 1, CFE_ES_BAD_ARGUMENT);
-    UT_Report(__FILE__, __LINE__,
-              CFE_SB_EarlyInit() == CFE_ES_BAD_ARGUMENT,
-              "CFE_SB_EarlyInit", "PoolCreateEx error logic");
+    UT_Report(__FILE__, __LINE__, CFE_SB_EarlyInit() == CFE_ES_BAD_ARGUMENT, "CFE_SB_EarlyInit",
+              "PoolCreateEx error logic");
 } /* end Test_SB_EarlyInit_PoolCreateError */
 
 /*
@@ -1593,9 +1589,7 @@ void Test_SB_EarlyInit_PoolCreateError(void)
 void Test_SB_EarlyInit_NoErrors(void)
 {
     CFE_SB_EarlyInit();
-    UT_Report(__FILE__, __LINE__,
-              CFE_SB_EarlyInit() == CFE_SUCCESS,
-              "CFE_SB_EarlyInit", "No errors test");
+    UT_Report(__FILE__, __LINE__, CFE_SB_EarlyInit() == CFE_SUCCESS, "CFE_SB_EarlyInit", "No errors test");
 } /* end Test_SB_EarlyInit_NoErrors */
 
 /*
@@ -1638,8 +1632,7 @@ void Test_CreatePipe_ValPipeDepth(void)
 
     ASSERT(CFE_SB_CreatePipe(&PipeIdReturned[0], 99, "TestPipe99"));
     ASSERT(CFE_SB_CreatePipe(&PipeIdReturned[1], 255, "TestPipe255"));
-    ASSERT(CFE_SB_CreatePipe(&PipeIdReturned[2],
-             CFE_PLATFORM_SB_MAX_PIPE_DEPTH, "TestPipeMaxDepth"));
+    ASSERT(CFE_SB_CreatePipe(&PipeIdReturned[2], CFE_PLATFORM_SB_MAX_PIPE_DEPTH, "TestPipeMaxDepth"));
 
     EVTCNT(3);
 
@@ -1661,8 +1654,8 @@ void Test_CreatePipe_InvalPipeDepth(void)
     UT_SetDeferredRetcode(UT_KEY(OS_QueueCreate), 1, OS_SUCCESS); /* Avoid creating socket */
     ASSERT_EQ(CFE_SB_CreatePipe(&PipeIdReturned[0], 0, "TestPipe1"), CFE_SB_BAD_ARGUMENT);
     UT_SetDeferredRetcode(UT_KEY(OS_QueueCreate), 1, OS_SUCCESS);
-    ASSERT_EQ(CFE_SB_CreatePipe(&PipeIdReturned[1],
-             CFE_PLATFORM_SB_MAX_PIPE_DEPTH + 1, "TestPipeMaxDepPlus1"), CFE_SB_BAD_ARGUMENT);
+    ASSERT_EQ(CFE_SB_CreatePipe(&PipeIdReturned[1], CFE_PLATFORM_SB_MAX_PIPE_DEPTH + 1, "TestPipeMaxDepPlus1"),
+              CFE_SB_BAD_ARGUMENT);
     UT_SetDeferredRetcode(UT_KEY(OS_QueueCreate), 1, OS_SUCCESS);
     ASSERT_EQ(CFE_SB_CreatePipe(&PipeIdReturned[2], 0xffff, "TestPipeffff"), CFE_SB_BAD_ARGUMENT);
 
@@ -1687,15 +1680,15 @@ void Test_CreatePipe_MaxPipes(void)
      */
     for (i = 0; i < (CFE_PLATFORM_SB_MAX_PIPES + 1); i++)
     {
-        snprintf(PipeName, OS_MAX_API_NAME, "TestPipe%ld", (long) i);
+        snprintf(PipeName, OS_MAX_API_NAME, "TestPipe%ld", (long)i);
 
         if (i < CFE_PLATFORM_SB_MAX_PIPES)
         {
-        	SETUP(CFE_SB_CreatePipe(&PipeIdReturned[i], PipeDepth, &PipeName[0]));
+            SETUP(CFE_SB_CreatePipe(&PipeIdReturned[i], PipeDepth, &PipeName[0]));
         }
         else
         {
-        	ASSERT_EQ(CFE_SB_CreatePipe(&PipeIdReturned[i], PipeDepth, &PipeName[0]), CFE_SB_MAX_PIPES_MET);
+            ASSERT_EQ(CFE_SB_CreatePipe(&PipeIdReturned[i], PipeDepth, &PipeName[0]), CFE_SB_MAX_PIPES_MET);
         }
     }
 
@@ -1715,9 +1708,9 @@ void Test_CreatePipe_MaxPipes(void)
 void Test_CreatePipe_SamePipeName(void)
 {
     CFE_SB_PipeId_t FirstPipeId = -1;
-    CFE_SB_PipeId_t PipeId = -1;
-    uint16 PipeDepth = 1;
-    char PipeName[] = "Test_CFE_SB";
+    CFE_SB_PipeId_t PipeId      = -1;
+    uint16          PipeDepth   = 1;
+    char            PipeName[]  = "Test_CFE_SB";
 
     /* Need to make sure OS_QueueCreate() stub fails on second call   */
     /* to mimick the failure expected when passing the same pipe name */
@@ -1739,7 +1732,6 @@ void Test_CreatePipe_SamePipeName(void)
 
     /* Call to CFE_SB_DeletePipe with the first pipe id created should work fine */
     TEARDOWN(CFE_SB_DeletePipe(PipeId));
-
 }
 
 /*
@@ -1778,10 +1770,10 @@ void Test_DeletePipe_NoSubs(void)
 void Test_DeletePipe_WithSubs(void)
 {
     CFE_SB_PipeId_t PipedId;
-    CFE_SB_MsgId_t  MsgId0 = SB_UT_CMD_MID1;
-    CFE_SB_MsgId_t  MsgId1 = SB_UT_CMD_MID2;
-    CFE_SB_MsgId_t  MsgId2 = SB_UT_CMD_MID3;
-    CFE_SB_MsgId_t  MsgId3 = SB_UT_CMD_MID4;
+    CFE_SB_MsgId_t  MsgId0    = SB_UT_CMD_MID1;
+    CFE_SB_MsgId_t  MsgId1    = SB_UT_CMD_MID2;
+    CFE_SB_MsgId_t  MsgId2    = SB_UT_CMD_MID3;
+    CFE_SB_MsgId_t  MsgId3    = SB_UT_CMD_MID4;
     uint16          PipeDepth = 10;
 
     SETUP(CFE_SB_CreatePipe(&PipedId, PipeDepth, "TestPipe"));
@@ -1818,9 +1810,9 @@ void Test_DeletePipe_InvalidPipeId(void)
 */
 void Test_DeletePipe_InvalidPipeOwner(void)
 {
-    CFE_SB_PipeId_t PipedId;
-    CFE_ES_ResourceID_t  RealOwner;
-    uint16          PipeDepth = 10;
+    CFE_SB_PipeId_t     PipedId;
+    CFE_ES_ResourceID_t RealOwner;
+    uint16              PipeDepth = 10;
 
     SETUP(CFE_SB_CreatePipe(&PipedId, PipeDepth, "TestPipe"));
 
@@ -1846,9 +1838,9 @@ void Test_DeletePipe_InvalidPipeOwner(void)
 */
 void Test_DeletePipe_WithAppid(void)
 {
-    CFE_SB_PipeId_t PipedId;
+    CFE_SB_PipeId_t     PipedId;
     CFE_ES_ResourceID_t AppId;
-    uint16          PipeDepth = 10;
+    uint16              PipeDepth = 10;
 
     SETUP(CFE_SB_CreatePipe(&PipedId, PipeDepth, "TestPipe"));
     SETUP(CFE_SB_Subscribe(SB_UT_CMD_MID1, PipedId));
@@ -1917,19 +1909,14 @@ void Test_GetPipeName_InvalidId(void)
 */
 void Test_GetPipeName(void)
 {
-    char PipeName[OS_MAX_API_NAME];
+    char            PipeName[OS_MAX_API_NAME];
     CFE_SB_PipeId_t PipeId = 0;
 
-    OS_queue_prop_t queue_info = {
-        "TestPipe1"
-    };
+    OS_queue_prop_t queue_info = {"TestPipe1"};
 
     SETUP(CFE_SB_CreatePipe(&PipeId, 4, "TestPipe1"));
 
-    UT_SetDataBuffer(
-        UT_KEY(OS_QueueGetInfo),
-        &queue_info, sizeof(queue_info),
-        false);
+    UT_SetDataBuffer(UT_KEY(OS_QueueGetInfo), &queue_info, sizeof(queue_info), false);
 
     ASSERT(CFE_SB_GetPipeName(PipeName, OS_MAX_API_NAME, PipeId));
 
@@ -1956,9 +1943,9 @@ void Test_GetPipeIdByName_NullPtrs(void)
 {
     CFE_SB_PipeId_t PipeIDOut = 0;
 
-	ASSERT_EQ(CFE_SB_GetPipeIdByName(&PipeIDOut, NULL), CFE_SB_BAD_ARGUMENT);
+    ASSERT_EQ(CFE_SB_GetPipeIdByName(&PipeIDOut, NULL), CFE_SB_BAD_ARGUMENT);
 
-	EVTSENT(CFE_SB_GETPIPEIDBYNAME_NULL_ERR_EID);
+    EVTSENT(CFE_SB_GETPIPEIDBYNAME_NULL_ERR_EID);
 
     ASSERT_EQ(CFE_SB_GetPipeIdByName(NULL, "invalid"), CFE_SB_BAD_ARGUMENT);
 
@@ -1973,7 +1960,7 @@ void Test_GetPipeIdByName_InvalidName(void)
 {
     CFE_SB_PipeId_t PipeIdOut = 0;
 
-	ASSERT_EQ(CFE_SB_GetPipeIdByName(&PipeIdOut, "invalid"), CFE_SB_BAD_ARGUMENT);
+    ASSERT_EQ(CFE_SB_GetPipeIdByName(&PipeIdOut, "invalid"), CFE_SB_BAD_ARGUMENT);
 
     EVTSENT(CFE_SB_GETPIPEIDBYNAME_NAME_ERR_EID);
 
@@ -1988,11 +1975,8 @@ void Test_GetPipeIdByName(void)
 
     SETUP(CFE_SB_CreatePipe(&PipeId, 4, "TestPipe1"));
 
-    UT_SetDataBuffer(
-        UT_KEY(OS_QueueGetIdByName),
-        &(CFE_SB.PipeTbl[0].SysQueueId),
-        sizeof(CFE_SB.PipeTbl[0].SysQueueId),
-        false);
+    UT_SetDataBuffer(UT_KEY(OS_QueueGetIdByName), &(CFE_SB.PipeTbl[0].SysQueueId), sizeof(CFE_SB.PipeTbl[0].SysQueueId),
+                     false);
 
     ASSERT(CFE_SB_GetPipeIdByName(&PipeIdOut, "TestPipe1"));
 
@@ -2007,7 +1991,7 @@ void Test_GetPipeIdByName(void)
 */
 void Test_SetPipeOpts_BadID(void)
 {
-	ASSERT_EQ(CFE_SB_SetPipeOpts(CFE_PLATFORM_SB_MAX_PIPES, 0), CFE_SB_BAD_ARGUMENT);
+    ASSERT_EQ(CFE_SB_SetPipeOpts(CFE_PLATFORM_SB_MAX_PIPES, 0), CFE_SB_BAD_ARGUMENT);
 
     EVTSENT(CFE_SB_SETPIPEOPTS_ID_ERR_EID);
 
@@ -2018,15 +2002,15 @@ void Test_SetPipeOpts_BadID(void)
 */
 void Test_SetPipeOpts_NotOwner(void)
 {
-    CFE_SB_PipeId_t PipeID = 0;
-    uint8 PipeTblIdx = 0;
+    CFE_SB_PipeId_t     PipeID     = 0;
+    uint8               PipeTblIdx = 0;
     CFE_ES_ResourceID_t OrigOwner;
 
     SETUP(CFE_SB_CreatePipe(&PipeID, 4, "TestPipe1"));
 
     PipeTblIdx = CFE_SB_GetPipeIdx(PipeID);
 
-    OrigOwner = CFE_SB.PipeTbl[PipeTblIdx].AppId;
+    OrigOwner                        = CFE_SB.PipeTbl[PipeTblIdx].AppId;
     CFE_SB.PipeTbl[PipeTblIdx].AppId = UT_SB_ResourceID_Modify(OrigOwner, 1);
     ASSERT_EQ(CFE_SB_SetPipeOpts(PipeID, 0), CFE_SB_BAD_ARGUMENT);
 
@@ -2091,7 +2075,7 @@ void Test_GetPipeOpts_BadPtr(void)
 void Test_GetPipeOpts(void)
 {
     CFE_SB_PipeId_t PipeID = 0;
-    uint8 Opts = 0;
+    uint8           Opts   = 0;
 
     SETUP(CFE_SB_CreatePipe(&PipeID, 4, "TestPipe1"));
 
@@ -2128,10 +2112,10 @@ void Test_Subscribe_API(void)
 void Test_Subscribe_SubscribeEx(void)
 {
     CFE_SB_PipeId_t PipeId;
-    CFE_SB_MsgId_t  MsgId = SB_UT_CMD_MID;
-    CFE_SB_Qos_t    Quality = {0, 0};
+    CFE_SB_MsgId_t  MsgId     = SB_UT_CMD_MID;
+    CFE_SB_Qos_t    Quality   = {0, 0};
     uint16          PipeDepth = 10;
-    uint16          MsgLim = 8;
+    uint16          MsgLim    = 8;
 
     SETUP(CFE_SB_CreatePipe(&PipeId, PipeDepth, "TestPipe"));
 
@@ -2152,7 +2136,7 @@ void Test_Subscribe_SubscribeEx(void)
 void Test_Subscribe_InvalidPipeId(void)
 {
     CFE_SB_PipeId_t PipeId = 2;
-    CFE_SB_MsgId_t  MsgId = SB_UT_ALTERNATE_INVALID_MID;
+    CFE_SB_MsgId_t  MsgId  = SB_UT_ALTERNATE_INVALID_MID;
 
     ASSERT_EQ(CFE_SB_Subscribe(MsgId, PipeId), CFE_SB_BAD_ARGUMENT);
 
@@ -2168,7 +2152,7 @@ void Test_Subscribe_InvalidPipeId(void)
 void Test_Subscribe_InvalidMsgId(void)
 {
     CFE_SB_PipeId_t PipeId;
-    CFE_SB_MsgId_t  MsgId = SB_UT_ALTERNATE_INVALID_MID;
+    CFE_SB_MsgId_t  MsgId     = SB_UT_ALTERNATE_INVALID_MID;
     uint16          PipeDepth = 10;
 
     SETUP(CFE_SB_CreatePipe(&PipeId, PipeDepth, "TestPipe"));
@@ -2189,8 +2173,8 @@ void Test_Subscribe_InvalidMsgId(void)
 void Test_Subscribe_MaxMsgLim(void)
 {
     CFE_SB_PipeId_t PipeId;
-    CFE_SB_MsgId_t  MsgId = SB_UT_CMD_MID;
-    CFE_SB_Qos_t    Quality = {0, 0};
+    CFE_SB_MsgId_t  MsgId     = SB_UT_CMD_MID;
+    CFE_SB_Qos_t    Quality   = {0, 0};
     uint16          PipeDepth = 10;
     uint16          MsgLim;
 
@@ -2213,7 +2197,7 @@ void Test_Subscribe_MaxMsgLim(void)
 void Test_Subscribe_DuplicateSubscription(void)
 {
     CFE_SB_PipeId_t PipeId;
-    CFE_SB_MsgId_t  MsgId = SB_UT_CMD_MID;
+    CFE_SB_MsgId_t  MsgId     = SB_UT_CMD_MID;
     uint16          PipeDepth = 10;
 
     SETUP(CFE_SB_CreatePipe(&PipeId, PipeDepth, "TestPipe"));
@@ -2235,9 +2219,9 @@ void Test_Subscribe_DuplicateSubscription(void)
 void Test_Subscribe_LocalSubscription(void)
 {
     CFE_SB_PipeId_t PipeId;
-    CFE_SB_MsgId_t  MsgId = SB_UT_TLM_MID;
+    CFE_SB_MsgId_t  MsgId     = SB_UT_TLM_MID;
     uint16          PipeDepth = 10;
-    uint16          MsgLim = 4;
+    uint16          MsgLim    = 4;
 
     SETUP(CFE_SB_CreatePipe(&PipeId, PipeDepth, "TestPipe"));
 
@@ -2265,7 +2249,7 @@ void Test_Subscribe_MaxDestCount(void)
     /* Create pipes */
     for (i = 0; i < CFE_PLATFORM_SB_MAX_DEST_PER_PKT + 1; i++)
     {
-        snprintf(PipeName, OS_MAX_API_NAME, "TestPipe%ld", (long) i);
+        snprintf(PipeName, OS_MAX_API_NAME, "TestPipe%ld", (long)i);
         SETUP(CFE_SB_CreatePipe(&PipeId[i], PipeDepth, &PipeName[0]));
     }
 
@@ -2337,9 +2321,9 @@ void Test_Subscribe_SendPrevSubs(void)
     CFE_SB_PipeId_t          PipeId0;
     CFE_SB_PipeId_t          PipeId1;
     CFE_SB_PipeId_t          PipeId2;
-    CFE_SB_MsgId_t           MsgId0 = SB_UT_TLM_MID1;
-    CFE_SB_MsgId_t           MsgId1 = SB_UT_TLM_MID2;
-    CFE_SB_MsgId_t           MsgId2 = SB_UT_TLM_MID3;
+    CFE_SB_MsgId_t           MsgId0    = SB_UT_TLM_MID1;
+    CFE_SB_MsgId_t           MsgId1    = SB_UT_TLM_MID2;
+    CFE_SB_MsgId_t           MsgId2    = SB_UT_TLM_MID3;
     uint16                   PipeDepth = 50;
     CFE_SB_SendPrevSubsCmd_t SendPrevSubsMsg;
     CFE_SB_MsgId_t           MsgIdCmd;
@@ -2362,7 +2346,7 @@ void Test_Subscribe_SendPrevSubs(void)
 
     /* For internal TransmitMsg call */
     MsgIdCmd = CFE_SB_ValueToMsgId(CFE_SB_ALLSUBS_TLM_MID);
-    Size = sizeof(CFE_SB.PrevSubMsg);
+    Size     = sizeof(CFE_SB.PrevSubMsg);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &MsgIdCmd, sizeof(MsgIdCmd), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &Size, sizeof(Size), false);
 
@@ -2383,7 +2367,7 @@ void Test_Subscribe_SendPrevSubs(void)
 */
 void Test_Subscribe_PipeNonexistent(void)
 {
-    CFE_SB_MsgId_t  MsgId = SB_UT_CMD_MID;
+    CFE_SB_MsgId_t  MsgId  = SB_UT_CMD_MID;
     CFE_SB_PipeId_t PipeId = 55;
 
     ASSERT_EQ(CFE_SB_Subscribe(MsgId, PipeId), CFE_SB_BAD_ARGUMENT);
@@ -2413,7 +2397,7 @@ void Test_Subscribe_SubscriptionReporting(void)
 
     /* For internal TransmitMsg call that will report subscription */
     MsgIdRpt = CFE_SB_ValueToMsgId(CFE_SB_ONESUB_TLM_MID);
-    Size = sizeof(CFE_SB.SubRprtMsg);
+    Size     = sizeof(CFE_SB.SubRprtMsg);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &MsgIdRpt, sizeof(MsgIdRpt), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &Size, sizeof(Size), false);
 
@@ -2442,10 +2426,10 @@ void Test_Subscribe_SubscriptionReporting(void)
 */
 void Test_Subscribe_InvalidPipeOwner(void)
 {
-    CFE_SB_PipeId_t PipeId;
-    CFE_SB_MsgId_t  MsgId = SB_UT_TLM_MID;
-    uint16          PipeDepth = 10;
-    CFE_ES_ResourceID_t  RealOwner;
+    CFE_SB_PipeId_t     PipeId;
+    CFE_SB_MsgId_t      MsgId     = SB_UT_TLM_MID;
+    uint16              PipeDepth = 10;
+    CFE_ES_ResourceID_t RealOwner;
 
     SETUP(CFE_SB_CreatePipe(&PipeId, PipeDepth, "TestPipe"));
 
@@ -2488,7 +2472,7 @@ void Test_Unsubscribe_API(void)
 void Test_Unsubscribe_Basic(void)
 {
     CFE_SB_PipeId_t TestPipe;
-    CFE_SB_MsgId_t  MsgId = SB_UT_INTERMEDIATE_VALID_MID;
+    CFE_SB_MsgId_t  MsgId     = SB_UT_INTERMEDIATE_VALID_MID;
     uint16          PipeDepth = 50;
 
     SETUP(CFE_SB_CreatePipe(&TestPipe, PipeDepth, "TestPipe"));
@@ -2516,7 +2500,7 @@ void Test_Unsubscribe_Basic(void)
 void Test_Unsubscribe_Local(void)
 {
     CFE_SB_PipeId_t TestPipe;
-    CFE_SB_MsgId_t  MsgId = SB_UT_TLM_MID;
+    CFE_SB_MsgId_t  MsgId     = SB_UT_TLM_MID;
     uint16          PipeDepth = 50;
 
     SETUP(CFE_SB_CreatePipe(&TestPipe, PipeDepth, "TestPipe"));
@@ -2537,10 +2521,10 @@ void Test_Unsubscribe_Local(void)
 */
 void Test_Unsubscribe_InvalParam(void)
 {
-    CFE_SB_PipeId_t TestPipe;
-    CFE_ES_ResourceID_t  CallerId;
-    uint16          PipeDepth = 50;
-    CFE_SB_PipeId_t SavedPipeId;
+    CFE_SB_PipeId_t     TestPipe;
+    CFE_ES_ResourceID_t CallerId;
+    uint16              PipeDepth = 50;
+    CFE_SB_PipeId_t     SavedPipeId;
 
     SETUP(CFE_SB_CreatePipe(&TestPipe, PipeDepth, "TestPipe"));
 
@@ -2558,9 +2542,9 @@ void Test_Unsubscribe_InvalParam(void)
      * bad pipe ID is caught by CFE_SB_GetPipeIdx() before it gets to
      * CFE_SB_ValidatePipeId()
      */
-    SavedPipeId = CFE_SB.PipeTbl[0].PipeId;
+    SavedPipeId              = CFE_SB.PipeTbl[0].PipeId;
     CFE_SB.PipeTbl[0].PipeId = CFE_PLATFORM_SB_MAX_PIPES;
-    CFE_SB.PipeTbl[0].InUse = 1;
+    CFE_SB.PipeTbl[0].InUse  = 1;
     ASSERT_EQ(CFE_SB_Unsubscribe(SB_UT_FIRST_VALID_MID, CFE_PLATFORM_SB_MAX_PIPES), CFE_SB_BAD_ARGUMENT);
 
     /* We must restore the old value so CFE_SB_DeletePipe() works */
@@ -2580,7 +2564,7 @@ void Test_Unsubscribe_InvalParam(void)
 void Test_Unsubscribe_NoMatch(void)
 {
     CFE_SB_PipeId_t TestPipe;
-    CFE_SB_MsgId_t  MsgId = SB_UT_TLM_MID;
+    CFE_SB_MsgId_t  MsgId     = SB_UT_TLM_MID;
     uint16          PipeDepth = 50;
 
     /* Create pipe, subscribe, unsubscribe */
@@ -2608,7 +2592,7 @@ void Test_Unsubscribe_NoMatch(void)
 void Test_Unsubscribe_InvalidPipe(void)
 {
     CFE_SB_PipeId_t TestPipe;
-    CFE_SB_MsgId_t  MsgId = SB_UT_TLM_MID;
+    CFE_SB_MsgId_t  MsgId     = SB_UT_TLM_MID;
     uint16          PipeDepth = 50;
 
     SETUP(CFE_SB_CreatePipe(&TestPipe, PipeDepth, "TestPipe"));
@@ -2629,10 +2613,10 @@ void Test_Unsubscribe_InvalidPipe(void)
 */
 void Test_Unsubscribe_InvalidPipeOwner(void)
 {
-    CFE_SB_PipeId_t PipeId;
-    CFE_SB_MsgId_t  MsgId = SB_UT_TLM_MID;
+    CFE_SB_PipeId_t     PipeId;
+    CFE_SB_MsgId_t      MsgId = SB_UT_TLM_MID;
     CFE_ES_ResourceID_t RealOwner;
-    uint16          PipeDepth = 10;
+    uint16              PipeDepth = 10;
 
     SETUP(CFE_SB_CreatePipe(&PipeId, PipeDepth, "TestPipe"));
 
@@ -2790,9 +2774,9 @@ void Test_TransmitMsg_NullPtr(void)
 */
 void Test_TransmitMsg_NoSubscribers(void)
 {
-    CFE_SB_MsgId_t     MsgId = SB_UT_TLM_MID;
-    SB_UT_Test_Tlm_t   TlmPkt;
-    CFE_MSG_Size_t     Size = sizeof(TlmPkt);
+    CFE_SB_MsgId_t   MsgId = SB_UT_TLM_MID;
+    SB_UT_Test_Tlm_t TlmPkt;
+    CFE_MSG_Size_t   Size = sizeof(TlmPkt);
 
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &MsgId, sizeof(MsgId), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &Size, sizeof(Size), false);
@@ -2810,9 +2794,9 @@ void Test_TransmitMsg_NoSubscribers(void)
 */
 void Test_TransmitMsg_MaxMsgSizePlusOne(void)
 {
-    CFE_SB_MsgId_t     MsgId = SB_UT_TLM_MID;
-    SB_UT_Test_Tlm_t   TlmPkt;
-    CFE_MSG_Size_t     Size = CFE_MISSION_SB_MAX_SB_MSG_SIZE + 1;
+    CFE_SB_MsgId_t   MsgId = SB_UT_TLM_MID;
+    SB_UT_Test_Tlm_t TlmPkt;
+    CFE_MSG_Size_t   Size = CFE_MISSION_SB_MAX_SB_MSG_SIZE + 1;
 
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &MsgId, sizeof(MsgId), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &Size, sizeof(Size), false);
@@ -2830,13 +2814,12 @@ void Test_TransmitMsg_MaxMsgSizePlusOne(void)
 */
 void Test_TransmitMsg_BasicSend(void)
 {
-    CFE_SB_PipeId_t    PipeId;
-    CFE_SB_MsgId_t     MsgId = SB_UT_TLM_MID;
-    SB_UT_Test_Tlm_t   TlmPkt;
-    int32              PipeDepth = 2;
-    CFE_MSG_Size_t     Size = sizeof(TlmPkt);
-    CFE_MSG_Type_t     Type = CFE_MSG_Type_Tlm;
-
+    CFE_SB_PipeId_t  PipeId;
+    CFE_SB_MsgId_t   MsgId = SB_UT_TLM_MID;
+    SB_UT_Test_Tlm_t TlmPkt;
+    int32            PipeDepth = 2;
+    CFE_MSG_Size_t   Size      = sizeof(TlmPkt);
+    CFE_MSG_Type_t   Type      = CFE_MSG_Type_Tlm;
 
     SETUP(CFE_SB_CreatePipe(&PipeId, PipeDepth, "TestPipe"));
     SETUP(CFE_SB_Subscribe(MsgId, PipeId));
@@ -2853,7 +2836,8 @@ void Test_TransmitMsg_BasicSend(void)
 } /* end Test_TransmitMsg_BasicSend */
 
 /* Sequence count hook */
-static int32 UT_CheckSetSequenceCount(void *UserObj, int32 StubRetcode, uint32 CallCount, const UT_StubContext_t *Context)
+static int32 UT_CheckSetSequenceCount(void *UserObj, int32 StubRetcode, uint32 CallCount,
+                                      const UT_StubContext_t *Context)
 {
     CFE_MSG_SequenceCount_t *SeqCntPtr = UserObj;
 
@@ -2870,8 +2854,8 @@ void Test_TransmitMsg_SequenceCount(void)
     CFE_SB_PipeId_t         PipeId;
     CFE_SB_MsgId_t          MsgId = SB_UT_TLM_MID;
     SB_UT_Test_Tlm_t        TlmPkt;
-    CFE_MSG_Size_t          Size = sizeof(TlmPkt);
-    CFE_MSG_Type_t          Type = CFE_MSG_Type_Tlm;
+    CFE_MSG_Size_t          Size      = sizeof(TlmPkt);
+    CFE_MSG_Type_t          Type      = CFE_MSG_Type_Tlm;
     uint32                  PipeDepth = 10;
     CFE_MSG_SequenceCount_t SeqCnt;
 
@@ -2932,12 +2916,12 @@ void Test_TransmitMsg_SequenceCount(void)
 */
 void Test_TransmitMsg_QueuePutError(void)
 {
-    CFE_SB_PipeId_t    PipeId4Error;
-    CFE_SB_MsgId_t     MsgId = SB_UT_TLM_MID;
-    SB_UT_Test_Tlm_t   TlmPkt;
-    int32              PipeDepth = 2;
-    CFE_MSG_Size_t     Size = sizeof(TlmPkt);
-    CFE_MSG_Type_t     Type = CFE_MSG_Type_Tlm;
+    CFE_SB_PipeId_t  PipeId4Error;
+    CFE_SB_MsgId_t   MsgId = SB_UT_TLM_MID;
+    SB_UT_Test_Tlm_t TlmPkt;
+    int32            PipeDepth = 2;
+    CFE_MSG_Size_t   Size      = sizeof(TlmPkt);
+    CFE_MSG_Type_t   Type      = CFE_MSG_Type_Tlm;
 
     SETUP(CFE_SB_CreatePipe(&PipeId4Error, PipeDepth, "TestPipe"));
     SETUP(CFE_SB_Subscribe(MsgId, PipeId4Error));
@@ -2961,12 +2945,12 @@ void Test_TransmitMsg_QueuePutError(void)
 */
 void Test_TransmitMsg_PipeFull(void)
 {
-    CFE_SB_PipeId_t    PipeId;
-    CFE_SB_MsgId_t     MsgId = SB_UT_TLM_MID;
-    SB_UT_Test_Tlm_t   TlmPkt;
-    int32              PipeDepth = 1;
-    CFE_MSG_Size_t     Size = sizeof(TlmPkt);
-    CFE_MSG_Type_t     Type = CFE_MSG_Type_Tlm;
+    CFE_SB_PipeId_t  PipeId;
+    CFE_SB_MsgId_t   MsgId = SB_UT_TLM_MID;
+    SB_UT_Test_Tlm_t TlmPkt;
+    int32            PipeDepth = 1;
+    CFE_MSG_Size_t   Size      = sizeof(TlmPkt);
+    CFE_MSG_Type_t   Type      = CFE_MSG_Type_Tlm;
 
     SETUP(CFE_SB_CreatePipe(&PipeId, PipeDepth, "PipeFullTestPipe"));
     SETUP(CFE_SB_Subscribe(MsgId, PipeId));
@@ -3000,12 +2984,12 @@ void Test_TransmitMsg_PipeFull(void)
 */
 void Test_TransmitMsg_MsgLimitExceeded(void)
 {
-    CFE_SB_PipeId_t    PipeId;
-    CFE_SB_MsgId_t     MsgId = SB_UT_TLM_MID;
-    SB_UT_Test_Tlm_t   TlmPkt;
-    int32              PipeDepth = 5;
-    CFE_MSG_Size_t     Size = sizeof(TlmPkt);
-    CFE_MSG_Type_t     Type = CFE_MSG_Type_Tlm;
+    CFE_SB_PipeId_t  PipeId;
+    CFE_SB_MsgId_t   MsgId = SB_UT_TLM_MID;
+    SB_UT_Test_Tlm_t TlmPkt;
+    int32            PipeDepth = 5;
+    CFE_MSG_Size_t   Size      = sizeof(TlmPkt);
+    CFE_MSG_Type_t   Type      = CFE_MSG_Type_Tlm;
 
     SETUP(CFE_SB_CreatePipe(&PipeId, PipeDepth, "MsgLimTestPipe"));
 
@@ -3041,11 +3025,11 @@ void Test_TransmitMsg_MsgLimitExceeded(void)
 */
 void Test_TransmitMsg_GetPoolBufErr(void)
 {
-    CFE_SB_PipeId_t    PipeId;
-    CFE_SB_MsgId_t     MsgId = SB_UT_TLM_MID;
-    SB_UT_Test_Tlm_t   TlmPkt;
-    int32              PipeDepth;
-    CFE_MSG_Size_t     Size = sizeof(TlmPkt);
+    CFE_SB_PipeId_t  PipeId;
+    CFE_SB_MsgId_t   MsgId = SB_UT_TLM_MID;
+    SB_UT_Test_Tlm_t TlmPkt;
+    int32            PipeDepth;
+    CFE_MSG_Size_t   Size = sizeof(TlmPkt);
 
     PipeDepth = 1;
     SETUP(CFE_SB_CreatePipe(&PipeId, PipeDepth, "GetPoolErrPipe"));
@@ -3080,37 +3064,34 @@ void Test_TransmitMsg_ZeroCopyGetPtr(void)
      * allocation failed)
      */
     UT_SetDeferredRetcode(UT_KEY(CFE_ES_GetPoolBuf), 1, CFE_ES_ERR_MEM_BLOCK_SIZE);
-    ASSERT_TRUE((cpuaddr) CFE_SB_ZeroCopyGetPtr(MsgSize, &ZeroCpyBufHndl) == (cpuaddr) NULL);
+    ASSERT_TRUE((cpuaddr)CFE_SB_ZeroCopyGetPtr(MsgSize, &ZeroCpyBufHndl) == (cpuaddr)NULL);
 
     /* Have GetPoolBuf stub return error on its second call (actual buffer
      * allocation failed)
      */
     UT_SetDeferredRetcode(UT_KEY(CFE_ES_GetPoolBuf), 2, CFE_ES_ERR_MEM_BLOCK_SIZE);
-    ASSERT_TRUE((cpuaddr) CFE_SB_ZeroCopyGetPtr(MsgSize, &ZeroCpyBufHndl) == (cpuaddr) NULL);
+    ASSERT_TRUE((cpuaddr)CFE_SB_ZeroCopyGetPtr(MsgSize, &ZeroCpyBufHndl) == (cpuaddr)NULL);
 
     /* Have GetPoolBuf stub return error on its second call (null buffer
      * returned and error returning the memory to the buffer)
      */
     UT_SetDeferredRetcode(UT_KEY(CFE_ES_GetPoolBuf), 2, -1);
     UT_SetDeferredRetcode(UT_KEY(CFE_ES_PutPoolBuf), 1, 0);
-    ASSERT_TRUE((cpuaddr) CFE_SB_ZeroCopyGetPtr(MsgSize, &ZeroCpyBufHndl) == (cpuaddr) NULL);
+    ASSERT_TRUE((cpuaddr)CFE_SB_ZeroCopyGetPtr(MsgSize, &ZeroCpyBufHndl) == (cpuaddr)NULL);
 
     EVTCNT(0);
 
     /* Increase the peak memory and buffers in use above the expected values in
      * order to exercise branch paths
      */
-    CFE_SB.StatTlmMsg.Payload.MemInUse = 0;
-    CFE_SB.StatTlmMsg.Payload.PeakMemInUse = sizeof(CFE_SB_ZeroCopyD_t) + MsgSize +
-                                              sizeof(CFE_SB_BufferD_t) + 1;
-    CFE_SB.StatTlmMsg.Payload.PeakSBBuffersInUse =
-      CFE_SB.StatTlmMsg.Payload.SBBuffersInUse + 2;
-    ASSERT_TRUE((cpuaddr) CFE_SB_ZeroCopyGetPtr(MsgSize, &ZeroCpyBufHndl) != (cpuaddr) NULL);
+    CFE_SB.StatTlmMsg.Payload.MemInUse           = 0;
+    CFE_SB.StatTlmMsg.Payload.PeakMemInUse       = sizeof(CFE_SB_ZeroCopyD_t) + MsgSize + sizeof(CFE_SB_BufferD_t) + 1;
+    CFE_SB.StatTlmMsg.Payload.PeakSBBuffersInUse = CFE_SB.StatTlmMsg.Payload.SBBuffersInUse + 2;
+    ASSERT_TRUE((cpuaddr)CFE_SB_ZeroCopyGetPtr(MsgSize, &ZeroCpyBufHndl) != (cpuaddr)NULL);
 
-    ASSERT_EQ(CFE_SB.StatTlmMsg.Payload.PeakMemInUse, sizeof(CFE_SB_ZeroCopyD_t) + MsgSize +
-        sizeof(CFE_SB_BufferD_t) + 1);
-    ASSERT_EQ(CFE_SB.StatTlmMsg.Payload.MemInUse, sizeof(CFE_SB_ZeroCopyD_t) + MsgSize +
-        sizeof(CFE_SB_BufferD_t));
+    ASSERT_EQ(CFE_SB.StatTlmMsg.Payload.PeakMemInUse,
+              sizeof(CFE_SB_ZeroCopyD_t) + MsgSize + sizeof(CFE_SB_BufferD_t) + 1);
+    ASSERT_EQ(CFE_SB.StatTlmMsg.Payload.MemInUse, sizeof(CFE_SB_ZeroCopyD_t) + MsgSize + sizeof(CFE_SB_BufferD_t));
 
     ASSERT_EQ(CFE_SB.StatTlmMsg.Payload.PeakSBBuffersInUse, CFE_SB.StatTlmMsg.Payload.SBBuffersInUse + 1);
 
@@ -3124,11 +3105,11 @@ void Test_TransmitMsg_ZeroCopyGetPtr(void)
 */
 void Test_TransmitBuffer_IncrementSeqCnt(void)
 {
-    CFE_SB_Buffer_t        *SendPtr = NULL;
-    CFE_SB_Buffer_t        *ReceivePtr = NULL;
+    CFE_SB_Buffer_t *       SendPtr    = NULL;
+    CFE_SB_Buffer_t *       ReceivePtr = NULL;
     CFE_SB_PipeId_t         PipeId;
-    CFE_SB_MsgId_t          MsgId = SB_UT_TLM_MID;
-    uint32                  PipeDepth = 10;
+    CFE_SB_MsgId_t          MsgId          = SB_UT_TLM_MID;
+    uint32                  PipeDepth      = 10;
     CFE_SB_ZeroCopyHandle_t ZeroCpyBufHndl = 0;
     CFE_MSG_SequenceCount_t SeqCnt;
     CFE_MSG_Size_t          Size = sizeof(SB_UT_Test_Tlm_t);
@@ -3169,7 +3150,6 @@ void Test_TransmitBuffer_IncrementSeqCnt(void)
     EVTSENT(CFE_SB_SUBSCRIPTION_RCVD_EID);
 
     TEARDOWN(CFE_SB_DeletePipe(PipeId));
-
 }
 
 /*
@@ -3178,15 +3158,15 @@ void Test_TransmitBuffer_IncrementSeqCnt(void)
 */
 void Test_TransmitBuffer_NoIncrement(void)
 {
-    CFE_SB_Buffer_t        *SendPtr = NULL;
-    CFE_SB_Buffer_t        *ReceivePtr = NULL;
+    CFE_SB_Buffer_t *       SendPtr    = NULL;
+    CFE_SB_Buffer_t *       ReceivePtr = NULL;
     CFE_SB_PipeId_t         PipeId;
-    CFE_SB_MsgId_t          MsgId = SB_UT_TLM_MID;
-    uint32                  PipeDepth = 10;
+    CFE_SB_MsgId_t          MsgId          = SB_UT_TLM_MID;
+    uint32                  PipeDepth      = 10;
     CFE_SB_ZeroCopyHandle_t ZeroCpyBufHndl = 0;
-    CFE_MSG_SequenceCount_t SeqCnt = 22;
-    CFE_MSG_Size_t          Size = sizeof(SB_UT_Test_Tlm_t);
-    CFE_MSG_Type_t          Type = CFE_MSG_Type_Tlm;
+    CFE_MSG_SequenceCount_t SeqCnt         = 22;
+    CFE_MSG_Size_t          Size           = sizeof(SB_UT_Test_Tlm_t);
+    CFE_MSG_Type_t          Type           = CFE_MSG_Type_Tlm;
 
     /* Set up hook for checking CFE_MSG_SetSequenceCount calls */
     UT_SetHookFunction(UT_KEY(CFE_MSG_SetSequenceCount), UT_CheckSetSequenceCount, &SeqCnt);
@@ -3221,7 +3201,6 @@ void Test_TransmitBuffer_NoIncrement(void)
     EVTSENT(CFE_SB_SUBSCRIPTION_RCVD_EID);
 
     TEARDOWN(CFE_SB_DeletePipe(PipeId));
-
 }
 
 /*
@@ -3229,13 +3208,13 @@ void Test_TransmitBuffer_NoIncrement(void)
 */
 void Test_TransmitMsg_ZeroCopyReleasePtr(void)
 {
-    CFE_SB_Buffer_t        *ZeroCpyMsgPtr1 = NULL;
-    CFE_SB_Buffer_t        *ZeroCpyMsgPtr2 = NULL;
-    CFE_SB_Buffer_t        *ZeroCpyMsgPtr3 = NULL;
+    CFE_SB_Buffer_t *       ZeroCpyMsgPtr1  = NULL;
+    CFE_SB_Buffer_t *       ZeroCpyMsgPtr2  = NULL;
+    CFE_SB_Buffer_t *       ZeroCpyMsgPtr3  = NULL;
     CFE_SB_ZeroCopyHandle_t ZeroCpyBufHndl1 = 0;
     CFE_SB_ZeroCopyHandle_t ZeroCpyBufHndl2 = 0;
     CFE_SB_ZeroCopyHandle_t ZeroCpyBufHndl3 = 0;
-    uint16                  MsgSize = 10;
+    uint16                  MsgSize         = 10;
 
     ZeroCpyMsgPtr1 = CFE_SB_ZeroCopyGetPtr(MsgSize, &ZeroCpyBufHndl1);
     ZeroCpyMsgPtr2 = CFE_SB_ZeroCopyGetPtr(MsgSize, &ZeroCpyBufHndl2);
@@ -3250,8 +3229,7 @@ void Test_TransmitMsg_ZeroCopyReleasePtr(void)
     ASSERT_EQ(CFE_SB_ZeroCopyReleasePtr(NULL, ZeroCpyBufHndl2), CFE_SB_BUFFER_INVALID);
 
     /* Test response to an invalid message pointer */
-    ASSERT_EQ(CFE_SB_ZeroCopyReleasePtr((CFE_SB_Buffer_t *) 0x1234,
-                                       ZeroCpyBufHndl2), CFE_SB_BUFFER_INVALID);
+    ASSERT_EQ(CFE_SB_ZeroCopyReleasePtr((CFE_SB_Buffer_t *)0x1234, ZeroCpyBufHndl2), CFE_SB_BUFFER_INVALID);
 
     /* Test path when return the descriptor to the pool fails in
      * CFE_SB_ZeroCopyReleaseDesc
@@ -3280,22 +3258,22 @@ void Test_TransmitMsg_ZeroCopyReleasePtr(void)
 */
 void Test_TransmitMsg_DisabledDestination(void)
 {
-    CFE_SB_PipeId_t       PipeId;
-    CFE_SB_MsgId_t        MsgId = SB_UT_TLM_MID;
-    SB_UT_Test_Tlm_t      TlmPkt;
+    CFE_SB_PipeId_t        PipeId;
+    CFE_SB_MsgId_t         MsgId = SB_UT_TLM_MID;
+    SB_UT_Test_Tlm_t       TlmPkt;
     CFE_SB_DestinationD_t *DestPtr;
-    int32                 PipeDepth;
-    CFE_MSG_Type_t        Type = CFE_MSG_Type_Tlm;
-    CFE_MSG_Size_t        Size = sizeof(TlmPkt);
-    CFE_SBR_RouteId_t     RouteId;
+    int32                  PipeDepth;
+    CFE_MSG_Type_t         Type = CFE_MSG_Type_Tlm;
+    CFE_MSG_Size_t         Size = sizeof(TlmPkt);
+    CFE_SBR_RouteId_t      RouteId;
 
     PipeDepth = 2;
 
     SETUP(CFE_SB_CreatePipe(&PipeId, PipeDepth, "TestPipe"));
     SETUP(CFE_SB_Subscribe(MsgId, PipeId));
 
-    RouteId = CFE_SBR_GetRouteId(MsgId);
-    DestPtr = CFE_SB_GetDestPtr(RouteId, PipeId);
+    RouteId         = CFE_SBR_GetRouteId(MsgId);
+    DestPtr         = CFE_SB_GetDestPtr(RouteId, PipeId);
     DestPtr->Active = CFE_SB_INACTIVE;
 
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &MsgId, sizeof(MsgId), false);
@@ -3325,7 +3303,7 @@ void Test_TransmitBufferFull(void)
     CFE_SBR_RouteId_t RouteId;
 
     SBBufD.Buffer = &Msg;
-    PipeDepth = 2;
+    PipeDepth     = 2;
     SETUP(CFE_SB_CreatePipe(&PipeId, PipeDepth, "TestPipe"));
     SETUP(CFE_SB_Subscribe(MsgId, PipeId));
 
@@ -3344,12 +3322,12 @@ void Test_TransmitBufferFull(void)
 */
 void Test_TransmitMsgValidate_MaxMsgSizePlusOne(void)
 {
-    CFE_SB_MsgId_t   MsgId = SB_UT_TLM_MID;
-    CFE_SB_MsgId_t   MsgIdRtn;
-    SB_UT_Test_Tlm_t TlmPkt;
-    CFE_MSG_Size_t   Size = CFE_MISSION_SB_MAX_SB_MSG_SIZE + 1;
-    CFE_MSG_Size_t   SizeRtn;
-    CFE_SBR_RouteId_t  RouteIdRtn;
+    CFE_SB_MsgId_t    MsgId = SB_UT_TLM_MID;
+    CFE_SB_MsgId_t    MsgIdRtn;
+    SB_UT_Test_Tlm_t  TlmPkt;
+    CFE_MSG_Size_t    Size = CFE_MISSION_SB_MAX_SB_MSG_SIZE + 1;
+    CFE_MSG_Size_t    SizeRtn;
+    CFE_SBR_RouteId_t RouteIdRtn;
 
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &MsgId, sizeof(MsgId), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &Size, sizeof(Size), false);
@@ -3361,7 +3339,6 @@ void Test_TransmitMsgValidate_MaxMsgSizePlusOne(void)
     EVTCNT(1);
 
     EVTSENT(CFE_SB_MSG_TOO_BIG_EID);
-
 }
 
 /*
@@ -3369,12 +3346,12 @@ void Test_TransmitMsgValidate_MaxMsgSizePlusOne(void)
 */
 void Test_TransmitMsgValidate_NoSubscribers(void)
 {
-    CFE_SB_MsgId_t     MsgId = SB_UT_TLM_MID;
-    CFE_SB_MsgId_t     MsgIdRtn;
-    SB_UT_Test_Tlm_t   TlmPkt;
-    CFE_MSG_Size_t     Size = sizeof(TlmPkt);
-    CFE_MSG_Size_t     SizeRtn;
-    CFE_SBR_RouteId_t  RouteIdRtn;
+    CFE_SB_MsgId_t    MsgId = SB_UT_TLM_MID;
+    CFE_SB_MsgId_t    MsgIdRtn;
+    SB_UT_Test_Tlm_t  TlmPkt;
+    CFE_MSG_Size_t    Size = sizeof(TlmPkt);
+    CFE_MSG_Size_t    SizeRtn;
+    CFE_SBR_RouteId_t RouteIdRtn;
 
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &MsgId, sizeof(MsgId), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &Size, sizeof(Size), false);
@@ -3387,7 +3364,6 @@ void Test_TransmitMsgValidate_NoSubscribers(void)
     EVTCNT(1);
 
     EVTSENT(CFE_SB_SEND_NO_SUBS_EID);
-
 }
 
 /*
@@ -3409,13 +3385,12 @@ void Test_ReceiveBuffer_API(void)
 */
 void Test_ReceiveBuffer_InvalidPipeId(void)
 {
-    CFE_SB_Buffer_t   *SBBufPtr;
-    CFE_SB_PipeId_t    InvalidPipeId = 20;
+    CFE_SB_Buffer_t *SBBufPtr;
+    CFE_SB_PipeId_t  InvalidPipeId = 20;
 
     CFE_SB.PipeTbl[InvalidPipeId].InUse = CFE_SB_NOT_IN_USE;
 
     ASSERT_EQ(CFE_SB_ReceiveBuffer(&SBBufPtr, InvalidPipeId, CFE_SB_POLL), CFE_SB_BAD_ARGUMENT);
-
 
     EVTCNT(1);
 
@@ -3428,10 +3403,10 @@ void Test_ReceiveBuffer_InvalidPipeId(void)
 */
 void Test_ReceiveBuffer_InvalidTimeout(void)
 {
-    CFE_SB_Buffer_t   *SBBufPtr;
-    CFE_SB_PipeId_t    PipeId;
-    uint32             PipeDepth = 10;
-    int32              TimeOut = -5;
+    CFE_SB_Buffer_t *SBBufPtr;
+    CFE_SB_PipeId_t  PipeId;
+    uint32           PipeDepth = 10;
+    int32            TimeOut   = -5;
 
     SETUP(CFE_SB_CreatePipe(&PipeId, PipeDepth, "RcvTestPipe"));
 
@@ -3450,9 +3425,9 @@ void Test_ReceiveBuffer_InvalidTimeout(void)
 */
 void Test_ReceiveBuffer_Poll(void)
 {
-    CFE_SB_Buffer_t   *SBBufPtr;
-    CFE_SB_PipeId_t    PipeId;
-    uint32             PipeDepth = 10;
+    CFE_SB_Buffer_t *SBBufPtr;
+    CFE_SB_PipeId_t  PipeId;
+    uint32           PipeDepth = 10;
 
     SETUP(CFE_SB_CreatePipe(&PipeId, PipeDepth, "RcvTestPipe"));
 
@@ -3471,10 +3446,10 @@ void Test_ReceiveBuffer_Poll(void)
 */
 void Test_ReceiveBuffer_Timeout(void)
 {
-    CFE_SB_Buffer_t   *SBBufPtr;
-    CFE_SB_PipeId_t    PipeId;
-    uint32             PipeDepth = 10;
-    int32              TimeOut = 200;
+    CFE_SB_Buffer_t *SBBufPtr;
+    CFE_SB_PipeId_t  PipeId;
+    uint32           PipeDepth = 10;
+    int32            TimeOut   = 200;
 
     SETUP(CFE_SB_CreatePipe(&PipeId, PipeDepth, "RcvTestPipe"));
     UT_SetDeferredRetcode(UT_KEY(OS_QueueGet), 1, OS_QUEUE_TIMEOUT);
@@ -3494,9 +3469,9 @@ void Test_ReceiveBuffer_Timeout(void)
 */
 void Test_ReceiveBuffer_PipeReadError(void)
 {
-    CFE_SB_Buffer_t   *SBBufPtr;
-    CFE_SB_PipeId_t    PipeId;
-    uint32             PipeDepth = 10;
+    CFE_SB_Buffer_t *SBBufPtr;
+    CFE_SB_PipeId_t  PipeId;
+    uint32           PipeDepth = 10;
 
     SETUP(CFE_SB_CreatePipe(&PipeId, PipeDepth, "RcvTestPipe"));
     UT_SetDeferredRetcode(UT_KEY(OS_QueueGet), 1, OS_ERROR);
@@ -3515,14 +3490,14 @@ void Test_ReceiveBuffer_PipeReadError(void)
 */
 void Test_ReceiveBuffer_PendForever(void)
 {
-    CFE_SB_Buffer_t   *SBBufPtr;
-    CFE_SB_MsgId_t     MsgId = SB_UT_TLM_MID;
-    CFE_SB_PipeId_t    PipeId;
-    SB_UT_Test_Tlm_t   TlmPkt;
-    CFE_SB_PipeD_t    *PipeDscPtr;
-    uint32             PipeDepth = 10;
-    CFE_MSG_Type_t     Type = CFE_MSG_Type_Tlm;
-    CFE_MSG_Size_t     Size = sizeof(TlmPkt);
+    CFE_SB_Buffer_t *SBBufPtr;
+    CFE_SB_MsgId_t   MsgId = SB_UT_TLM_MID;
+    CFE_SB_PipeId_t  PipeId;
+    SB_UT_Test_Tlm_t TlmPkt;
+    CFE_SB_PipeD_t * PipeDscPtr;
+    uint32           PipeDepth = 10;
+    CFE_MSG_Type_t   Type      = CFE_MSG_Type_Tlm;
+    CFE_MSG_Size_t   Size      = sizeof(TlmPkt);
 
     SETUP(CFE_SB_CreatePipe(&PipeId, PipeDepth, "RcvTestPipe"));
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &MsgId, sizeof(MsgId), false);
@@ -3532,17 +3507,17 @@ void Test_ReceiveBuffer_PendForever(void)
     SETUP(CFE_SB_TransmitMsg(&TlmPkt.Hdr.Msg, true));
 
     ASSERT(CFE_SB_ReceiveBuffer(&SBBufPtr, PipeId, CFE_SB_PEND_FOREVER));
-  
+
     ASSERT_TRUE(SBBufPtr != NULL);
 
     EVTCNT(3);
 
     EVTSENT(CFE_SB_SUBSCRIPTION_RCVD_EID);
 
-    PipeDscPtr = CFE_SB_GetPipePtr(PipeId);
+    PipeDscPtr              = CFE_SB_GetPipePtr(PipeId);
     PipeDscPtr->ToTrashBuff = PipeDscPtr->CurrentBuff;
     PipeDscPtr->CurrentBuff = NULL;
-    
+
     TEARDOWN(CFE_SB_DeletePipe(PipeId));
 
 } /* end Test_ReceiveBuffer_PendForever */
@@ -3554,7 +3529,7 @@ void Test_CleanupApp_API(void)
 {
     CFE_SB_PipeId_t         PipeId;
     CFE_SB_ZeroCopyHandle_t ZeroCpyBufHndl = 0;
-    uint16                  PipeDepth = 50;
+    uint16                  PipeDepth      = 50;
     CFE_ES_ResourceID_t     AppID;
 
     CFE_ES_GetAppID(&AppID);
@@ -3629,14 +3604,14 @@ void Test_CFE_SB_MsgHdrSize(void)
 
     /* No secondary */
     hassec = false;
-    type = CFE_MSG_Type_Invalid;
+    type   = CFE_MSG_Type_Invalid;
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetHasSecondaryHeader), &hassec, sizeof(hassec), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetType), &type, sizeof(type), false);
     ASSERT_EQ(CFE_SB_MsgHdrSize(&msg), sizeof(CFE_MSG_Message_t));
 
     /* Has secondary, tlm type */
     hassec = true;
-    type = CFE_MSG_Type_Tlm;
+    type   = CFE_MSG_Type_Tlm;
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetHasSecondaryHeader), &hassec, sizeof(hassec), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetType), &type, sizeof(type), false);
     ASSERT_EQ(CFE_SB_MsgHdrSize(&msg), sizeof(CFE_MSG_TelemetryHeader_t));
@@ -3661,7 +3636,7 @@ void Test_CFE_SB_MsgHdrSize(void)
 void Test_CFE_SB_GetUserData(void)
 {
     CFE_MSG_Message_t msg;
-    uint8            *ExpAdrReturned;
+    uint8 *           ExpAdrReturned;
     bool              hassec;
     CFE_MSG_Type_t    type = CFE_MSG_Type_Invalid;
 
@@ -3683,8 +3658,8 @@ void Test_CFE_SB_GetUserData(void)
 void Test_CFE_SB_SetGetUserDataLength(void)
 {
     CFE_MSG_Message_t msg;
-    CFE_MSG_Size_t    size = 10;
-    CFE_MSG_Type_t    type = CFE_MSG_Type_Invalid;
+    CFE_MSG_Size_t    size   = 10;
+    CFE_MSG_Type_t    type   = CFE_MSG_Type_Invalid;
     bool              hassec = false;
 
     /* Pass through functions */
@@ -3704,7 +3679,7 @@ void Test_CFE_SB_SetGetUserDataLength(void)
 */
 void Test_CFE_SB_ValidateMsgId(void)
 {
-    CFE_SB_MsgId_t        MsgId;
+    CFE_SB_MsgId_t MsgId;
 
     /* Validate Msg Id */
     MsgId = SB_UT_LAST_VALID_MID;
@@ -3713,7 +3688,6 @@ void Test_CFE_SB_ValidateMsgId(void)
     /* Test for invalid msg id */
     MsgId = SB_UT_ALTERNATE_INVALID_MID;
     ASSERT_EQ(CFE_SB_ValidateMsgId(MsgId), CFE_SB_FAILED);
-
 }
 
 /*
@@ -3742,7 +3716,7 @@ void Test_SB_SpecialCases(void)
 void Test_OS_MutSem_ErrLogic(void)
 {
     CFE_SB_PipeId_t PipeId;
-    CFE_SB_MsgId_t  MsgId = SB_UT_CMD_MID;
+    CFE_SB_MsgId_t  MsgId     = SB_UT_CMD_MID;
     uint16          PipeDepth = 50;
 
     UT_SetDeferredRetcode(UT_KEY(OS_MutSemTake), 1, OS_SEM_FAILURE);
@@ -3766,7 +3740,7 @@ void Test_OS_MutSem_ErrLogic(void)
 void Test_ReqToSendEvent_ErrLogic(void)
 {
     CFE_ES_ResourceID_t TaskId;
-    uint32 Bit = 5;
+    uint32              Bit = 5;
 
     /* Clear task bits, then call function, which should set the bit for
      * the specified task
@@ -3802,7 +3776,7 @@ void Test_PutDestBlk_ErrLogic(void)
 void Test_CFE_SB_GetPipeIdx(void)
 {
     CFE_SB.PipeTbl[0].PipeId = 0;
-    CFE_SB.PipeTbl[0].InUse = CFE_SB_NOT_IN_USE;
+    CFE_SB.PipeTbl[0].InUse  = CFE_SB_NOT_IN_USE;
     ASSERT_EQ(CFE_SB_GetPipeIdx(0), CFE_SB_INVALID_PIPE);
 
     EVTCNT(0);
@@ -3818,9 +3792,9 @@ void Test_CFE_SB_Buffers(void)
 
     CFE_SB_BufferD_t *bd;
 
-    CFE_SB.StatTlmMsg.Payload.MemInUse = 0;
+    CFE_SB.StatTlmMsg.Payload.MemInUse     = 0;
     CFE_SB.StatTlmMsg.Payload.PeakMemInUse = sizeof(CFE_SB_BufferD_t) * 4;
-    bd = CFE_SB_GetBufferFromPool(SB_UT_FIRST_VALID_MID, 0);
+    bd                                     = CFE_SB_GetBufferFromPool(SB_UT_FIRST_VALID_MID, 0);
 
     ASSERT_EQ(CFE_SB.StatTlmMsg.Payload.PeakMemInUse, sizeof(CFE_SB_BufferD_t) * 4);
 
@@ -3841,7 +3815,7 @@ void Test_CFE_SB_Buffers(void)
 
     UT_SetDeferredRetcode(UT_KEY(CFE_ES_PutPoolBuf), 1, -1);
     CFE_SB.StatTlmMsg.Payload.MemInUse = 0;
-    CFE_SB_PutDestinationBlk((CFE_SB_DestinationD_t *) bd);
+    CFE_SB_PutDestinationBlk((CFE_SB_DestinationD_t *)bd);
 
     ASSERT_EQ(CFE_SB.StatTlmMsg.Payload.MemInUse, 0);
 
@@ -3854,16 +3828,16 @@ void Test_CFE_SB_Buffers(void)
 */
 void Test_CFE_SB_BadPipeInfo(void)
 {
-    CFE_SB_PipeId_t PipeId;
-    uint16          PipeDepth = 10;
-    CFE_SB_Qos_t    CFE_SB_Default_Qos;
+    CFE_SB_PipeId_t     PipeId;
+    uint16              PipeDepth = 10;
+    CFE_SB_Qos_t        CFE_SB_Default_Qos;
     CFE_ES_ResourceID_t AppID;
 
     SETUP(CFE_SB_CreatePipe(&PipeId, PipeDepth, "TestPipe1"));
 
     /* Set the pipe ID to an erroneous value and attempt to delete the pipe */
     CFE_SB.PipeTbl[0].PipeId = 1;
-    CFE_SB.PipeTbl[0].InUse = 1;
+    CFE_SB.PipeTbl[0].InUse  = 1;
     CFE_ES_GetAppID(&AppID);
     ASSERT_EQ(CFE_SB_DeletePipeFull(0, AppID), CFE_SB_BAD_ARGUMENT);
 
@@ -3872,13 +3846,12 @@ void Test_CFE_SB_BadPipeInfo(void)
     /* Reset the pipe ID and delete the pipe */
     CFE_SB.PipeTbl[0].PipeId = 0;
 
-    ASSERT_EQ(CFE_SB_SubscribeFull(SB_UT_FIRST_VALID_MID ,0, CFE_SB_Default_Qos,
-                                  CFE_PLATFORM_SB_DEFAULT_MSG_LIMIT, 2), CFE_SB_BAD_ARGUMENT);
+    ASSERT_EQ(CFE_SB_SubscribeFull(SB_UT_FIRST_VALID_MID, 0, CFE_SB_Default_Qos, CFE_PLATFORM_SB_DEFAULT_MSG_LIMIT, 2),
+              CFE_SB_BAD_ARGUMENT);
 
     EVTCNT(4);
 
     TEARDOWN(CFE_SB_DeletePipe(PipeId));
-
 
 } /* end Test_CFE_SB_BadPipeInfo */
 
@@ -3889,19 +3862,19 @@ void Test_SB_TransmitMsgPaths_Nominal(void)
 {
     union
     {
-        CFE_SB_Buffer_t SBBuf;
+        CFE_SB_Buffer_t         SBBuf;
         CFE_MSG_CommandHeader_t Cmd;
     } Housekeeping;
-    CFE_SB_MsgId_t          MsgId;
-    CFE_SB_PipeId_t         PipeId;
-    SB_UT_Test_Tlm_t        TlmPkt;
-    int32                   PipeDepth = 2;
-    CFE_MSG_Size_t          Size;
-    CFE_MSG_Type_t          Type;
+    CFE_SB_MsgId_t   MsgId;
+    CFE_SB_PipeId_t  PipeId;
+    SB_UT_Test_Tlm_t TlmPkt;
+    int32            PipeDepth = 2;
+    CFE_MSG_Size_t   Size;
+    CFE_MSG_Type_t   Type;
 
     /* For internal send message call */
     MsgId = CFE_SB_ValueToMsgId(CFE_SB_HK_TLM_MID);
-    Size = sizeof(CFE_SB.HKTlmMsg);
+    Size  = sizeof(CFE_SB.HKTlmMsg);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &MsgId, sizeof(MsgId), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &Size, sizeof(Size), false);
 
@@ -3924,7 +3897,7 @@ void Test_SB_TransmitMsgPaths_Nominal(void)
 
     /* For internal send message call */
     MsgId = CFE_SB_ValueToMsgId(CFE_SB_HK_TLM_MID);
-    Size = sizeof(CFE_SB.HKTlmMsg);
+    Size  = sizeof(CFE_SB.HKTlmMsg);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetMsgId), &MsgId, sizeof(MsgId), false);
     UT_SetDataBuffer(UT_KEY(CFE_MSG_GetSize), &Size, sizeof(Size), false);
 
@@ -3943,9 +3916,9 @@ void Test_SB_TransmitMsgPaths_Nominal(void)
     CFE_SB.StopRecurseFlags[1] = 0;
 
     /* Create a message ID with the command bit set and disable reporting */
-    MsgId = SB_UT_CMD_MID;
-    Size = sizeof(TlmPkt);
-    Type = CFE_MSG_Type_Cmd;
+    MsgId                  = SB_UT_CMD_MID;
+    Size                   = sizeof(TlmPkt);
+    Type                   = CFE_MSG_Type_Cmd;
     CFE_SB.SenderReporting = 0;
     SETUP(CFE_SB_CreatePipe(&PipeId, PipeDepth, "TestPipe"));
 
@@ -3965,12 +3938,12 @@ void Test_SB_TransmitMsgPaths_Nominal(void)
 
 void Test_SB_TransmitMsgPaths_LimitErr(void)
 {
-    CFE_SB_MsgId_t     MsgId;
-    CFE_SB_PipeId_t    PipeId;
-    SB_UT_Test_Tlm_t   TlmPkt;
-    int32              PipeDepth = 2;
-    CFE_MSG_Type_t     Type = CFE_MSG_Type_Tlm;
-    CFE_MSG_Size_t     Size = sizeof(TlmPkt);
+    CFE_SB_MsgId_t   MsgId;
+    CFE_SB_PipeId_t  PipeId;
+    SB_UT_Test_Tlm_t TlmPkt;
+    int32            PipeDepth = 2;
+    CFE_MSG_Type_t   Type      = CFE_MSG_Type_Tlm;
+    CFE_MSG_Size_t   Size      = sizeof(TlmPkt);
 
     /* Test inhibiting sending a "message ID limit error" message */
     MsgId = SB_UT_TLM_MID;
@@ -4000,15 +3973,14 @@ void Test_SB_TransmitMsgPaths_LimitErr(void)
 
 } /* end Test_SB_TransmitMsgPaths */
 
-
 void Test_SB_TransmitMsgPaths_FullErr(void)
 {
-    CFE_SB_MsgId_t     MsgId;
-    CFE_SB_PipeId_t    PipeId;
-    SB_UT_Test_Tlm_t   TlmPkt;
-    int32              PipeDepth = 2;
-    CFE_MSG_Type_t     Type = CFE_MSG_Type_Tlm;
-    CFE_MSG_Size_t     Size = sizeof(TlmPkt);
+    CFE_SB_MsgId_t   MsgId;
+    CFE_SB_PipeId_t  PipeId;
+    SB_UT_Test_Tlm_t TlmPkt;
+    int32            PipeDepth = 2;
+    CFE_MSG_Type_t   Type      = CFE_MSG_Type_Tlm;
+    CFE_MSG_Size_t   Size      = sizeof(TlmPkt);
 
     /* Test inhibiting sending a "pipe full" message */
     MsgId = SB_UT_TLM_MID;
@@ -4041,12 +4013,12 @@ void Test_SB_TransmitMsgPaths_FullErr(void)
 
 void Test_SB_TransmitMsgPaths_WriteErr(void)
 {
-    CFE_SB_MsgId_t     MsgId;
-    CFE_SB_PipeId_t    PipeId;
-    SB_UT_Test_Tlm_t   TlmPkt;
-    int32              PipeDepth = 2;
-    CFE_MSG_Type_t     Type = CFE_MSG_Type_Tlm;
-    CFE_MSG_Size_t     Size = sizeof(TlmPkt);
+    CFE_SB_MsgId_t   MsgId;
+    CFE_SB_PipeId_t  PipeId;
+    SB_UT_Test_Tlm_t TlmPkt;
+    int32            PipeDepth = 2;
+    CFE_MSG_Type_t   Type      = CFE_MSG_Type_Tlm;
+    CFE_MSG_Size_t   Size      = sizeof(TlmPkt);
 
     /* Test inhibiting sending a "pipe write error" message */
     MsgId = SB_UT_TLM_MID;
@@ -4078,12 +4050,12 @@ void Test_SB_TransmitMsgPaths_WriteErr(void)
 
 void Test_SB_TransmitMsgPaths_IgnoreOpt(void)
 {
-    CFE_SB_MsgId_t     MsgId;
-    CFE_SB_PipeId_t    PipeId;
-    SB_UT_Test_Tlm_t   TlmPkt;
-    int32              PipeDepth = 2;
-    CFE_MSG_Type_t     Type = CFE_MSG_Type_Tlm;
-    CFE_MSG_Size_t     Size = sizeof(TlmPkt);
+    CFE_SB_MsgId_t   MsgId;
+    CFE_SB_PipeId_t  PipeId;
+    SB_UT_Test_Tlm_t TlmPkt;
+    int32            PipeDepth = 2;
+    CFE_MSG_Type_t   Type      = CFE_MSG_Type_Tlm;
+    CFE_MSG_Size_t   Size      = sizeof(TlmPkt);
 
     /* Setup Test skipping sending to a pipe when the pipe option is set to ignore */
     MsgId = SB_UT_TLM_MID;
@@ -4103,20 +4075,19 @@ void Test_SB_TransmitMsgPaths_IgnoreOpt(void)
 
 } /* end Test_SB_TransmitMsgPaths */
 
-
 /*
 ** Test receiving a message response to a unsubscribing to message, then
 ** resubscribing to it while it's in the pipe
 */
 void Test_ReceiveBuffer_UnsubResubPath(void)
 {
-    CFE_SB_Buffer_t   *SBBufPtr;
-    CFE_SB_MsgId_t     MsgId = SB_UT_TLM_MID;
-    CFE_SB_PipeId_t    PipeId;
-    SB_UT_Test_Tlm_t   TlmPkt;
-    uint32             PipeDepth = 10;
-    CFE_MSG_Type_t     Type = CFE_MSG_Type_Tlm;
-    CFE_MSG_Size_t     Size = sizeof(TlmPkt);
+    CFE_SB_Buffer_t *SBBufPtr;
+    CFE_SB_MsgId_t   MsgId = SB_UT_TLM_MID;
+    CFE_SB_PipeId_t  PipeId;
+    SB_UT_Test_Tlm_t TlmPkt;
+    uint32           PipeDepth = 10;
+    CFE_MSG_Type_t   Type      = CFE_MSG_Type_Tlm;
+    CFE_MSG_Size_t   Size      = sizeof(TlmPkt);
 
     SETUP(CFE_SB_CreatePipe(&PipeId, PipeDepth, "RcvTestPipe"));
     SETUP(CFE_SB_Subscribe(MsgId, PipeId));
@@ -4144,68 +4115,49 @@ void Test_ReceiveBuffer_UnsubResubPath(void)
 */
 void Test_MessageString(void)
 {
-	const char *SrcString = "abcdefg";
-	char DestString[20];
-	char *DestStringPtr = DestString;
-	const char *DefString = "default";
+    const char *SrcString = "abcdefg";
+    char        DestString[20];
+    char *      DestStringPtr = DestString;
+    const char *DefString     = "default";
 
     /* Test setting string where the destination size > source string size */
-	CFE_SB_MessageStringSet(DestStringPtr, SrcString, sizeof(DestString),
-			                strlen(SrcString));
-    UT_Report(__FILE__, __LINE__,
-              strcmp(DestString, SrcString) == 0, "CFE_SB_MessageStringSet",
+    CFE_SB_MessageStringSet(DestStringPtr, SrcString, sizeof(DestString), strlen(SrcString));
+    UT_Report(__FILE__, __LINE__, strcmp(DestString, SrcString) == 0, "CFE_SB_MessageStringSet",
               "Destination size > source string size");
 
-	/* Test setting string where the source string is empty */
-	CFE_SB_MessageStringSet(DestStringPtr, "", sizeof(DestString),
-			                strlen(SrcString));
-    UT_Report(__FILE__, __LINE__,
-    		  strcmp(DestString, SrcString) != 0, "CFE_SB_MessageStringSet",
-              "Empty source string");
+    /* Test setting string where the source string is empty */
+    CFE_SB_MessageStringSet(DestStringPtr, "", sizeof(DestString), strlen(SrcString));
+    UT_Report(__FILE__, __LINE__, strcmp(DestString, SrcString) != 0, "CFE_SB_MessageStringSet", "Empty source string");
 
-	/* Test setting string where the destination size < source string size */
-	CFE_SB_MessageStringSet(DestStringPtr, SrcString, strlen(SrcString) - 1,
-			                strlen(SrcString));
-    UT_Report(__FILE__, __LINE__,
-    		  strncmp(DestString, SrcString, strlen(SrcString) - 1) == 0,
-    		  "CFE_SB_MessageStringSet",
+    /* Test setting string where the destination size < source string size */
+    CFE_SB_MessageStringSet(DestStringPtr, SrcString, strlen(SrcString) - 1, strlen(SrcString));
+    UT_Report(__FILE__, __LINE__, strncmp(DestString, SrcString, strlen(SrcString) - 1) == 0, "CFE_SB_MessageStringSet",
               "Destination size < source string size");
 
-	/* Test getting string where the destination size > source string size */
-	CFE_SB_MessageStringGet(DestStringPtr, SrcString, DefString,
-			                sizeof(DestString), strlen(SrcString));
-    UT_Report(__FILE__, __LINE__,
-    		  strcmp(DestString, SrcString) == 0, "CFE_SB_MessageStringGet",
+    /* Test getting string where the destination size > source string size */
+    CFE_SB_MessageStringGet(DestStringPtr, SrcString, DefString, sizeof(DestString), strlen(SrcString));
+    UT_Report(__FILE__, __LINE__, strcmp(DestString, SrcString) == 0, "CFE_SB_MessageStringGet",
               "Destination size > source string size");
 
-	/* Test getting string where the destination size is zero */
+    /* Test getting string where the destination size is zero */
     DestString[0] = '\0';
-	CFE_SB_MessageStringGet(DestStringPtr, SrcString, DefString, 0,
-			                strlen(SrcString));
-    UT_Report(__FILE__, __LINE__,
-            strcmp(DestString, SrcString) != 0, "CFE_SB_MessageStringGet",
+    CFE_SB_MessageStringGet(DestStringPtr, SrcString, DefString, 0, strlen(SrcString));
+    UT_Report(__FILE__, __LINE__, strcmp(DestString, SrcString) != 0, "CFE_SB_MessageStringGet",
               "Destination size = 0");
 
-	/* Test getting string where the default string is NULL */
-	CFE_SB_MessageStringGet(DestStringPtr, SrcString, NULL,
-			                sizeof(DestString), 0);
-    UT_Report(__FILE__, __LINE__,
-    		  strcmp(DefString, SrcString) != 0, "CFE_SB_MessageStringGet",
+    /* Test getting string where the default string is NULL */
+    CFE_SB_MessageStringGet(DestStringPtr, SrcString, NULL, sizeof(DestString), 0);
+    UT_Report(__FILE__, __LINE__, strcmp(DefString, SrcString) != 0, "CFE_SB_MessageStringGet",
               "Default string = NULL");
 
-	/* Test getting string where the source string size is zero */
-	CFE_SB_MessageStringGet(DestStringPtr, SrcString, DefString,
-			                sizeof(DestString), 0);
-    UT_Report(__FILE__, __LINE__,
-    		strcmp(DestString, SrcString) != 0, "CFE_SB_MessageStringGet",
+    /* Test getting string where the source string size is zero */
+    CFE_SB_MessageStringGet(DestStringPtr, SrcString, DefString, sizeof(DestString), 0);
+    UT_Report(__FILE__, __LINE__, strcmp(DestString, SrcString) != 0, "CFE_SB_MessageStringGet",
               "Source string size = 0");
 
-	/* Test getting string where the destination size < source string size */
+    /* Test getting string where the destination size < source string size */
     DestString[0] = '\0';
-	CFE_SB_MessageStringGet(DestStringPtr, SrcString, DefString,
-			                strlen(SrcString) - 1, strlen(SrcString));
-    UT_Report(__FILE__, __LINE__,
-    		  strncmp(DestString, SrcString, strlen(DestString)) == 0,
-    		  "CFE_SB_MessageStringGet",
+    CFE_SB_MessageStringGet(DestStringPtr, SrcString, DefString, strlen(SrcString) - 1, strlen(SrcString));
+    UT_Report(__FILE__, __LINE__, strncmp(DestString, SrcString, strlen(DestString)) == 0, "CFE_SB_MessageStringGet",
               "Destination size < source string size");
 } /* end Test_MessageString */

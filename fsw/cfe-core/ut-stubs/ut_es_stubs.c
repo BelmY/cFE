@@ -58,32 +58,32 @@
  * register its own simulated pool using UT_SetDataBuffer,
  * rather than changing this value.
  */
-#define CFE_UT_ES_POOL_STATIC_BLOCK_SIZE    4096
+#define CFE_UT_ES_POOL_STATIC_BLOCK_SIZE 4096
 
 /*
  * Default value to return from calls that output an App ID, if the
  * test case does not provide a value
  */
-#define CFE_UT_ES_DEFAULT_APPID     ((CFE_ES_ResourceID_t){0x02010001})
+#define CFE_UT_ES_DEFAULT_APPID ((CFE_ES_ResourceID_t) {0x02010001})
 
 /*
  * Default value to return from calls that output a Task ID, if the
  * test case does not provide a value
  */
-#define CFE_UT_ES_DEFAULT_TASKID    ((CFE_ES_ResourceID_t){0x02020001})
+#define CFE_UT_ES_DEFAULT_TASKID ((CFE_ES_ResourceID_t) {0x02020001})
 
 /*
  * Default value to return from calls that output a CDS ID, if the
  * test case does not provide a value
  */
-#define CFE_UT_ES_DEFAULT_CDSID     ((CFE_ES_ResourceID_t){0x02050001})
+#define CFE_UT_ES_DEFAULT_CDSID ((CFE_ES_ResourceID_t) {0x02050001})
 
 /*
  * Invalid value to output from calls as resource ID for the
  * calls that return failure.  If subsequently used by application code,
  * it will likely induce a segfault or other noticeably bad behavior.
  */
-#define CFE_UT_ES_ID_INVALID        ((CFE_ES_ResourceID_t){0xDEADBEEF})
+#define CFE_UT_ES_ID_INVALID ((CFE_ES_ResourceID_t) {0xDEADBEEF})
 
 /*
 ** Functions
@@ -108,13 +108,9 @@
 **        Returns either a user-defined status flag or CFE_SUCCESS.
 **
 ******************************************************************************/
-CFE_Status_t  CFE_ES_CreateChildTask(CFE_ES_ResourceID_t             *TaskIdPtr,
-                                     const char                      *TaskName,
-                                     CFE_ES_ChildTaskMainFuncPtr_t    FunctionPtr,
-                                     CFE_ES_StackPointer_t            StackPtr,
-                                     size_t                           StackSize,
-                                     CFE_ES_TaskPriority_Atom_t       Priority,
-                                     uint32                           Flags)
+CFE_Status_t CFE_ES_CreateChildTask(CFE_ES_ResourceID_t *TaskIdPtr, const char *TaskName,
+                                    CFE_ES_ChildTaskMainFuncPtr_t FunctionPtr, CFE_ES_StackPointer_t StackPtr,
+                                    size_t StackSize, CFE_ES_TaskPriority_Atom_t Priority, uint32 Flags)
 {
     UT_Stub_RegisterContext(UT_KEY(CFE_ES_CreateChildTask), TaskIdPtr);
     UT_Stub_RegisterContext(UT_KEY(CFE_ES_CreateChildTask), TaskName);
@@ -155,10 +151,10 @@ int32 CFE_ES_GetAppID(CFE_ES_ResourceID_t *AppIdPtr)
 {
     UT_Stub_RegisterContext(UT_KEY(CFE_ES_GetAppID), AppIdPtr);
 
-    int32 status;
+    int32                status;
     CFE_ES_ResourceID_t *IdBuff;
-    size_t BuffSize;
-    size_t Position;
+    size_t               BuffSize;
+    size_t               Position;
 
     status = UT_DEFAULT_IMPL(CFE_ES_GetAppID);
 
@@ -187,10 +183,10 @@ int32 CFE_ES_GetTaskID(CFE_ES_ResourceID_t *TaskIdPtr)
 {
     UT_Stub_RegisterContext(UT_KEY(CFE_ES_GetTaskID), TaskIdPtr);
 
-    int32 status;
+    int32                status;
     CFE_ES_ResourceID_t *IdBuff;
-    size_t BuffSize;
-    size_t Position;
+    size_t               BuffSize;
+    size_t               Position;
 
     status = UT_DEFAULT_IMPL(CFE_ES_GetTaskID);
 
@@ -241,24 +237,24 @@ int32 CFE_ES_GetAppIDByName(CFE_ES_ResourceID_t *AppIdPtr, const char *AppName)
     UT_Stub_RegisterContext(UT_KEY(CFE_ES_GetAppIDByName), AppIdPtr);
     UT_Stub_RegisterContext(UT_KEY(CFE_ES_GetAppIDByName), AppName);
 
-    size_t UserBuffSize;
-    size_t BuffPosition;
-    const char *NameBuff;
+    size_t               UserBuffSize;
+    size_t               BuffPosition;
+    const char *         NameBuff;
     CFE_ES_ResourceID_t *IdBuff;
-    int32 status;
+    int32                status;
 
     status = UT_DEFAULT_IMPL(CFE_ES_GetAppIDByName);
 
     if (status >= 0)
     {
-        if (UT_Stub_CopyToLocal(UT_KEY(CFE_ES_GetAppIDByName), (uint8*)AppIdPtr, sizeof(*AppIdPtr)) < sizeof(*AppIdPtr))
+        if (UT_Stub_CopyToLocal(UT_KEY(CFE_ES_GetAppIDByName), (uint8 *)AppIdPtr, sizeof(*AppIdPtr)) <
+            sizeof(*AppIdPtr))
         {
             IdBuff = NULL;
-            UT_GetDataBuffer(UT_KEY(CFE_ES_GetAppName), (void**)&NameBuff, &UserBuffSize, &BuffPosition);
-            if (NameBuff != NULL && UserBuffSize > 0 &&
-                    strncmp(NameBuff, AppName, UserBuffSize) == 0)
+            UT_GetDataBuffer(UT_KEY(CFE_ES_GetAppName), (void **)&NameBuff, &UserBuffSize, &BuffPosition);
+            if (NameBuff != NULL && UserBuffSize > 0 && strncmp(NameBuff, AppName, UserBuffSize) == 0)
             {
-                UT_GetDataBuffer(UT_KEY(CFE_ES_GetAppID), (void**)&IdBuff, &UserBuffSize, &BuffPosition);
+                UT_GetDataBuffer(UT_KEY(CFE_ES_GetAppID), (void **)&IdBuff, &UserBuffSize, &BuffPosition);
             }
 
             if (IdBuff != NULL && UserBuffSize == sizeof(*AppIdPtr))
@@ -303,19 +299,19 @@ CFE_Status_t CFE_ES_GetAppName(char *AppName, CFE_ES_ResourceID_t AppId, size_t 
     UT_Stub_RegisterContextGenericArg(UT_KEY(CFE_ES_GetAppName), AppId);
     UT_Stub_RegisterContextGenericArg(UT_KEY(CFE_ES_GetAppName), BufferLength);
 
-    size_t UserBuffSize;
-    size_t BuffPosition;
+    size_t      UserBuffSize;
+    size_t      BuffPosition;
     const char *NameBuff;
-    int32 status;
+    int32       status;
 
     status = UT_DEFAULT_IMPL(CFE_ES_GetAppName);
 
     if (status >= 0 && BufferLength > 0)
     {
-        UT_GetDataBuffer(UT_KEY(CFE_ES_GetAppName), (void**)&NameBuff, &UserBuffSize, &BuffPosition);
+        UT_GetDataBuffer(UT_KEY(CFE_ES_GetAppName), (void **)&NameBuff, &UserBuffSize, &BuffPosition);
         if (NameBuff == NULL || UserBuffSize == 0)
         {
-            NameBuff = "UT";
+            NameBuff     = "UT";
             UserBuffSize = 2;
         }
 
@@ -357,7 +353,7 @@ CFE_Status_t CFE_ES_GetAppName(char *AppName, CFE_ES_ResourceID_t AppId, size_t 
 ******************************************************************************/
 int32 CFE_ES_RegisterApp(void)
 {
-    int32   status;
+    int32 status;
 
     status = UT_DEFAULT_IMPL(CFE_ES_RegisterApp);
 
@@ -417,13 +413,13 @@ int32 CFE_ES_WriteToSysLog(const char *SpecStringPtr, ...)
     int32   status;
     va_list va;
 
-    va_start(va,SpecStringPtr);
+    va_start(va, SpecStringPtr);
     status = UT_DEFAULT_IMPL_VARARGS(CFE_ES_WriteToSysLog, va);
     va_end(va);
 
     if (status >= 0)
     {
-        UT_Stub_CopyFromLocal(UT_KEY(CFE_ES_WriteToSysLog), (const uint8*)SpecStringPtr, strlen(SpecStringPtr));
+        UT_Stub_CopyFromLocal(UT_KEY(CFE_ES_WriteToSysLog), (const uint8 *)SpecStringPtr, strlen(SpecStringPtr));
     }
 
     return status;
@@ -459,25 +455,29 @@ int32 CFE_ES_GetPoolBuf(CFE_ES_MemPoolBuf_t *BufPtr, CFE_ES_MemHandle_t PoolID, 
 
     static union
     {
-        uint32 Start;
+        uint32             Start;
         CFE_ES_PoolAlign_t Align;
-        uint8 Bytes[CFE_UT_ES_POOL_STATIC_BLOCK_SIZE];
+        uint8              Bytes[CFE_UT_ES_POOL_STATIC_BLOCK_SIZE];
     } Buffer;
 
-    size_t PoolSize;
-    size_t PositionStart;
-    size_t PositionEnd;
-    void *PoolPtr;
+    size_t  PoolSize;
+    size_t  PositionStart;
+    size_t  PositionEnd;
+    void *  PoolPtr;
     cpuaddr BufAddrStart;
     cpuaddr BufAddrEnd;
-    int32 status;
+    int32   status;
 
     /*
      * Determine the actual alignment of the CFE_ES_PoolAlign_t structure.
      * This is done by checking the offset of a struct member of that type following a single byte.
      */
-    const cpuaddr AlignMask = ((cpuaddr)&((struct { char Byte; CFE_ES_PoolAlign_t Align; } *)0)->Align) - 1;
-
+    const cpuaddr AlignMask = ((cpuaddr) & ((struct {
+                                               char               Byte;
+                                               CFE_ES_PoolAlign_t Align;
+                                           } *)0)
+                                               ->Align) -
+                              1;
 
     status = UT_DEFAULT_IMPL_RC(CFE_ES_GetPoolBuf, Size);
 
@@ -492,20 +492,20 @@ int32 CFE_ES_GetPoolBuf(CFE_ES_MemPoolBuf_t *BufPtr, CFE_ES_MemHandle_t PoolID, 
              * This means the test case did not register a buffer.
              * Use the static buffer to fulfill the request.
              */
-            PoolPtr = Buffer.Bytes;
-            PoolSize = sizeof(Buffer);
+            PoolPtr       = Buffer.Bytes;
+            PoolSize      = sizeof(Buffer);
             PositionStart = 0;
         }
 
         BufAddrStart = (cpuaddr)PoolPtr + PositionStart;
         BufAddrStart = (BufAddrStart + AlignMask) & ~AlignMask;
-        BufAddrEnd = (BufAddrStart + Size + AlignMask) & ~AlignMask;
-        PositionEnd = BufAddrEnd - (cpuaddr)PoolPtr;
+        BufAddrEnd   = (BufAddrStart + Size + AlignMask) & ~AlignMask;
+        PositionEnd  = BufAddrEnd - (cpuaddr)PoolPtr;
 
         if (PositionEnd <= PoolSize)
         {
             *BufPtr = CFE_ES_MEMPOOLBUF_C(BufAddrStart);
-            memset((void*)BufAddrStart, 0x55, Size);
+            memset((void *)BufAddrStart, 0x55, Size);
 
             /*
              * Unfortunately the UT assert stub library is missing
@@ -515,8 +515,7 @@ int32 CFE_ES_GetPoolBuf(CFE_ES_MemPoolBuf_t *BufPtr, CFE_ES_MemHandle_t PoolID, 
             Size = PositionEnd - PositionStart;
             while (Size > sizeof(Buffer))
             {
-                UT_Stub_CopyFromLocal(UT_KEY(CFE_ES_GetPoolBuf), &Buffer,
-                        sizeof(Buffer));
+                UT_Stub_CopyFromLocal(UT_KEY(CFE_ES_GetPoolBuf), &Buffer, sizeof(Buffer));
                 Size -= sizeof(Buffer);
             }
             UT_Stub_CopyFromLocal(UT_KEY(CFE_ES_GetPoolBuf), &Buffer, Size);
@@ -530,8 +529,8 @@ int32 CFE_ES_GetPoolBuf(CFE_ES_MemPoolBuf_t *BufPtr, CFE_ES_MemHandle_t PoolID, 
              * use UT_SetDataBuffer() to register a pool buffer that is
              * sufficient for the code under test.
              */
-            UtAssert_Failed("Pool buffer empty in %s: need at least %lu bytes, given %lu",
-                    __func__, (unsigned long)PositionEnd, (unsigned long)PoolSize);
+            UtAssert_Failed("Pool buffer empty in %s: need at least %lu bytes, given %lu", __func__,
+                            (unsigned long)PositionEnd, (unsigned long)PoolSize);
             status = -1;
         }
     }
@@ -571,7 +570,7 @@ CFE_Status_t CFE_ES_PoolCreate(CFE_ES_MemHandle_t *PoolID, uint8 *MemPtr, size_t
 
     if (status >= 0)
     {
-        UT_Stub_CopyToLocal(UT_KEY(CFE_ES_PoolCreate), (uint8*)PoolID, sizeof(*PoolID));
+        UT_Stub_CopyToLocal(UT_KEY(CFE_ES_PoolCreate), (uint8 *)PoolID, sizeof(*PoolID));
     }
 
     return status;
@@ -604,7 +603,7 @@ CFE_Status_t CFE_ES_PoolCreateNoSem(CFE_ES_MemHandle_t *PoolID, uint8 *MemPtr, s
 
     if (status >= 0)
     {
-        UT_Stub_CopyToLocal(UT_KEY(CFE_ES_PoolCreateNoSem), (uint8*)PoolID, sizeof(*PoolID));
+        UT_Stub_CopyToLocal(UT_KEY(CFE_ES_PoolCreateNoSem), (uint8 *)PoolID, sizeof(*PoolID));
     }
 
     return status;
@@ -630,12 +629,8 @@ CFE_Status_t CFE_ES_PoolCreateNoSem(CFE_ES_MemHandle_t *PoolID, uint8 *MemPtr, s
 **        Returns either a user-defined status flag or CFE_SUCCESS.
 **
 ******************************************************************************/
-CFE_Status_t CFE_ES_PoolCreateEx(CFE_ES_MemHandle_t        *PoolID,
-                                 uint8                     *MemPtr,
-                                 size_t                     Size,
-                                 uint16                     NumBlockSizes,
-                                 const size_t              *BlockSizes,
-                                 bool                       UseMutex )
+CFE_Status_t CFE_ES_PoolCreateEx(CFE_ES_MemHandle_t *PoolID, uint8 *MemPtr, size_t Size, uint16 NumBlockSizes,
+                                 const size_t *BlockSizes, bool UseMutex)
 {
     UT_Stub_RegisterContext(UT_KEY(CFE_ES_PoolCreateEx), PoolID);
     UT_Stub_RegisterContext(UT_KEY(CFE_ES_PoolCreateEx), MemPtr);
@@ -666,7 +661,6 @@ int32 CFE_ES_PoolDelete(CFE_ES_MemHandle_t PoolID)
     return status;
 }
 
-
 /*****************************************************************************/
 /**
 ** \brief CFE_ES_PutPoolBuf stub function
@@ -695,7 +689,7 @@ int32 CFE_ES_PutPoolBuf(CFE_ES_MemHandle_t PoolID, CFE_ES_MemPoolBuf_t BufPtr)
     UT_Stub_RegisterContextGenericArg(UT_KEY(CFE_ES_PutPoolBuf), PoolID);
     UT_Stub_RegisterContextGenericArg(UT_KEY(CFE_ES_PutPoolBuf), BufPtr);
 
-    int32   status;
+    int32 status;
 
     status = UT_DEFAULT_IMPL_RC(CFE_ES_PutPoolBuf, 16);
 
@@ -727,7 +721,7 @@ int32 CFE_ES_GetPoolBufInfo(CFE_ES_MemHandle_t PoolID, CFE_ES_MemPoolBuf_t BufPt
     UT_Stub_RegisterContextGenericArg(UT_KEY(CFE_ES_GetPoolBufInfo), PoolID);
     UT_Stub_RegisterContextGenericArg(UT_KEY(CFE_ES_GetPoolBufInfo), BufPtr);
 
-    int32   status;
+    int32 status;
 
     status = UT_DEFAULT_IMPL_RC(CFE_ES_GetPoolBufInfo, 16);
 
@@ -814,18 +808,18 @@ int32 CFE_ES_GetTaskInfo(CFE_ES_TaskInfo_t *TaskInfo, CFE_ES_ResourceID_t TaskId
     UT_Stub_RegisterContext(UT_KEY(CFE_ES_GetTaskInfo), TaskInfo);
     UT_Stub_RegisterContextGenericArg(UT_KEY(CFE_ES_GetTaskInfo), TaskId);
 
-    int32   status = CFE_SUCCESS;
+    int32 status = CFE_SUCCESS;
 
     status = UT_DEFAULT_IMPL(CFE_ES_GetTaskInfo);
 
     if (status >= 0)
     {
-        if (UT_Stub_CopyToLocal(UT_KEY(CFE_ES_GetTaskInfo), (uint8*)TaskInfo, sizeof(*TaskInfo)) < sizeof(*TaskInfo))
+        if (UT_Stub_CopyToLocal(UT_KEY(CFE_ES_GetTaskInfo), (uint8 *)TaskInfo, sizeof(*TaskInfo)) < sizeof(*TaskInfo))
         {
             memset(TaskInfo, 0, sizeof(*TaskInfo));
             TaskInfo->AppId = CFE_UT_ES_DEFAULT_APPID;
-            strncpy((char *) &TaskInfo->AppName, "UT", sizeof(TaskInfo->AppName));
-            strncpy((char *) &TaskInfo->TaskName, "UT", sizeof(TaskInfo->TaskName));
+            strncpy((char *)&TaskInfo->AppName, "UT", sizeof(TaskInfo->AppName));
+            strncpy((char *)&TaskInfo->TaskName, "UT", sizeof(TaskInfo->TaskName));
         }
     }
 
@@ -856,7 +850,7 @@ void CFE_ES_ExitApp(uint32 ExitStatus)
     UT_Stub_RegisterContextGenericArg(UT_KEY(CFE_ES_ExitApp), ExitStatus);
 
     UT_DEFAULT_IMPL(CFE_ES_ExitApp);
-    UT_Stub_CopyFromLocal(UT_KEY(CFE_ES_ExitApp), (uint8*)&ExitStatus, sizeof(ExitStatus));
+    UT_Stub_CopyFromLocal(UT_KEY(CFE_ES_ExitApp), (uint8 *)&ExitStatus, sizeof(ExitStatus));
 }
 
 /*****************************************************************************/
@@ -881,8 +875,8 @@ void CFE_ES_ExitApp(uint32 ExitStatus)
 ******************************************************************************/
 int32 CFE_ES_CopyToCDS(CFE_ES_CDSHandle_t Handle, void *DataToCopy)
 {
-    int32   status;
-    size_t  CdsBufferSize;
+    int32  status;
+    size_t CdsBufferSize;
 
     UT_Stub_RegisterContextGenericArg(UT_KEY(CFE_ES_CopyToCDS), Handle);
     UT_Stub_RegisterContext(UT_KEY(CFE_ES_CopyToCDS), DataToCopy);
@@ -923,8 +917,8 @@ int32 CFE_ES_CopyToCDS(CFE_ES_CDSHandle_t Handle, void *DataToCopy)
 ******************************************************************************/
 int32 CFE_ES_RestoreFromCDS(void *RestoreToMemory, CFE_ES_CDSHandle_t Handle)
 {
-    int32   status;
-    size_t  CdsBufferSize;
+    int32  status;
+    size_t CdsBufferSize;
 
     UT_Stub_RegisterContext(UT_KEY(CFE_ES_RestoreFromCDS), RestoreToMemory);
     UT_Stub_RegisterContextGenericArg(UT_KEY(CFE_ES_RestoreFromCDS), Handle);
@@ -963,10 +957,7 @@ int32 CFE_ES_RestoreFromCDS(void *RestoreToMemory, CFE_ES_CDSHandle_t Handle)
 **        Returns either a user-defined status flag or CFE_SUCCESS.
 **
 ******************************************************************************/
-int32 CFE_ES_RegisterCDSEx(CFE_ES_CDSHandle_t *HandlePtr,
-                           size_t UserBlockSize,
-                           const char *Name,
-                           bool CriticalTbl)
+int32 CFE_ES_RegisterCDSEx(CFE_ES_CDSHandle_t *HandlePtr, size_t UserBlockSize, const char *Name, bool CriticalTbl)
 {
     int32 status = CFE_SUCCESS;
 
@@ -974,7 +965,8 @@ int32 CFE_ES_RegisterCDSEx(CFE_ES_CDSHandle_t *HandlePtr,
 
     if (status >= 0)
     {
-        if (UT_Stub_CopyToLocal(UT_KEY(CFE_ES_RegisterCDSEx), (uint8*)HandlePtr, sizeof(*HandlePtr)) < sizeof(*HandlePtr))
+        if (UT_Stub_CopyToLocal(UT_KEY(CFE_ES_RegisterCDSEx), (uint8 *)HandlePtr, sizeof(*HandlePtr)) <
+            sizeof(*HandlePtr))
         {
             *HandlePtr = CFE_UT_ES_DEFAULT_CDSID;
         }
@@ -1038,7 +1030,7 @@ int32 CFE_ES_GetResetType(uint32 *ResetSubtypePtr)
 
     if (status >= 0)
     {
-        UT_Stub_CopyToLocal(UT_KEY(CFE_ES_GetResetType), (uint8*)ResetSubtypePtr, sizeof(*ResetSubtypePtr));
+        UT_Stub_CopyToLocal(UT_KEY(CFE_ES_GetResetType), (uint8 *)ResetSubtypePtr, sizeof(*ResetSubtypePtr));
     }
 
     return status;
@@ -1280,7 +1272,7 @@ int32 CFE_ES_AppID_ToIndex(CFE_ES_ResourceID_t AppID, uint32 *Idx)
 
     int32 return_code;
 
-    *Idx = CFE_ES_ResourceID_ToInteger(AppID) & 0xFFFF;
+    *Idx        = CFE_ES_ResourceID_ToInteger(AppID) & 0xFFFF;
     return_code = UT_DEFAULT_IMPL_RC(CFE_ES_AppID_ToIndex, 1);
 
     if (return_code == 1)
@@ -1304,7 +1296,7 @@ int32 CFE_ES_TaskID_ToIndex(CFE_ES_ResourceID_t TaskID, uint32 *Idx)
 
     int32 return_code;
 
-    *Idx = CFE_ES_ResourceID_ToInteger(TaskID) & 0xFFFF;
+    *Idx        = CFE_ES_ResourceID_ToInteger(TaskID) & 0xFFFF;
     return_code = UT_DEFAULT_IMPL_RC(CFE_ES_TaskID_ToIndex, 1);
 
     if (return_code == 1)

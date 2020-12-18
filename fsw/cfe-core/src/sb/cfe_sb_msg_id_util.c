@@ -40,27 +40,25 @@
  */
 CFE_SB_MsgId_t CFE_SB_GetMsgId(const CFE_MSG_Message_t *MsgPtr)
 {
-   CFE_SB_MsgId_t MsgId;
+    CFE_SB_MsgId_t MsgId;
 
-   /* Ignore return since no alternative action */
-   CFE_MSG_GetMsgId(MsgPtr, &MsgId);
+    /* Ignore return since no alternative action */
+    CFE_MSG_GetMsgId(MsgPtr, &MsgId);
 
-   return MsgId;
+    return MsgId;
 
-}/* end CFE_SB_GetMsgId */
-
+} /* end CFE_SB_GetMsgId */
 
 /*
  * Function: CFE_SB_SetMsgId - See API and header file for details
  */
-void CFE_SB_SetMsgId(CFE_MSG_Message_t *MsgPtr,
-                     CFE_SB_MsgId_t MsgId)
+void CFE_SB_SetMsgId(CFE_MSG_Message_t *MsgPtr, CFE_SB_MsgId_t MsgId)
 {
 
-  /* Ignore return, no alternate action */
-  CFE_MSG_SetMsgId(MsgPtr, MsgId);
+    /* Ignore return, no alternate action */
+    CFE_MSG_SetMsgId(MsgPtr, MsgId);
 
-}/* end CFE_SB_SetMsgId */
+} /* end CFE_SB_SetMsgId */
 
 /*
  * Function: CFE_SB_GetPktType - See API and header file for details
@@ -68,14 +66,14 @@ void CFE_SB_SetMsgId(CFE_MSG_Message_t *MsgPtr,
 uint32 CFE_SB_GetPktType(CFE_SB_MsgId_t MsgId)
 {
 
-  CFE_MSG_Type_t type;
+    CFE_MSG_Type_t type;
 
-  /* Ignores return, no alternate action */
-  CFE_MSG_GetTypeFromMsgId(MsgId, &type);
+    /* Ignores return, no alternate action */
+    CFE_MSG_GetTypeFromMsgId(MsgId, &type);
 
-  return type;
+    return type;
 
-}/* end CFE_SB_GetPktType */
+} /* end CFE_SB_GetPktType */
 #endif /* CFE_OMIT_DEPRECATED_6_8 */
 
 /*
@@ -86,6 +84,3 @@ bool CFE_SB_IsValidMsgId(CFE_SB_MsgId_t MsgId)
     return (!CFE_SB_MsgId_Equal(MsgId, CFE_SB_INVALID_MSG_ID) &&
             CFE_SB_MsgIdToValue(MsgId) <= CFE_PLATFORM_SB_HIGHEST_VALID_MSGID);
 } /* end CFE_SB_IsValidMsgId */
-
-
-

@@ -35,52 +35,52 @@
 #define _network_includes_
 
 #ifdef _VXWORKS_OS_
-    #include <vxWorks.h>
-    #include <selectLib.h>
-    #include <sockLib.h>
-    #include <inetLib.h>
-    #include <arpLib.h>
-    #include <netinet/in.h>
-    #include <netinet/tcp.h>
+#include <vxWorks.h>
+#include <selectLib.h>
+#include <sockLib.h>
+#include <inetLib.h>
+#include <arpLib.h>
+#include <netinet/in.h>
+#include <netinet/tcp.h>
 
-#elif  _RTEMS_OS_
-    #define _USING_RTEMS_INCLUDES_
-    #include <unistd.h>
-    #include <sys/types.h>
-    #include <sys/socket.h>
-    #include <arpa/inet.h>
-    #include <netinet/in.h>
-    #include <netinet/tcp.h>
-    #include <fcntl.h>
-    #define _HAVE_FCNTL_
-    #ifndef MSG_DONTWAIT
-      #define MSG_DONTWAIT 0
-    #endif
-#elif  _MAC_OS_
-    #include <unistd.h>
-    #include <sys/types.h>
-    #include <sys/socket.h>
-    #include <arpa/inet.h>
-    #include <netinet/in.h>
-    #include <netinet/tcp.h>
-    #include <fcntl.h>
-    #define _HAVE_FCNTL_
+#elif _RTEMS_OS_
+#define _USING_RTEMS_INCLUDES_
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <arpa/inet.h>
+#include <netinet/in.h>
+#include <netinet/tcp.h>
+#include <fcntl.h>
+#define _HAVE_FCNTL_
+#ifndef MSG_DONTWAIT
+#define MSG_DONTWAIT 0
+#endif
+#elif _MAC_OS_
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <arpa/inet.h>
+#include <netinet/in.h>
+#include <netinet/tcp.h>
+#include <fcntl.h>
+#define _HAVE_FCNTL_
 
-#elif  _LINUX_OS_
-    #include <unistd.h>
-    #include <sys/types.h>
-    #include <sys/socket.h>
-    #include <arpa/inet.h>
-    #include <netinet/in.h>
-    #include <netinet/tcp.h>
-    #include <fcntl.h>
-    #define _HAVE_FCNTL_
-    #ifndef MSG_DONTWAIT
-      #define MSG_DONTWAIT 0
-    #endif
+#elif _LINUX_OS_
+#include <unistd.h>
+#include <sys/types.h>
+#include <sys/socket.h>
+#include <arpa/inet.h>
+#include <netinet/in.h>
+#include <netinet/tcp.h>
+#include <fcntl.h>
+#define _HAVE_FCNTL_
+#ifndef MSG_DONTWAIT
+#define MSG_DONTWAIT 0
+#endif
 
 #else
-    #error "No OS defined!"
+#error "No OS defined!"
 #endif
 
 #endif /* _network_includes_ */

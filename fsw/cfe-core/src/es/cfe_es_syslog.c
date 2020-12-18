@@ -19,10 +19,10 @@
 */
 
 /*
-**  File:  
+**  File:
 **    cfe_es_syslog.c
 **
-**  Purpose:  
+**  Purpose:
 **    This file implements the cFE Executive Services System Log functions.
 **
 **  References:
@@ -62,9 +62,6 @@
 #include <stdarg.h>
 #include <ctype.h>
 
-
-
-
 /*******************************************************************
  *
  * Non-synchronized helper functions
@@ -77,7 +74,6 @@
  * necessary mutex before calling any function marked as "Unsync"
  *
  *******************************************************************/
-
 
 /*
  * -----------------------------------------------------------------
@@ -93,7 +89,7 @@ void CFE_ES_SysLogClear_Unsync(void)
      */
 
     CFE_ES_ResetDataPtr->SystemLogWriteIdx = 0;
-    CFE_ES_ResetDataPtr->SystemLogEndIdx = 0;
+    CFE_ES_ResetDataPtr->SystemLogEndIdx   = 0;
     CFE_ES_ResetDataPtr->SystemLogEntryNum = 0;
 
 } /* End of CFE_ES_SysLogClear_Unsync() */
@@ -110,8 +106,8 @@ void CFE_ES_SysLogReadStart_Unsync(CFE_ES_SysLogReadBuffer_t *Buffer)
     size_t EndIdx;
     size_t TotalSize;
 
-    ReadIdx = CFE_ES_ResetDataPtr->SystemLogWriteIdx;
-    EndIdx = CFE_ES_ResetDataPtr->SystemLogEndIdx;
+    ReadIdx   = CFE_ES_ResetDataPtr->SystemLogWriteIdx;
+    EndIdx    = CFE_ES_ResetDataPtr->SystemLogEndIdx;
     TotalSize = EndIdx;
 
     /*
@@ -122,16 +118,16 @@ void CFE_ES_SysLogReadStart_Unsync(CFE_ES_SysLogReadBuffer_t *Buffer)
     {
         ++ReadIdx;
         --TotalSize;
-        if (CFE_ES_ResetDataPtr->SystemLog[ReadIdx-1] == '\n')
+        if (CFE_ES_ResetDataPtr->SystemLog[ReadIdx - 1] == '\n')
         {
             break;
         }
     }
 
-    Buffer->SizeLeft = TotalSize;
+    Buffer->SizeLeft   = TotalSize;
     Buffer->LastOffset = ReadIdx;
-    Buffer->EndIdx = EndIdx;
-    Buffer->BlockSize = 0;
+    Buffer->EndIdx     = EndIdx;
+    Buffer->BlockSize  = 0;
 } /* End of CFE_ES_SysLogReadStart_Unsync() */
 
 /*
@@ -142,7 +138,7 @@ void CFE_ES_SysLogReadStart_Unsync(CFE_ES_SysLogReadBuffer_t *Buffer)
  */
 int32 CFE_ES_SysLogAppend_Unsync(const char *LogString)
 {
-    int32 ReturnCode;
+    int32  ReturnCode;
     size_t MessageLen;
     size_t WriteIdx;
     size_t EndIdx;
@@ -153,7 +149,7 @@ int32 CFE_ES_SysLogAppend_Unsync(const char *LogString)
      * (even this may be overly generous)
      */
     MessageLen = strlen(LogString);
-    if ( MessageLen > (CFE_PLATFORM_ES_SYSTEM_LOG_SIZE / 2) )
+    if (MessageLen > (CFE_PLATFORM_ES_SYSTEM_LOG_SIZE / 2))
     {
         MessageLen = CFE_PLATFORM_ES_SYSTEM_LOG_SIZE / 2;
         ReturnCode = CFE_ES_ERR_SYS_LOG_TRUNCATED;
@@ -184,7 +180,7 @@ int32 CFE_ES_SysLogAppend_Unsync(const char *LogString)
      * since CFE_ES_ResetDataPtr may point directly into a slower NVRAM space.
      */
     WriteIdx = CFE_ES_ResetDataPtr->SystemLogWriteIdx;
-    EndIdx = CFE_ES_ResetDataPtr->SystemLogEndIdx;
+    EndIdx   = CFE_ES_ResetDataPtr->SystemLogEndIdx;
 
     /*
      * Check if the log message plus will fit between
@@ -195,12 +191,12 @@ int32 CFE_ES_SysLogAppend_Unsync(const char *LogString)
      * If not, then the action depends on the setting of "SystemLogMode" which will be
      * to either discard (default) or overwrite
      */
-    if ( (WriteIdx + MessageLen) > CFE_PLATFORM_ES_SYSTEM_LOG_SIZE )
+    if ((WriteIdx + MessageLen) > CFE_PLATFORM_ES_SYSTEM_LOG_SIZE)
     {
-        if ( CFE_ES_ResetDataPtr->SystemLogMode == CFE_ES_LogMode_OVERWRITE )
+        if (CFE_ES_ResetDataPtr->SystemLogMode == CFE_ES_LogMode_OVERWRITE)
         {
             /* In "overwrite" mode, start back at the beginning of the buffer */
-            EndIdx = WriteIdx;
+            EndIdx   = WriteIdx;
             WriteIdx = 0;
         }
         else if (WriteIdx < (CFE_PLATFORM_ES_SYSTEM_LOG_SIZE - CFE_TIME_PRINTED_STRING_SIZE))
@@ -249,7 +245,7 @@ int32 CFE_ES_SysLogAppend_Unsync(const char *LogString)
          * Export updated index values to the reset area for next time.
          */
         CFE_ES_ResetDataPtr->SystemLogWriteIdx = WriteIdx;
-        CFE_ES_ResetDataPtr->SystemLogEndIdx = EndIdx;
+        CFE_ES_ResetDataPtr->SystemLogEndIdx   = EndIdx;
         ++CFE_ES_ResetDataPtr->SystemLogEntryNum;
     }
 
@@ -266,22 +262,21 @@ int32 CFE_ES_SysLogAppend_Unsync(const char *LogString)
  */
 int32 CFE_ES_SysLogWrite_Unsync(const char *SpecStringPtr, ...)
 {
-    char          TmpString[CFE_ES_MAX_SYSLOG_MSG_SIZE];
-    va_list       ArgPtr;
+    char    TmpString[CFE_ES_MAX_SYSLOG_MSG_SIZE];
+    va_list ArgPtr;
 
     va_start(ArgPtr, SpecStringPtr);
     CFE_ES_SysLog_vsnprintf(TmpString, sizeof(TmpString), SpecStringPtr, ArgPtr);
     va_end(ArgPtr);
 
     /* Output the entry to the console */
-    OS_printf("%s",TmpString);
+    OS_printf("%s", TmpString);
 
     /*
      * Append to the syslog buffer
      */
     return CFE_ES_SysLogAppend_Unsync(TmpString);
 } /* End of CFE_ES_SysLogWrite_Unsync() */
-
 
 /*******************************************************************
  *
@@ -291,7 +286,6 @@ int32 CFE_ES_SysLogWrite_Unsync(const char *SpecStringPtr, ...)
  * or they have no specific synchronization requirements
  *
  *******************************************************************/
-
 
 /*
  * -----------------------------------------------------------------
@@ -333,9 +327,7 @@ void CFE_ES_SysLogReadData(CFE_ES_SysLogReadBuffer_t *Buffer)
             break;
         }
 
-        memcpy(&Buffer->Data[Buffer->BlockSize],
-                &CFE_ES_ResetDataPtr->SystemLog[Buffer->LastOffset],
-                BlockSize);
+        memcpy(&Buffer->Data[Buffer->BlockSize], &CFE_ES_ResetDataPtr->SystemLog[Buffer->LastOffset], BlockSize);
 
         Buffer->BlockSize += BlockSize;
         Buffer->LastOffset += BlockSize;
@@ -353,10 +345,10 @@ int32 CFE_ES_SysLogSetMode(CFE_ES_LogMode_Enum_t Mode)
 {
     int32 Status;
 
-    if((Mode == CFE_ES_LogMode_OVERWRITE) || (Mode == CFE_ES_LogMode_DISCARD))
+    if ((Mode == CFE_ES_LogMode_OVERWRITE) || (Mode == CFE_ES_LogMode_DISCARD))
     {
         CFE_ES_ResetDataPtr->SystemLogMode = Mode;
-        Status = CFE_SUCCESS;
+        Status                             = CFE_SUCCESS;
     }
     else
     {
@@ -377,7 +369,7 @@ void CFE_ES_SysLog_vsnprintf(char *Buffer, size_t BufferSize, const char *SpecSt
 {
     size_t StringLen;
     size_t MaxLen;
-    int PrintLen;
+    int    PrintLen;
 
     /*
      * write the current time into the TmpString buffer
@@ -429,7 +421,7 @@ void CFE_ES_SysLog_vsnprintf(char *Buffer, size_t BufferSize, const char *SpecSt
          *
          * Strip off all trailing whitespace, and add back a single newline
          */
-        while (StringLen > 0 && isspace((int)Buffer[StringLen-1]))
+        while (StringLen > 0 && isspace((int)Buffer[StringLen - 1]))
         {
             --StringLen;
         }
@@ -453,7 +445,7 @@ void CFE_ES_SysLog_vsnprintf(char *Buffer, size_t BufferSize, const char *SpecSt
  */
 void CFE_ES_SysLog_snprintf(char *Buffer, size_t BufferSize, const char *SpecStringPtr, ...)
 {
-    va_list       ArgPtr;
+    va_list ArgPtr;
 
     va_start(ArgPtr, SpecStringPtr);
     CFE_ES_SysLog_vsnprintf(Buffer, BufferSize, SpecStringPtr, ArgPtr);
@@ -468,32 +460,31 @@ void CFE_ES_SysLog_snprintf(char *Buffer, size_t BufferSize, const char *SpecStr
  */
 int32 CFE_ES_SysLogDump(const char *Filename)
 {
-    osal_id_t   fd;
-    int32   Status;
-    size_t  WritePos;
-    size_t  TotalSize;
-    size_t  LastReqSize;
+    osal_id_t fd;
+    int32     Status;
+    size_t    WritePos;
+    size_t    TotalSize;
+    size_t    LastReqSize;
     union
     {
         CFE_ES_SysLogReadBuffer_t LogData;
-        CFE_FS_Header_t FileHdr;
+        CFE_FS_Header_t           FileHdr;
     } Buffer;
 
     Status = OS_OpenCreate(&fd, Filename, OS_FILE_FLAG_CREATE | OS_FILE_FLAG_TRUNCATE, OS_WRITE_ONLY);
-    if(Status < 0)
+    if (Status < 0)
     {
-        CFE_EVS_SendEvent(CFE_ES_SYSLOG2_ERR_EID,CFE_EVS_EventType_ERROR,
-                "Error creating file %s, RC = 0x%08X",
-                Filename,(unsigned int)Status);
+        CFE_EVS_SendEvent(CFE_ES_SYSLOG2_ERR_EID, CFE_EVS_EventType_ERROR, "Error creating file %s, RC = 0x%08X",
+                          Filename, (unsigned int)Status);
         return CFE_ES_FILE_IO_ERR;
-    }/* end if */
+    } /* end if */
 
     CFE_FS_InitHeader(&Buffer.FileHdr, CFE_ES_SYS_LOG_DESC, CFE_FS_SubType_ES_SYSLOG);
 
-    TotalSize = 0;
+    TotalSize   = 0;
     LastReqSize = sizeof(CFE_FS_Header_t);
-    Status = CFE_FS_WriteHeader(fd, &Buffer.FileHdr);
-    if(Status >= 0)
+    Status      = CFE_FS_WriteHeader(fd, &Buffer.FileHdr);
+    if (Status >= 0)
     {
         TotalSize += Status;
 
@@ -505,7 +496,7 @@ int32 CFE_ES_SysLogDump(const char *Filename)
         CFE_ES_LockSharedData(__func__, __LINE__);
         CFE_ES_SysLogReadStart_Unsync(&Buffer.LogData);
         CFE_ES_SysLogReadData(&Buffer.LogData);
-        CFE_ES_UnlockSharedData(__func__,__LINE__);
+        CFE_ES_UnlockSharedData(__func__, __LINE__);
 
         while (Buffer.LogData.BlockSize > 0)
         {
@@ -513,11 +504,11 @@ int32 CFE_ES_SysLogDump(const char *Filename)
             while (WritePos < Buffer.LogData.BlockSize)
             {
                 LastReqSize = Buffer.LogData.BlockSize - WritePos;
-                Status = OS_write(fd, &Buffer.LogData.Data[WritePos], LastReqSize);
-                if(Status <= 0)
+                Status      = OS_write(fd, &Buffer.LogData.Data[WritePos], LastReqSize);
+                if (Status <= 0)
                 {
                     break;
-                }/* end if */
+                } /* end if */
 
                 WritePos += Status;
                 TotalSize += Status;
@@ -556,16 +547,13 @@ int32 CFE_ES_SysLogDump(const char *Filename)
     }
     else
     {
-        CFE_EVS_SendEvent(CFE_ES_SYSLOG2_EID, CFE_EVS_EventType_DEBUG,
-                "%s written:Size=%lu,Entries=%u",Filename,
-                (unsigned long)TotalSize,
-                (unsigned int)CFE_ES_TaskData.HkPacket.Payload.SysLogEntries);
+        CFE_EVS_SendEvent(CFE_ES_SYSLOG2_EID, CFE_EVS_EventType_DEBUG, "%s written:Size=%lu,Entries=%u", Filename,
+                          (unsigned long)TotalSize, (unsigned int)CFE_ES_TaskData.HkPacket.Payload.SysLogEntries);
         Status = CFE_SUCCESS;
     }
 
     return Status;
 
 } /* End of CFE_ES_SysLogDump() */
-
 
 /* end of file */

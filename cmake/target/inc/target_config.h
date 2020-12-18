@@ -49,7 +49,6 @@ typedef void (*System_MainFunc_t)(uint32 StartType, uint32 StartSubtype, uint32 
  */
 typedef void (*System_1HzISRFunc_t)(void);
 
-
 /**
  * Prototype for notification function implemented in CFE ES
  * The PSP should call this when exceptions occur.
@@ -72,8 +71,8 @@ typedef const void CFE_StaticModuleApi_t;
  */
 typedef const struct
 {
-   const char *Name;
-   CFE_StaticModuleApi_t *Api;
+    const char *           Name;
+    CFE_StaticModuleApi_t *Api;
 } CFE_StaticModuleLoadEntry_t;
 
 /**
@@ -81,34 +80,34 @@ typedef const struct
  */
 typedef const struct
 {
-   /**
-    * 1Hz ISR entry point.  Called from PSP once per second on HW clock.
-    */
-   System_1HzISRFunc_t System1HzISR;
+    /**
+     * 1Hz ISR entry point.  Called from PSP once per second on HW clock.
+     */
+    System_1HzISRFunc_t System1HzISR;
 
-   /**
-    * Main CFE entry point.  Called from PSP startup code.
-    */
-   System_MainFunc_t SystemMain;
+    /**
+     * Main CFE entry point.  Called from PSP startup code.
+     */
+    System_MainFunc_t SystemMain;
 
-   /**
-    * Notification function. Called from PSP after async event handling.
-    */
-   System_NotifyFunc_t SystemNotify;
+    /**
+     * Notification function. Called from PSP after async event handling.
+     */
+    System_NotifyFunc_t SystemNotify;
 
-   /*
-    * Sizes of memory segments required by the CFE based on the current config
-    */
-   uint32 CdsSize;                /***< CDS segment size */
-   uint32 ResetAreaSize;          /***< Reset area segment size */
-   uint32 UserReservedSize;       /***< User reserved area segment size */
-   uint32 RamDiskSectorSize;      /***< RAM disk sector size */
-   uint32 RamDiskTotalSectors;    /***< RAM disk number of sectors */
+    /*
+     * Sizes of memory segments required by the CFE based on the current config
+     */
+    uint32 CdsSize;             /***< CDS segment size */
+    uint32 ResetAreaSize;       /***< Reset area segment size */
+    uint32 UserReservedSize;    /***< User reserved area segment size */
+    uint32 RamDiskSectorSize;   /***< RAM disk sector size */
+    uint32 RamDiskTotalSectors; /***< RAM disk number of sectors */
 
-   /**
-    * Default value for start up file
-    */
-   const char *NonvolStartupFile;
+    /**
+     * Default value for start up file
+     */
+    const char *NonvolStartupFile;
 
 } Target_CfeConfigData;
 
@@ -132,26 +131,26 @@ typedef const struct
     const char *MissionVersion; /**< Version string acquired from version control system at build time */
     const char *CfeVersion;     /**< Version string acquired from version control system at build time */
     const char *OsalVersion;    /**< Version string acquired from version control system at build time */
-    const char *Config;  /**< Configuration used for build */
-    const char *Date;    /**< Date and time of build */
-    const char *User;    /**< User ID and build machine */
+    const char *Config;         /**< Configuration used for build */
+    const char *Date;           /**< Date and time of build */
+    const char *User;           /**< User ID and build machine */
 
     /*
      * Default values for CPU ID and CPU Name
      */
-    const char *Default_CpuName; /**< Compile-time value for CPU name */
-    uint16 Default_CpuId;        /**< Compile-time value for CPU number */
-    uint16 Default_SpacecraftId; /**< Compile-time value for Spacecraft ID (mission-wide) */
+    const char *Default_CpuName;      /**< Compile-time value for CPU name */
+    uint16      Default_CpuId;        /**< Compile-time value for CPU number */
+    uint16      Default_SpacecraftId; /**< Compile-time value for Spacecraft ID (mission-wide) */
 
     const char *Default_ModuleExtension; /**< Default system extension for dynamic modules */
     const char *Default_CoreFilename;    /**< Default file name for CFE core executable/library */
 
-    Target_CfeConfigData *CfeConfig;   /**< CFE configuration sub-structure */
-    Target_PspConfigData *PspConfig;   /**< PSP configuration sub-structure */
-    CFE_StaticModuleLoadEntry_t *PspModuleList; /**< List of PSP modules (API structures) statically linked into the core EXE */
+    Target_CfeConfigData *CfeConfig; /**< CFE configuration sub-structure */
+    Target_PspConfigData *PspConfig; /**< PSP configuration sub-structure */
+    CFE_StaticModuleLoadEntry_t
+        *PspModuleList; /**< List of PSP modules (API structures) statically linked into the core EXE */
 
 } Target_ConfigData;
-
 
 /**
  * Extern reference to global config struct.

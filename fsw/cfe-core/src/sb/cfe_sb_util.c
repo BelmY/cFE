@@ -29,7 +29,6 @@
 **
 ******************************************************************************/
 
-
 /*
 ** Include Files
 */
@@ -46,13 +45,10 @@
 /*
  * Function: CFE_SB_InitMsg - See API and header file for details
  */
-void CFE_SB_InitMsg(void           *MsgPtr,
-                    CFE_SB_MsgId_t MsgId,
-                    size_t         Length,
-                    bool        Clear )
+void CFE_SB_InitMsg(void *MsgPtr, CFE_SB_MsgId_t MsgId, size_t Length, bool Clear)
 {
 
-   CFE_MSG_Init((CFE_MSG_Message_t *)MsgPtr, MsgId, Length);
+    CFE_MSG_Init((CFE_MSG_Message_t *)MsgPtr, MsgId, Length);
 
 } /* end CFE_SB_InitMsg */
 #endif
@@ -64,54 +60,52 @@ void CFE_SB_InitMsg(void           *MsgPtr,
 **    Get the size of a message header.
 **
 **  Arguments:
-**    *MsgPtr - Pointer to a SB message 
+**    *MsgPtr - Pointer to a SB message
 **
 **  Return:
 **     Size of Message Header.
 */
 size_t CFE_SB_MsgHdrSize(const CFE_MSG_Message_t *MsgPtr)
 {
-    size_t         size = 0;
+    size_t         size      = 0;
     bool           hassechdr = false;
-    CFE_MSG_Type_t type = CFE_MSG_Type_Invalid;
+    CFE_MSG_Type_t type      = CFE_MSG_Type_Invalid;
 
     CFE_MSG_GetHasSecondaryHeader(MsgPtr, &hassechdr);
     CFE_MSG_GetType(MsgPtr, &type);
 
     /* if secondary hdr is not present... */
     /* Since all cFE messages must have a secondary hdr this check is not needed */
-    if(!hassechdr)
+    if (!hassechdr)
     {
         size = sizeof(CCSDS_SpacePacket_t);
     }
-    else if(type == CFE_MSG_Type_Cmd)
+    else if (type == CFE_MSG_Type_Cmd)
     {
         size = sizeof(CFE_MSG_CommandHeader_t);
     }
-    else if(type == CFE_MSG_Type_Tlm)
+    else if (type == CFE_MSG_Type_Tlm)
     {
         size = sizeof(CFE_MSG_TelemetryHeader_t);
     }
 
     return size;
 
-}/* end CFE_SB_MsgHdrSize */
-
+} /* end CFE_SB_MsgHdrSize */
 
 /*
  * Function: CFE_SB_GetUserData - See API and header file for details
  */
 void *CFE_SB_GetUserData(CFE_MSG_Message_t *MsgPtr)
 {
-    uint8           *BytePtr;
-    size_t          HdrSize;
+    uint8 *BytePtr;
+    size_t HdrSize;
 
     BytePtr = (uint8 *)MsgPtr;
     HdrSize = CFE_SB_MsgHdrSize(MsgPtr);
 
     return (BytePtr + HdrSize);
-}/* end CFE_SB_GetUserData */
-
+} /* end CFE_SB_GetUserData */
 
 /*
  * Function: CFE_SB_GetUserDataLength - See API and header file for details
@@ -119,14 +113,13 @@ void *CFE_SB_GetUserData(CFE_MSG_Message_t *MsgPtr)
 size_t CFE_SB_GetUserDataLength(const CFE_MSG_Message_t *MsgPtr)
 {
     CFE_MSG_Size_t TotalMsgSize;
-    size_t HdrSize;
+    size_t         HdrSize;
 
     CFE_MSG_GetSize(MsgPtr, &TotalMsgSize);
     HdrSize = CFE_SB_MsgHdrSize(MsgPtr);
 
     return TotalMsgSize - HdrSize;
-}/* end CFE_SB_GetUserDataLength */
-
+} /* end CFE_SB_GetUserDataLength */
 
 /*
  * Function: CFE_SB_SetUserDataLength - See API and header file for details
@@ -134,14 +127,14 @@ size_t CFE_SB_GetUserDataLength(const CFE_MSG_Message_t *MsgPtr)
 void CFE_SB_SetUserDataLength(CFE_MSG_Message_t *MsgPtr, size_t DataLength)
 {
     CFE_MSG_Size_t TotalMsgSize;
-    size_t HdrSize;
+    size_t         HdrSize;
 
-    HdrSize = CFE_SB_MsgHdrSize(MsgPtr);
+    HdrSize      = CFE_SB_MsgHdrSize(MsgPtr);
     TotalMsgSize = HdrSize + DataLength;
-    
+
     CFE_MSG_SetSize(MsgPtr, TotalMsgSize);
 
-}/* end CFE_SB_SetUserDataLength */
+} /* end CFE_SB_SetUserDataLength */
 
 #ifndef CFE_OMIT_DEPRECATED_6_8
 /*
@@ -156,17 +149,17 @@ size_t CFE_SB_GetTotalMsgLength(const CFE_MSG_Message_t *MsgPtr)
 
     return size;
 
-}/* end CFE_SB_GetTotalMsgLength */
+} /* end CFE_SB_GetTotalMsgLength */
 
 /*
  * Function: CFE_SB_SetTotalMsgLength - See API and header file for details
  */
-void CFE_SB_SetTotalMsgLength(CFE_MSG_Message_t *MsgPtr,size_t TotalLength)
+void CFE_SB_SetTotalMsgLength(CFE_MSG_Message_t *MsgPtr, size_t TotalLength)
 {
 
     CFE_MSG_SetSize(MsgPtr, TotalLength);
 
-}/* end CFE_SB_SetTotalMsgLength */
+} /* end CFE_SB_SetTotalMsgLength */
 
 /*
  * Function: CFE_SB_GetMsgTime - See API and header file for details
@@ -179,7 +172,7 @@ CFE_TIME_SysTime_t CFE_SB_GetMsgTime(CFE_MSG_Message_t *MsgPtr)
 
     return TimeFromMsg;
 
-}/* end CFE_SB_GetMsgTime */
+} /* end CFE_SB_GetMsgTime */
 
 /*
  * Function: CFE_SB_SetMsgTime - See API and header file for details
@@ -189,7 +182,7 @@ int32 CFE_SB_SetMsgTime(CFE_MSG_Message_t *MsgPtr, CFE_TIME_SysTime_t NewTime)
 
     return CFE_MSG_SetMsgTime(MsgPtr, NewTime);
 
-}/* end CFE_SB_SetMsgTime */
+} /* end CFE_SB_SetMsgTime */
 #endif /* CFE_OMIT_DEPRECATED_6_8 */
 
 /*
@@ -197,9 +190,9 @@ int32 CFE_SB_SetMsgTime(CFE_MSG_Message_t *MsgPtr, CFE_TIME_SysTime_t NewTime)
  */
 void CFE_SB_TimeStampMsg(CFE_MSG_Message_t *MsgPtr)
 {
-    CFE_MSG_SetMsgTime(MsgPtr,CFE_TIME_GetTime());
+    CFE_MSG_SetMsgTime(MsgPtr, CFE_TIME_GetTime());
 
-}/* end CFE_SB_TimeStampMsg */
+} /* end CFE_SB_TimeStampMsg */
 
 #ifndef CFE_OMIT_DEPRECATED_6_8
 /*
@@ -214,19 +207,17 @@ uint16 CFE_SB_GetCmdCode(CFE_MSG_Message_t *MsgPtr)
 
     return fc;
 
-}/* end CFE_SB_GetCmdCode */
-
+} /* end CFE_SB_GetCmdCode */
 
 /*
  * Function: CFE_SB_SetCmdCode - See API and header file for details
  */
-int32 CFE_SB_SetCmdCode(CFE_MSG_Message_t *MsgPtr,
-                      uint16 CmdCode)
+int32 CFE_SB_SetCmdCode(CFE_MSG_Message_t *MsgPtr, uint16 CmdCode)
 {
 
     return CFE_MSG_SetFcnCode(MsgPtr, CmdCode);
 
-}/* end CFE_SB_SetCmdCode */
+} /* end CFE_SB_SetCmdCode */
 
 /*
  * Function: CFE_SB_GetChecksum - See API and header file for details
@@ -234,22 +225,22 @@ int32 CFE_SB_SetCmdCode(CFE_MSG_Message_t *MsgPtr,
 uint16 CFE_SB_GetChecksum(CFE_MSG_Message_t *MsgPtr)
 {
 
-    CFE_MSG_Type_t type = CFE_MSG_Type_Invalid;
+    CFE_MSG_Type_t type      = CFE_MSG_Type_Invalid;
     bool           hassechdr = false;
 
     CFE_MSG_GetHasSecondaryHeader(MsgPtr, &hassechdr);
     CFE_MSG_GetType(MsgPtr, &type);
 
     /* if msg type is telemetry or there is no secondary hdr... */
-    if((type == CFE_MSG_Type_Tlm)||(!hassechdr))
+    if ((type == CFE_MSG_Type_Tlm) || (!hassechdr))
     {
         return 0;
-    }/* end if */
+    } /* end if */
 
     /* Byte access for now to avoid error if secondary doesn't contain checksum */
     return MsgPtr->Byte[sizeof(CCSDS_SpacePacket_t) + 1];
 
-}/* end CFE_SB_GetChecksum */
+} /* end CFE_SB_GetChecksum */
 
 /*
  * Function: CFE_SB_GenerateChecksum - See API and header file for details
@@ -259,8 +250,7 @@ void CFE_SB_GenerateChecksum(CFE_MSG_Message_t *MsgPtr)
 
     CFE_MSG_GenerateChecksum(MsgPtr);
 
-}/* end CFE_SB_GenerateChecksum */
-
+} /* end CFE_SB_GenerateChecksum */
 
 /*
  * Function: CFE_SB_ValidateChecksum - See API and header file for details
@@ -273,13 +263,14 @@ bool CFE_SB_ValidateChecksum(CFE_MSG_Message_t *MsgPtr)
 
     return isvalid;
 
-}/* end CFE_SB_ValidateChecksum */
+} /* end CFE_SB_ValidateChecksum */
 #endif /* CFE_OMIT_DEPRECATED_6_8 */
 
 /*
  * Function: CFE_SB_MessageStringGet - See API and header file for details
  */
-int32 CFE_SB_MessageStringGet(char *DestStringPtr, const char *SourceStringPtr, const char *DefaultString, size_t DestMaxSize, size_t SourceMaxSize)
+int32 CFE_SB_MessageStringGet(char *DestStringPtr, const char *SourceStringPtr, const char *DefaultString,
+                              size_t DestMaxSize, size_t SourceMaxSize)
 {
     int32 Result;
 
@@ -303,7 +294,7 @@ int32 CFE_SB_MessageStringGet(char *DestStringPtr, const char *SourceStringPtr, 
         if (DefaultString != NULL && (SourceMaxSize == 0 || *SourceStringPtr == 0))
         {
             SourceStringPtr = DefaultString;
-            SourceMaxSize = DestMaxSize;
+            SourceMaxSize   = DestMaxSize;
         }
 
         /* Reserve 1 character for the required NUL */
@@ -327,11 +318,11 @@ int32 CFE_SB_MessageStringGet(char *DestStringPtr, const char *SourceStringPtr, 
     return Result;
 }
 
-
 /*
  * Function: CFE_SB_MessageStringSet - See API and header file for details
  */
-int32 CFE_SB_MessageStringSet(char *DestStringPtr, const char *SourceStringPtr, size_t DestMaxSize, size_t SourceMaxSize)
+int32 CFE_SB_MessageStringSet(char *DestStringPtr, const char *SourceStringPtr, size_t DestMaxSize,
+                              size_t SourceMaxSize)
 {
     int32 Result;
 

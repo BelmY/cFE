@@ -57,29 +57,33 @@
 **    could not be allocated.
 */
 
-CFE_SB_BufferD_t * CFE_SB_GetBufferFromPool(CFE_SB_MsgId_t MsgId, size_t Size) {
-   int32                stat1;
-   uint8               *address = NULL;
-   CFE_SB_BufferD_t    *bd = NULL;
+CFE_SB_BufferD_t *CFE_SB_GetBufferFromPool(CFE_SB_MsgId_t MsgId, size_t Size)
+{
+    int32             stat1;
+    uint8 *           address = NULL;
+    CFE_SB_BufferD_t *bd      = NULL;
 
     /* Allocate a new buffer descriptor from the SB memory pool.*/
-    stat1 = CFE_ES_GetPoolBuf((CFE_ES_MemPoolBuf_t*)&bd, CFE_SB.Mem.PoolHdl,  Size + sizeof(CFE_SB_BufferD_t));
-    if(stat1 < 0){
+    stat1 = CFE_ES_GetPoolBuf((CFE_ES_MemPoolBuf_t *)&bd, CFE_SB.Mem.PoolHdl, Size + sizeof(CFE_SB_BufferD_t));
+    if (stat1 < 0)
+    {
         return NULL;
     }
 
     /* increment the number of buffers in use and adjust the high water mark if needed */
     CFE_SB.StatTlmMsg.Payload.SBBuffersInUse++;
-    if(CFE_SB.StatTlmMsg.Payload.SBBuffersInUse > CFE_SB.StatTlmMsg.Payload.PeakSBBuffersInUse){
+    if (CFE_SB.StatTlmMsg.Payload.SBBuffersInUse > CFE_SB.StatTlmMsg.Payload.PeakSBBuffersInUse)
+    {
         CFE_SB.StatTlmMsg.Payload.PeakSBBuffersInUse = CFE_SB.StatTlmMsg.Payload.SBBuffersInUse;
-    }/* end if */
+    } /* end if */
 
     /* Add the size of the actual buffer to the memory-in-use ctr and */
     /* adjust the high water mark if needed */
-    CFE_SB.StatTlmMsg.Payload.MemInUse+=stat1;
-    if(CFE_SB.StatTlmMsg.Payload.MemInUse > CFE_SB.StatTlmMsg.Payload.PeakMemInUse){
+    CFE_SB.StatTlmMsg.Payload.MemInUse += stat1;
+    if (CFE_SB.StatTlmMsg.Payload.MemInUse > CFE_SB.StatTlmMsg.Payload.PeakMemInUse)
+    {
         CFE_SB.StatTlmMsg.Payload.PeakMemInUse = CFE_SB.StatTlmMsg.Payload.MemInUse;
-    }/* end if */
+    } /* end if */
 
     /* first set ptr to actual msg buffer the same as ptr to descriptor */
     address = (uint8 *)bd;
@@ -88,15 +92,14 @@ CFE_SB_BufferD_t * CFE_SB_GetBufferFromPool(CFE_SB_MsgId_t MsgId, size_t Size) {
     address += sizeof(CFE_SB_BufferD_t);
 
     /* Initialize the buffer descriptor structure. */
-    bd->MsgId     = MsgId;
-    bd->UseCount  = 1;
-    bd->Size      = Size;
-    bd->Buffer    = (void *)address;
+    bd->MsgId    = MsgId;
+    bd->UseCount = 1;
+    bd->Size     = Size;
+    bd->Buffer   = (void *)address;
 
     return bd;
 
-}/* CFE_SB_GetBufferFromPool */
-
+} /* CFE_SB_GetBufferFromPool */
 
 /******************************************************************************
 **  Function:   CFE_SB_GetBufferFromCaller()
@@ -114,17 +117,16 @@ CFE_SB_BufferD_t * CFE_SB_GetBufferFromPool(CFE_SB_MsgId_t MsgId, size_t Size) {
 **    descriptor could not be allocated.
 */
 
-CFE_SB_BufferD_t * CFE_SB_GetBufferFromCaller(CFE_SB_MsgId_t MsgId,
-                                              void *Address) {
-   CFE_SB_BufferD_t    *bd = (CFE_SB_BufferD_t *)((cpuaddr)Address - sizeof(CFE_SB_BufferD_t));
+CFE_SB_BufferD_t *CFE_SB_GetBufferFromCaller(CFE_SB_MsgId_t MsgId, void *Address)
+{
+    CFE_SB_BufferD_t *bd = (CFE_SB_BufferD_t *)((cpuaddr)Address - sizeof(CFE_SB_BufferD_t));
 
     /* Initialize the MsgId in the buffer descriptor (the rest has already been initialized in this case). */
-    bd->MsgId     = MsgId;
+    bd->MsgId = MsgId;
 
     return bd;
 
-}/* CFE_SB_GetBufferFromCaller */
-
+} /* CFE_SB_GetBufferFromCaller */
 
 /******************************************************************************
 **  Function:   CFE_SB_ReturnBufferToPool()
@@ -140,22 +142,22 @@ CFE_SB_BufferD_t * CFE_SB_GetBufferFromCaller(CFE_SB_MsgId_t MsgId,
 **  Return:
 **    SB status
 */
-int32 CFE_SB_ReturnBufferToPool(CFE_SB_BufferD_t *bd){
-    int32    Stat;
+int32 CFE_SB_ReturnBufferToPool(CFE_SB_BufferD_t *bd)
+{
+    int32 Stat;
 
     /* give the buf descriptor back to the buf descriptor pool */
     Stat = CFE_ES_PutPoolBuf(CFE_SB.Mem.PoolHdl, bd);
-    if(Stat > 0){
+    if (Stat > 0)
+    {
         CFE_SB.StatTlmMsg.Payload.SBBuffersInUse--;
         /* Substract the size of a buffer descriptor from the Memory in use ctr */
-        CFE_SB.StatTlmMsg.Payload.MemInUse-=Stat;
-    }/* end if */
+        CFE_SB.StatTlmMsg.Payload.MemInUse -= Stat;
+    } /* end if */
 
     return CFE_SUCCESS;
 
-}/* end CFE_SB_ReturnBufferToPool */
-
-
+} /* end CFE_SB_ReturnBufferToPool */
 
 /******************************************************************************
 **  Function:   CFE_SB_DecrBufUseCnt()
@@ -175,24 +177,24 @@ int32 CFE_SB_ReturnBufferToPool(CFE_SB_BufferD_t *bd){
 **  Return:
 **    CFE_SUCCESS for normal operation.
 */
-int32 CFE_SB_DecrBufUseCnt(CFE_SB_BufferD_t *bd){
+int32 CFE_SB_DecrBufUseCnt(CFE_SB_BufferD_t *bd)
+{
 
     /* range check the UseCount variable */
-    if(bd->UseCount > 0){
+    if (bd->UseCount > 0)
+    {
 
         bd->UseCount--;
 
-        if (bd->UseCount == 0) {
-           CFE_SB_ReturnBufferToPool(bd);
-        }/* end if */
-
+        if (bd->UseCount == 0)
+        {
+            CFE_SB_ReturnBufferToPool(bd);
+        } /* end if */
     }
 
     return CFE_SUCCESS;
 
-}/* end CFE_SB_DecrBufUseCnt */
-
-
+} /* end CFE_SB_DecrBufUseCnt */
 
 /******************************************************************************
 **  Function:   CFE_SB_GetDestinationBlk()
@@ -208,26 +210,27 @@ int32 CFE_SB_DecrBufUseCnt(CFE_SB_BufferD_t *bd){
 */
 CFE_SB_DestinationD_t *CFE_SB_GetDestinationBlk(void)
 {
-    int32 Stat;
+    int32                  Stat;
     CFE_SB_DestinationD_t *Dest = NULL;
 
     /* Allocate a new destination descriptor from the SB memory pool.*/
-    Stat = CFE_ES_GetPoolBuf((CFE_ES_MemPoolBuf_t*)&Dest, CFE_SB.Mem.PoolHdl,  sizeof(CFE_SB_DestinationD_t));
-    if(Stat < 0){
+    Stat = CFE_ES_GetPoolBuf((CFE_ES_MemPoolBuf_t *)&Dest, CFE_SB.Mem.PoolHdl, sizeof(CFE_SB_DestinationD_t));
+    if (Stat < 0)
+    {
         return NULL;
     }
 
     /* Add the size of a destination descriptor to the memory-in-use ctr and */
     /* adjust the high water mark if needed */
-    CFE_SB.StatTlmMsg.Payload.MemInUse+=Stat;
-    if(CFE_SB.StatTlmMsg.Payload.MemInUse > CFE_SB.StatTlmMsg.Payload.PeakMemInUse){
-       CFE_SB.StatTlmMsg.Payload.PeakMemInUse = CFE_SB.StatTlmMsg.Payload.MemInUse;
-    }/* end if */
+    CFE_SB.StatTlmMsg.Payload.MemInUse += Stat;
+    if (CFE_SB.StatTlmMsg.Payload.MemInUse > CFE_SB.StatTlmMsg.Payload.PeakMemInUse)
+    {
+        CFE_SB.StatTlmMsg.Payload.PeakMemInUse = CFE_SB.StatTlmMsg.Payload.MemInUse;
+    } /* end if */
 
     return Dest;
 
-}/* end CFE_SB_GetDestinationBlk */
-
+} /* end CFE_SB_GetDestinationBlk */
 
 /******************************************************************************
 **  Function:   CFE_SB_PutDestinationBlk()
@@ -245,20 +248,21 @@ int32 CFE_SB_PutDestinationBlk(CFE_SB_DestinationD_t *Dest)
 {
     int32 Stat;
 
-    if(Dest==NULL){
+    if (Dest == NULL)
+    {
         return CFE_SB_BAD_ARGUMENT;
-    }/* end if */
+    } /* end if */
 
     /* give the destination block back to the SB memory pool */
     Stat = CFE_ES_PutPoolBuf(CFE_SB.Mem.PoolHdl, Dest);
-    if(Stat > 0){
+    if (Stat > 0)
+    {
         /* Substract the size of the destination block from the Memory in use ctr */
-        CFE_SB.StatTlmMsg.Payload.MemInUse-=Stat;
-    }/* end if */
+        CFE_SB.StatTlmMsg.Payload.MemInUse -= Stat;
+    } /* end if */
 
     return CFE_SUCCESS;
 
-}/* end CFE_SB_PutDestinationBlk */
-
+} /* end CFE_SB_PutDestinationBlk */
 
 /*****************************************************************************/

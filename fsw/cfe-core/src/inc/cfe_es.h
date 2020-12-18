@@ -36,7 +36,7 @@
 #define _cfe_es_
 
 /*
-** Includes 
+** Includes
 */
 #include "cfe_es_extern_typedefs.h"
 #include "cfe_es_msg.h"
@@ -50,19 +50,19 @@
 ** Macro Definitions
 */
 
-/* 
+/*
 ** The OS_PRINTF macro may be defined by OSAL to enable
 ** printf-style argument checking.  If using a version of OSAL
 ** that does not define this then define it as a no-op.
 */
 #ifndef OS_PRINTF
-#define OS_PRINTF(m,n)
+#define OS_PRINTF(m, n)
 #endif
 
-#define CFE_ES_DBIT(x) (1L << (x))                                    /* Places a one at bit positions 0 thru 31 */
-#define CFE_ES_DTEST(i,x) (((i) & CFE_ES_DBIT(x)) != 0)               /* true iff bit x of i is set */
-#define CFE_ES_TEST_LONG_MASK(m,s)  (CFE_ES_DTEST(m[(s)/32],(s)%32))  /* Test a bit within an array of 32-bit integers. */
-
+#define CFE_ES_DBIT(x)     (1L << (x))                 /* Places a one at bit positions 0 thru 31 */
+#define CFE_ES_DTEST(i, x) (((i)&CFE_ES_DBIT(x)) != 0) /* true iff bit x of i is set */
+#define CFE_ES_TEST_LONG_MASK(m, s) \
+    (CFE_ES_DTEST(m[(s) / 32], (s) % 32)) /* Test a bit within an array of 32-bit integers. */
 
 /** \name Resource ID predefined values */
 /** \{ */
@@ -77,7 +77,7 @@
  * type via standard functions like memset(), such that objects initialized
  * using this method will also be set to safe values.
  */
-#define CFE_ES_RESOURCEID_UNDEFINED     ((CFE_ES_ResourceID_t)0)
+#define CFE_ES_RESOURCEID_UNDEFINED ((CFE_ES_ResourceID_t)0)
 
 /**
  * @brief A resource ID value that represents a reserved entry
@@ -86,7 +86,7 @@
  * table entries that are not available for use.  For instance, this may
  * be used while setting up an entry initially.
  */
-#define CFE_ES_RESOURCEID_RESERVED      ((CFE_ES_ResourceID_t)0xFFFFFFFF)
+#define CFE_ES_RESOURCEID_RESERVED ((CFE_ES_ResourceID_t)0xFFFFFFFF)
 
 /** \} */
 
@@ -105,18 +105,17 @@
 */
 /** \name Reset Type extensions */
 /** \{ */
-#define CFE_ES_APP_RESTART       CFE_PSP_RST_TYPE_MAX       /**< Application only was reset (extend the PSP enumeration here) */
+#define CFE_ES_APP_RESTART CFE_PSP_RST_TYPE_MAX /**< Application only was reset (extend the PSP enumeration here) */
 /** \} */
-
 
 /** \name Critical Data Store Macros */
 /** \{ */
 
-#define CFE_ES_CDS_BAD_HANDLE  CFE_ES_RESOURCEID_UNDEFINED
+#define CFE_ES_CDS_BAD_HANDLE CFE_ES_RESOURCEID_UNDEFINED
 /** \} */
 
-#define CFE_ES_NO_MUTEX   false  /**< \brief Indicates that the memory pool selection will not use a semaphore */
-#define CFE_ES_USE_MUTEX  true   /**< \brief Indicates that the memory pool selection will use a semaphore */
+#define CFE_ES_NO_MUTEX  false /**< \brief Indicates that the memory pool selection will not use a semaphore */
+#define CFE_ES_USE_MUTEX true  /**< \brief Indicates that the memory pool selection will use a semaphore */
 
 /** \name Task Stack Constants */
 /** \{ */
@@ -127,11 +126,8 @@
  * This value may be supplied as the Stack Pointer argument to CFE_ES_ChildTaskCreate()
  * to indicate that the stack should be dynamically allocated.
  */
-#define CFE_ES_TASK_STACK_ALLOCATE  NULL /* aka OS_TASK_STACK_ALLOCATE in proposed OSAL change */
+#define CFE_ES_TASK_STACK_ALLOCATE NULL /* aka OS_TASK_STACK_ALLOCATE in proposed OSAL change */
 /** \} */
-
-
-
 
 /*****************************************************************************/
 /*
@@ -142,14 +138,15 @@
 ** Child Task Main Function Prototype
 */
 typedef void (*CFE_ES_ChildTaskMainFuncPtr_t)(void); /**< \brief Required Prototype of Child Task Main Functions */
-typedef int32 (*CFE_ES_LibraryEntryFuncPtr_t)(CFE_ES_ResourceID_t LibId); /**< \brief Required Prototype of Library Initialization Functions */
+typedef int32 (*CFE_ES_LibraryEntryFuncPtr_t)(
+    CFE_ES_ResourceID_t LibId); /**< \brief Required Prototype of Library Initialization Functions */
 
 /**
  * @brief Type for the stack pointer of tasks.
  *
  * This type is used in the CFE ES task API.
  */
-typedef void* CFE_ES_StackPointer_t; /* aka osal_stackptr_t in proposed OSAL change */
+typedef void *CFE_ES_StackPointer_t; /* aka osal_stackptr_t in proposed OSAL change */
 
 /**
  * \brief Pool Alignement
@@ -162,8 +159,8 @@ typedef union CFE_ES_PoolAlign
 {
     void *Ptr; /**< \brief Aligned pointer */
     /* note -- native types (int/double) are intentional here */
-    long long int LongInt; /**< \brief Aligned Long Integer */
-    long double LongDouble; /**< \brief Aligned Long Double */
+    long long int LongInt;    /**< \brief Aligned Long Integer */
+    long double   LongDouble; /**< \brief Aligned Long Double */
 } CFE_ES_PoolAlign_t;
 
 /**
@@ -173,7 +170,12 @@ typedef union CFE_ES_PoolAlign
  * This resolves to a union type that contains a member called "Data" that will
  * be correctly aligned to be a memory pool and sized according to the argument.
  */
-#define CFE_ES_STATIC_POOL_TYPE(size)    union { CFE_ES_PoolAlign_t Align; uint8 Data[size]; }
+#define CFE_ES_STATIC_POOL_TYPE(size)  \
+    union                              \
+    {                                  \
+        CFE_ES_PoolAlign_t Align;      \
+        uint8              Data[size]; \
+    }
 
 /**
  * @brief Pointer type used for memory pool API
@@ -189,7 +191,7 @@ typedef union CFE_ES_PoolAlign
  * Although the API type is now void* to make usage easier, the
  * pool buffers are aligned to machine requirements - typically 64 bits.
  */
-typedef void* CFE_ES_MemPoolBuf_t;
+typedef void *CFE_ES_MemPoolBuf_t;
 
 /**
  * @brief Conversion macro to create buffer pointer from another type
@@ -392,7 +394,6 @@ CFE_Status_t CFE_ES_CounterID_ToIndex(CFE_ES_ResourceID_t CounterID, uint32 *Idx
 
 /** @} */
 
-
 /*****************************************************************************/
 
 /** @defgroup CFEAPIESEntryExit cFE Entry/Exit APIs
@@ -422,7 +423,7 @@ CFE_Status_t CFE_ES_CounterID_ToIndex(CFE_ES_ResourceID_t CounterID, uint32 *Idx
 ** \sa #CFE_ES_ResetCFE
 **
 ******************************************************************************/
-void CFE_ES_Main(uint32 StartType, uint32 StartSubtype, uint32 ModeId , const char *StartFilePath );
+void CFE_ES_Main(uint32 StartType, uint32 StartSubtype, uint32 ModeId, const char *StartFilePath);
 
 /*****************************************************************************/
 /**
@@ -437,8 +438,9 @@ void CFE_ES_Main(uint32 StartType, uint32 StartSubtype, uint32 ModeId , const ch
 **          None
 **
 ** \param[in]  ResetType    Identifies the type of reset desired.  Allowable settings are:
-**                          \arg #CFE_PSP_RST_TYPE_POWERON     - Causes all memory to be cleared 
-**                          \arg #CFE_PSP_RST_TYPE_PROCESSOR   - Attempts to retain volatile disk, critical data store and user reserved memory. 
+**                          \arg #CFE_PSP_RST_TYPE_POWERON     - Causes all memory to be cleared
+**                          \arg #CFE_PSP_RST_TYPE_PROCESSOR   - Attempts to retain volatile disk, critical data store
+*and user reserved memory.
 **
 ** \return Execution status, see \ref CFEReturnCodes
 ** \retval #CFE_SUCCESS            \copybrief CFE_SUCCESS
@@ -448,7 +450,7 @@ void CFE_ES_Main(uint32 StartType, uint32 StartSubtype, uint32 ModeId , const ch
 ** \sa #CFE_ES_Main
 **
 ******************************************************************************/
-CFE_Status_t  CFE_ES_ResetCFE(uint32 ResetType);
+CFE_Status_t CFE_ES_ResetCFE(uint32 ResetType);
 /**@}*/
 
 /** @defgroup CFEAPIESAppControl cFE Application Control APIs
@@ -539,13 +541,12 @@ CFE_Status_t CFE_ES_DeleteApp(CFE_ES_ResourceID_t AppID);
  \arg #CFE_ES_RunStatus_APP_ERROR - \copybrief CFE_ES_RunStatus_APP_ERROR
  \arg #CFE_ES_RunStatus_CORE_APP_INIT_ERROR - \copybrief CFE_ES_RunStatus_CORE_APP_INIT_ERROR
  \arg #CFE_ES_RunStatus_CORE_APP_RUNTIME_ERROR - \copybrief CFE_ES_RunStatus_CORE_APP_RUNTIME_ERROR
-**    
+**
 **
 ** \sa #CFE_ES_RunLoop, #CFE_ES_RegisterApp
 **
 ******************************************************************************/
 void CFE_ES_ExitApp(uint32 ExitStatus);
-
 
 /*****************************************************************************/
 /**
@@ -622,14 +623,14 @@ CFE_Status_t CFE_ES_WaitForSystemState(uint32 MinSystemState, uint32 TimeOutMill
 ** \par Assumptions, External Events, and Notes:
 **          This API should only be called as the last item of an Apps initialization.
 **          In addition, this API should only be called by an App that is started
-**          from the ES Startup file. It should not be used by an App that is 
+**          from the ES Startup file. It should not be used by an App that is
 **          started after the system is running. ( Although it will cause no harm )
 **
 ** \param[in]  TimeOutMilliseconds   The timeout value in Milliseconds.
 **                                   This parameter must be at least 1000. Lower values
-**                                   will be rounded up. There is not an option to 
+**                                   will be rounded up. There is not an option to
 **                                   wait indefinitely to avoid hanging a critical
-**                                   application because a non-critical app did not start. 
+**                                   application because a non-critical app did not start.
 **
 **
 ** \sa #CFE_ES_RunLoop
@@ -672,7 +673,7 @@ CFE_Status_t CFE_ES_RegisterApp(void);
 ** \sa #CFE_ES_RunLoop
 **
 ******************************************************************************/
-void  CFE_ES_IncrementTaskCounter(void);
+void CFE_ES_IncrementTaskCounter(void);
 /**@}*/
 
 /** @defgroup CFEAPIESInfo cFE Information APIs
@@ -693,8 +694,10 @@ void  CFE_ES_IncrementTaskCounter(void);
 **          None
 **
 ** \param[in, out]   ResetSubtypePtr    Pointer to \c uint32 type variable in which the Reset Sub-Type will be stored.
-**                                 The caller can set this pointer to NULL if the Sub-Type is of no interest. \n *ResetSubtypePtr If the provided pointer was not \c NULL, the Reset Sub-Type is stored at the given address.
-**                                 For a list of possible Sub-Type values, see \link #CFE_PSP_RST_SUBTYPE_POWER_CYCLE "Reset Sub-Types" \endlink.
+**                                 The caller can set this pointer to NULL if the Sub-Type is of no interest. \n
+**ResetSubtypePtr If the provided pointer was not \c NULL, the Reset Sub-Type is stored at the given address.
+**                                 For a list of possible Sub-Type values, see \link #CFE_PSP_RST_SUBTYPE_POWER_CYCLE
+*"Reset Sub-Types" \endlink.
 **
 **
 ** \return Processor reset type
@@ -711,7 +714,7 @@ int32 CFE_ES_GetResetType(uint32 *ResetSubtypePtr);
 ** \brief Get an Application ID for the calling Application
 **
 ** \par Description
-**        This routine retrieves the cFE Application ID for the calling Application.  
+**        This routine retrieves the cFE Application ID for the calling Application.
 **
 ** \par Assumptions, External Events, and Notes:
 **        NOTE: \b All tasks associated with the Application would return the same Application ID.
@@ -759,7 +762,7 @@ CFE_Status_t CFE_ES_GetTaskID(CFE_ES_ResourceID_t *TaskIdPtr);
 **
 ** \par Description
 **        This routine retrieves the cFE Application ID associated with a
-**        specified Application name.  
+**        specified Application name.
 **
 ** \par Assumptions, External Events, and Notes:
 **        None
@@ -869,8 +872,8 @@ CFE_Status_t CFE_ES_GetLibName(char *LibName, CFE_ES_ResourceID_t LibId, size_t 
 **
 ** \par Description
 **        This routine retrieves the information about an App associated with a
-**        specified App ID. The information includes all of the information ES 
-**        maintains for an application ( documented in the CFE_ES_AppInfo_t type ) 
+**        specified App ID. The information includes all of the information ES
+**        maintains for an application ( documented in the CFE_ES_AppInfo_t type )
 **
 ** \par Assumptions, External Events, and Notes:
 **        None
@@ -896,14 +899,15 @@ CFE_Status_t CFE_ES_GetAppInfo(CFE_ES_AppInfo_t *AppInfo, CFE_ES_ResourceID_t Ap
 **
 ** \par Description
 **        This routine retrieves the information about a Task associated with a
-**        specified Task ID. The information includes Task Name, and Parent/Creator 
+**        specified Task ID. The information includes Task Name, and Parent/Creator
 **        Application ID.
 **
 ** \par Assumptions, External Events, and Notes:
 **        None
 **
-** \param[out]   TaskInfo     Pointer to a \c CFE_ES_TaskInfo_t structure that holds the specific 
-**                            task information. *TaskInfo is the filled out \c CFE_ES_TaskInfo_t structure containing the 
+** \param[out]   TaskInfo     Pointer to a \c CFE_ES_TaskInfo_t structure that holds the specific
+**                            task information. *TaskInfo is the filled out \c CFE_ES_TaskInfo_t structure containing
+*the
 **                            Task Name, Parent App Name, Parent App ID among other fields.
 **
 ** \param[in]   TaskId        Application ID of Application whose name is being requested.
@@ -998,7 +1002,7 @@ int32 CFE_ES_GetModuleInfo(CFE_ES_AppInfo_t *ModuleInfo, CFE_ES_ResourceID_t Res
 **
 ** \par Description
 **        This routine registers a cFE Child task and associates it with its parent
-**        cFE Application.  
+**        cFE Application.
 **
 ** \par Assumptions, External Events, and Notes:
 **        NOTE: This API \b MUST be called by the Child Task before any other cFE API calls are made.
@@ -1010,36 +1014,37 @@ int32 CFE_ES_GetModuleInfo(CFE_ES_AppInfo_t *ModuleInfo, CFE_ES_ResourceID_t Res
 ** \sa #CFE_ES_CreateChildTask, #CFE_ES_DeleteChildTask, #CFE_ES_ExitChildTask
 **
 ******************************************************************************/
-CFE_Status_t  CFE_ES_RegisterChildTask(void);
+CFE_Status_t CFE_ES_RegisterChildTask(void);
 
 /*****************************************************************************/
 /**
 ** \brief Creates a new task under an existing Application
 **
 ** \par Description
-**        This routine creates a new task (a separate execution thread) owned by the calling Application.  
+**        This routine creates a new task (a separate execution thread) owned by the calling Application.
 **
 ** \par Assumptions, External Events, and Notes:
 **        None
 **
-** \param[in, out]   TaskIdPtr     A pointer to a variable that will be filled in with the new task's ID. *TaskIdPtr is the Task ID of the newly created child task.
+** \param[in, out]   TaskIdPtr     A pointer to a variable that will be filled in with the new task's ID. *TaskIdPtr is
+*the Task ID of the newly created child task.
 **
-** \param[in]   TaskName      A pointer to a string containing the desired name of the new task.  
+** \param[in]   TaskName      A pointer to a string containing the desired name of the new task.
 **                            This can be up to #OS_MAX_API_NAME characters, including the trailing null.
 **
-** \param[in]   FunctionPtr   A pointer to the function that will be spawned as a new task.  This function 
-**                            must have the following signature: uint32 function(void).  Input parameters 
+** \param[in]   FunctionPtr   A pointer to the function that will be spawned as a new task.  This function
+**                            must have the following signature: uint32 function(void).  Input parameters
 **                            for the new task are not supported.
 **
-** \param[in]   StackPtr      A pointer to the location where the child task's stack pointer should start.   
+** \param[in]   StackPtr      A pointer to the location where the child task's stack pointer should start.
 **                            NOTE: Not all underlying operating systems support this parameter.
 **                            The CFE_ES_TASK_STACK_ALLOCATE constant may be passed to indicate that the
 **                            stack should be dynamically allocated.
 **
 ** \param[in]   StackSize     The number of bytes to allocate for the new task's stack.
 **
-** \param[in]   Priority      The priority for the new task.  Lower numbers are higher priority, with 0 being 
-**                            the highest priority.  Applications cannot create tasks with a higher priority 
+** \param[in]   Priority      The priority for the new task.  Lower numbers are higher priority, with 0 being
+**                            the highest priority.  Applications cannot create tasks with a higher priority
 **                            (lower number) than their own priority.
 **
 ** \param[in]   Flags         Reserved for future expansion.
@@ -1051,13 +1056,9 @@ CFE_Status_t  CFE_ES_RegisterChildTask(void);
 ** \sa #CFE_ES_RegisterChildTask, #CFE_ES_DeleteChildTask, #CFE_ES_ExitChildTask
 **
 ******************************************************************************/
-CFE_Status_t  CFE_ES_CreateChildTask(CFE_ES_ResourceID_t             *TaskIdPtr,
-                                     const char                      *TaskName,
-                                     CFE_ES_ChildTaskMainFuncPtr_t    FunctionPtr,
-                                     CFE_ES_StackPointer_t            StackPtr,
-                                     size_t                           StackSize,
-                                     CFE_ES_TaskPriority_Atom_t       Priority,
-                                     uint32                           Flags);
+CFE_Status_t CFE_ES_CreateChildTask(CFE_ES_ResourceID_t *TaskIdPtr, const char *TaskName,
+                                    CFE_ES_ChildTaskMainFuncPtr_t FunctionPtr, CFE_ES_StackPointer_t StackPtr,
+                                    size_t StackSize, CFE_ES_TaskPriority_Atom_t Priority, uint32 Flags);
 
 /*****************************************************************************/
 /**
@@ -1125,7 +1126,8 @@ CFE_Status_t CFE_ES_GetTaskName(char *TaskName, CFE_ES_ResourceID_t TaskId, size
 ** \par Assumptions, External Events, and Notes:
 **        None
 **
-** \param[in]   TaskId     The task ID previously obtained when the Child Task was created with the #CFE_ES_CreateChildTask API.
+** \param[in]   TaskId     The task ID previously obtained when the Child Task was created with the
+*#CFE_ES_CreateChildTask API.
 **
 ** \return Execution status, see \ref CFEReturnCodes
 ** \retval #CFE_SUCCESS            \copybrief CFE_SUCCESS
@@ -1141,7 +1143,7 @@ CFE_Status_t CFE_ES_DeleteChildTask(CFE_ES_ResourceID_t TaskId);
 ** \brief Exits a child task
 **
 ** \par Description
-**        This routine allows the current executing child task to exit and 
+**        This routine allows the current executing child task to exit and
 **        be deleted by ES.
 **
 ** \par Assumptions, External Events, and Notes:
@@ -1166,16 +1168,16 @@ void CFE_ES_ExitChildTask(void);
 ** \brief Write a string to the cFE System Log
 **
 ** \par Description
-**        This routine writes a formatted string to the cFE system log.  This 
-**        can be used to record very low-level errors that can't be reported 
-**        using the Event Services. This function is used in place of printf 
-**        for flight software. It should be used for significant startup events, 
-**        critical errors, and conditionally compiled debug software. 
+**        This routine writes a formatted string to the cFE system log.  This
+**        can be used to record very low-level errors that can't be reported
+**        using the Event Services. This function is used in place of printf
+**        for flight software. It should be used for significant startup events,
+**        critical errors, and conditionally compiled debug software.
 **
 ** \par Assumptions, External Events, and Notes:
 **        None
 **
-** \param[in]   SpecStringPtr     The format string for the log message.  
+** \param[in]   SpecStringPtr     The format string for the log message.
 **                                This is similar to the format string for a printf() call.
 **
 ** \return Execution status, see \ref CFEReturnCodes
@@ -1183,7 +1185,7 @@ void CFE_ES_ExitChildTask(void);
 ** \retval #CFE_ES_ERR_SYS_LOG_FULL \copybrief CFE_ES_ERR_SYS_LOG_FULL
 **
 ******************************************************************************/
-CFE_Status_t CFE_ES_WriteToSysLog(const char *SpecStringPtr, ...) OS_PRINTF(1,2);
+CFE_Status_t CFE_ES_WriteToSysLog(const char *SpecStringPtr, ...) OS_PRINTF(1, 2);
 
 /*****************************************************************************/
 /**
@@ -1191,7 +1193,7 @@ CFE_Status_t CFE_ES_WriteToSysLog(const char *SpecStringPtr, ...) OS_PRINTF(1,2)
 **
 ** \par Description
 **        This routine calculates a cyclic redundancy check (CRC) on a block of memory.  The CRC algorithm
-**        used is determined by the last parameter. 
+**        used is determined by the last parameter.
 **
 ** \par Assumptions, External Events, and Notes:
 **        None
@@ -1244,17 +1246,18 @@ void CFE_ES_ProcessAsyncEvent(void);
 **
 ** \par Description
 **        This routine allocates a block of memory in the Critical Data Store and associates it with
-**        the calling Application.  The memory can survive an Application restart as well as a Processor Reset. 
+**        the calling Application.  The memory can survive an Application restart as well as a Processor Reset.
 **
 ** \par Assumptions, External Events, and Notes:
 **        None
 **
-** \param[in, out]   HandlePtr   Pointer Application's variable that will contain the CDS Memory Block Handle. *HandlePtr is the handle of the CDS block that can be used in 
+** \param[in, out]   HandlePtr   Pointer Application's variable that will contain the CDS Memory Block Handle.
+**HandlePtr is the handle of the CDS block that can be used in
 **                          #CFE_ES_CopyToCDS and #CFE_ES_RestoreFromCDS.
 **
 ** \param[in]   BlockSize   The number of bytes needed in the CDS.
 **
-** \param[in]   Name        A pointer to a character string containing an application 
+** \param[in]   Name        A pointer to a character string containing an application
 **                          unique name of #CFE_MISSION_ES_CDS_MAX_NAME_LENGTH characters or less.
 **
 **
@@ -1326,7 +1329,6 @@ CFE_Status_t CFE_ES_GetCDSBlockIDByName(CFE_ES_ResourceID_t *BlockIdPtr, const c
 ******************************************************************************/
 CFE_Status_t CFE_ES_GetCDSBlockName(char *BlockName, CFE_ES_ResourceID_t BlockId, size_t BufferLength);
 
-
 /*****************************************************************************/
 /**
 ** \brief Save a block of data in the Critical Data Store (CDS)
@@ -1360,7 +1362,7 @@ CFE_Status_t CFE_ES_CopyToCDS(CFE_ES_CDSHandle_t Handle, void *DataToCopy);
 **        This routine copies data from the Critical Data Store identified with the \c Handle into
 **        the area of memory pointed to by the \c RestoreToMemory pointer.  The area of memory to
 **        be copied into must be at least as big as the size specified when registering the CDS.
-**        The recovery will indicate an error if the data integrity check maintained by the CDS 
+**        The recovery will indicate an error if the data integrity check maintained by the CDS
 **        indicates the contents of the CDS have changed.  However, the contents will still be
 **        copied into the specified area of memory.
 **
@@ -1369,7 +1371,8 @@ CFE_Status_t CFE_ES_CopyToCDS(CFE_ES_CDSHandle_t Handle, void *DataToCopy);
 **
 ** \param[in]   Handle             The handle of the CDS block that was previously obtained from #CFE_ES_RegisterCDS.
 **
-** \param[in, out]   RestoreToMemory    A Pointer to the block of memory that is to be restored with the contents of the CDS. *RestoreToMemory is the contents of the specified CDS.
+** \param[in, out]   RestoreToMemory    A Pointer to the block of memory that is to be restored with the contents of the
+*CDS. *RestoreToMemory is the contents of the specified CDS.
 **
 ** \return Execution status, see \ref CFEReturnCodes
 ** \retval #CFE_SUCCESS                \copybrief CFE_SUCCESS
@@ -1392,14 +1395,15 @@ CFE_Status_t CFE_ES_RestoreFromCDS(void *RestoreToMemory, CFE_ES_CDSHandle_t Han
 **
 ** \par Description
 **        This routine initializes a pool of memory supplied by the calling application.  When a memory pool
-**        created by this routine is processed, no mutex handling is performed.  
+**        created by this routine is processed, no mutex handling is performed.
 **
 ** \par Assumptions, External Events, and Notes:
 **        -# The size of the pool must be an integral number of 32-bit words
 **        -# The start address of the pool must be 32-bit aligned
 **        -# 168 bytes are used for internal bookkeeping, therefore, they will not be available for allocation.
 **
-** \param[in, out]   PoolID   A pointer to the variable the caller wishes to have the memory pool handle kept in. *PoolID is the memory pool handle.
+** \param[in, out]   PoolID   A pointer to the variable the caller wishes to have the memory pool handle kept in.
+**PoolID is the memory pool handle.
 **
 ** \param[in]   MemPtr      A Pointer to the pool of memory created by the calling application. This address must
 **                          be on a 32-bit boundary.
@@ -1421,14 +1425,15 @@ CFE_Status_t CFE_ES_PoolCreateNoSem(CFE_ES_MemHandle_t *PoolID, uint8 *MemPtr, s
 **
 ** \par Description
 **        This routine initializes a pool of memory supplied by the calling application.  When a memory pool
-**        created by this routine is processed, mutex handling will be performed.  
+**        created by this routine is processed, mutex handling will be performed.
 **
 ** \par Assumptions, External Events, and Notes:
 **        -# The size of the pool must be an integral number of 32-bit words
 **        -# The start address of the pool must be 32-bit aligned
 **        -# 168 bytes are used for internal bookkeeping, therefore, they will not be available for allocation.
 **
-** \param[in, out]   PoolID   A pointer to the variable the caller wishes to have the memory pool handle kept in. *PoolID is the memory pool handle.
+** \param[in, out]   PoolID   A pointer to the variable the caller wishes to have the memory pool handle kept in.
+**PoolID is the memory pool handle.
 **
 ** \param[in]   MemPtr      A Pointer to the pool of memory created by the calling application. This address must
 **                          be on a 32-bit boundary.
@@ -1449,28 +1454,32 @@ CFE_Status_t CFE_ES_PoolCreate(CFE_ES_MemHandle_t *PoolID, uint8 *MemPtr, size_t
 ** \brief Initializes a memory pool created by an application with application specified block sizes.
 **
 ** \par Description
-**        This routine initializes a pool of memory supplied by the calling application.  
+**        This routine initializes a pool of memory supplied by the calling application.
 **
 ** \par Assumptions, External Events, and Notes:
 **        -# The size of the pool must be an integral number of 32-bit words
 **        -# The start address of the pool must be 32-bit aligned
 **        -# 168 bytes are used for internal bookkeeping, therefore, they will not be available for allocation.
 **
-** \param[in, out]   PoolID      A pointer to the variable the caller wishes to have the memory pool handle kept in. *PoolID is the memory pool handle.
+** \param[in, out]   PoolID      A pointer to the variable the caller wishes to have the memory pool handle kept in.
+**PoolID is the memory pool handle.
 **
 ** \param[in]   MemPtr         A Pointer to the pool of memory created by the calling application. This address must
 **                             be on a 32-bit boundary.
 **
-** \param[in]   Size           The size of the pool of memory.  Note that this must be an integral number of 32 bit words.
+** \param[in]   Size           The size of the pool of memory.  Note that this must be an integral number of 32 bit
+*words.
 **
 ** \param[in]   NumBlockSizes  The number of different block sizes specified in the \c BlockSizes array. If set equal to
 **                             zero or if greater than 17, then default block sizes are used.
 **
 ** \param[in]   BlockSizes     Pointer to an array of sizes to be used instead of the default block sizes specified by
-**                             #CFE_PLATFORM_ES_MEM_BLOCK_SIZE_01 through #CFE_PLATFORM_ES_MAX_BLOCK_SIZE.  If the pointer is equal to NULL,
+**                             #CFE_PLATFORM_ES_MEM_BLOCK_SIZE_01 through #CFE_PLATFORM_ES_MAX_BLOCK_SIZE.  If the
+*pointer is equal to NULL,
 **                             the default block sizes are used.
 **
-** \param[in]   UseMutex       Flag indicating whether the new memory pool will be processing with mutex handling or not.
+** \param[in]   UseMutex       Flag indicating whether the new memory pool will be processing with mutex handling or
+*not.
 **                             Valid parameter values are #CFE_ES_USE_MUTEX and #CFE_ES_NO_MUTEX
 **
 ** \return Execution status, see \ref CFEReturnCodes
@@ -1480,13 +1489,8 @@ CFE_Status_t CFE_ES_PoolCreate(CFE_ES_MemHandle_t *PoolID, uint8 *MemPtr, size_t
 ** \sa #CFE_ES_PoolCreate, #CFE_ES_PoolCreateNoSem, #CFE_ES_GetPoolBuf, #CFE_ES_PutPoolBuf, #CFE_ES_GetMemPoolStats
 **
 ******************************************************************************/
-CFE_Status_t CFE_ES_PoolCreateEx(CFE_ES_MemHandle_t        *PoolID,
-                                 uint8                     *MemPtr,
-                                 size_t                     Size,
-                                 uint16                     NumBlockSizes,
-                                 const size_t              *BlockSizes,
-                                 bool                       UseMutex );
-
+CFE_Status_t CFE_ES_PoolCreateEx(CFE_ES_MemHandle_t *PoolID, uint8 *MemPtr, size_t Size, uint16 NumBlockSizes,
+                                 const size_t *BlockSizes, bool UseMutex);
 
 /*****************************************************************************/
 /**
@@ -1512,18 +1516,18 @@ CFE_Status_t CFE_ES_PoolCreateEx(CFE_ES_MemHandle_t        *PoolID,
 ******************************************************************************/
 int32 CFE_ES_PoolDelete(CFE_ES_MemHandle_t PoolID);
 
-
 /*****************************************************************************/
 /**
 ** \brief Gets a buffer from the memory pool created by #CFE_ES_PoolCreate or #CFE_ES_PoolCreateNoSem
 **
 ** \par Description
-**        This routine obtains a block of memory from the memory pool supplied by the calling application.    
+**        This routine obtains a block of memory from the memory pool supplied by the calling application.
 **
 ** \par Assumptions, External Events, and Notes:
 **        -# The size allocated from the memory pool is, at a minimum, 12 bytes more than requested.
 **
-** \param[in, out]   BufPtr      A pointer to the Application's pointer in which will be stored the address of the allocated memory buffer. *BufPtr is the address of the requested buffer.
+** \param[in, out]   BufPtr      A pointer to the Application's pointer in which will be stored the address of the
+*allocated memory buffer. *BufPtr is the address of the requested buffer.
 **
 ** \param[in]   PoolID   The handle to the memory pool as returned by #CFE_ES_PoolCreate or #CFE_ES_PoolCreateNoSem.
 **
@@ -1533,7 +1537,8 @@ int32 CFE_ES_PoolDelete(CFE_ES_MemHandle_t PoolID);
 ** \retval #CFE_ES_ERR_RESOURCEID_NOT_VALID   \copybrief CFE_ES_ERR_RESOURCEID_NOT_VALID
 ** \retval #CFE_ES_ERR_MEM_BLOCK_SIZE         \copybrief CFE_ES_ERR_MEM_BLOCK_SIZE
 **
-** \sa #CFE_ES_PoolCreate, #CFE_ES_PoolCreateNoSem, #CFE_ES_PoolCreateEx, #CFE_ES_PutPoolBuf, #CFE_ES_GetMemPoolStats, #CFE_ES_GetPoolBufInfo
+** \sa #CFE_ES_PoolCreate, #CFE_ES_PoolCreateNoSem, #CFE_ES_PoolCreateEx, #CFE_ES_PutPoolBuf, #CFE_ES_GetMemPoolStats,
+*#CFE_ES_GetPoolBufInfo
 **
 ******************************************************************************/
 int32 CFE_ES_GetPoolBuf(CFE_ES_MemPoolBuf_t *BufPtr, CFE_ES_MemHandle_t PoolID, size_t Size);
@@ -1543,7 +1548,7 @@ int32 CFE_ES_GetPoolBuf(CFE_ES_MemPoolBuf_t *BufPtr, CFE_ES_MemHandle_t PoolID, 
 ** \brief Gets info on a buffer previously allocated via #CFE_ES_GetPoolBuf
 **
 ** \par Description
-**        This routine gets info on a buffer in the memory pool.    
+**        This routine gets info on a buffer in the memory pool.
 **
 ** \par Assumptions, External Events, and Notes:
 **        None
@@ -1557,7 +1562,8 @@ int32 CFE_ES_GetPoolBuf(CFE_ES_MemPoolBuf_t *BufPtr, CFE_ES_MemHandle_t PoolID, 
 ** \retval #CFE_ES_ERR_RESOURCEID_NOT_VALID   \copybrief CFE_ES_ERR_RESOURCEID_NOT_VALID
 ** \retval #CFE_ES_BUFFER_NOT_IN_POOL         \copybrief CFE_ES_BUFFER_NOT_IN_POOL
 **
-** \sa #CFE_ES_PoolCreate, #CFE_ES_PoolCreateNoSem, #CFE_ES_PoolCreateEx, #CFE_ES_GetPoolBuf, #CFE_ES_GetMemPoolStats, #CFE_ES_PutPoolBuf
+** \sa #CFE_ES_PoolCreate, #CFE_ES_PoolCreateNoSem, #CFE_ES_PoolCreateEx, #CFE_ES_GetPoolBuf, #CFE_ES_GetMemPoolStats,
+*#CFE_ES_PutPoolBuf
 **
 ******************************************************************************/
 CFE_Status_t CFE_ES_GetPoolBufInfo(CFE_ES_MemHandle_t PoolID, CFE_ES_MemPoolBuf_t BufPtr);
@@ -1567,7 +1573,7 @@ CFE_Status_t CFE_ES_GetPoolBufInfo(CFE_ES_MemHandle_t PoolID, CFE_ES_MemPoolBuf_
 ** \brief Releases a buffer from the memory pool that was previously allocated via #CFE_ES_GetPoolBuf
 **
 ** \par Description
-**        This routine releases a buffer back into the memory pool.    
+**        This routine releases a buffer back into the memory pool.
 **
 ** \par Assumptions, External Events, and Notes:
 **        None
@@ -1579,7 +1585,8 @@ CFE_Status_t CFE_ES_GetPoolBufInfo(CFE_ES_MemHandle_t PoolID, CFE_ES_MemPoolBuf_
 ** \return Bytes released, or error code \ref CFEReturnCodes
 ** \retval #CFE_ES_ERR_RESOURCEID_NOT_VALID  \copybrief CFE_ES_ERR_RESOURCEID_NOT_VALID
 **
-** \sa #CFE_ES_PoolCreate, #CFE_ES_PoolCreateNoSem, #CFE_ES_PoolCreateEx, #CFE_ES_GetPoolBuf, #CFE_ES_GetMemPoolStats, #CFE_ES_GetPoolBufInfo
+** \sa #CFE_ES_PoolCreate, #CFE_ES_PoolCreateNoSem, #CFE_ES_PoolCreateEx, #CFE_ES_GetPoolBuf, #CFE_ES_GetMemPoolStats,
+*#CFE_ES_GetPoolBufInfo
 **
 ******************************************************************************/
 int32 CFE_ES_PutPoolBuf(CFE_ES_MemHandle_t PoolID, CFE_ES_MemPoolBuf_t BufPtr);
@@ -1591,13 +1598,14 @@ int32 CFE_ES_PutPoolBuf(CFE_ES_MemHandle_t PoolID, CFE_ES_MemPoolBuf_t BufPtr);
 ** \par Description
 **        This routine fills the #CFE_ES_MemPoolStats_t data structure with the statistics
 **        maintained by the memory pool software.  These statistics can then be telemetered
-**        by the calling Application.    
+**        by the calling Application.
 **
 ** \par Assumptions, External Events, and Notes:
 **        None
 **
-** \param[in, out]   BufPtr      Pointer to #CFE_ES_MemPoolStats_t data structure to be 
-**                          filled with memory statistics. *BufPtr is the Memory Pool Statistics stored in given data structure.
+** \param[in, out]   BufPtr      Pointer to #CFE_ES_MemPoolStats_t data structure to be
+**                          filled with memory statistics. *BufPtr is the Memory Pool Statistics stored in given data
+*structure.
 **
 ** \param[in]   Handle      The handle to the memory pool whose statistics are desired.
 **
@@ -1609,7 +1617,7 @@ int32 CFE_ES_PutPoolBuf(CFE_ES_MemHandle_t PoolID, CFE_ES_MemPoolBuf_t BufPtr);
 ** \sa #CFE_ES_PoolCreate, #CFE_ES_PoolCreateNoSem, #CFE_ES_PoolCreateEx, #CFE_ES_GetPoolBuf, #CFE_ES_PutPoolBuf
 **
 ******************************************************************************/
-CFE_Status_t CFE_ES_GetMemPoolStats(CFE_ES_MemPoolStats_t *BufPtr, CFE_ES_MemHandle_t  Handle);
+CFE_Status_t CFE_ES_GetMemPoolStats(CFE_ES_MemPoolStats_t *BufPtr, CFE_ES_MemHandle_t Handle);
 /**@}*/
 
 /** @defgroup CFEAPIESPerfMon cFE Performance Monitor APIs
@@ -1621,9 +1629,9 @@ CFE_Status_t CFE_ES_GetMemPoolStats(CFE_ES_MemPoolStats_t *BufPtr, CFE_ES_MemHan
 ** \brief Entry marker for use with Software Performance Analysis Tool.
 **
 ** \par Description
-**        This macro logs the entry or start event/marker for the specified 
-**        entry \c id. This macro, in conjunction with the #CFE_ES_PerfLogExit, 
-**        is used by the Software Performance Analysis tool (see section 5.15).    
+**        This macro logs the entry or start event/marker for the specified
+**        entry \c id. This macro, in conjunction with the #CFE_ES_PerfLogExit,
+**        is used by the Software Performance Analysis tool (see section 5.15).
 **
 ** \par Assumptions, External Events, and Notes:
 **        None
@@ -1640,9 +1648,9 @@ CFE_Status_t CFE_ES_GetMemPoolStats(CFE_ES_MemPoolStats_t *BufPtr, CFE_ES_MemHan
 ** \brief Exit marker for use with Software Performance Analysis Tool.
 **
 ** \par Description
-**        This macro logs the exit or end event/marker for the specified 
-**        entry \c id. This macro, in conjunction with the #CFE_ES_PerfLogEntry, 
-**        is used by the Software Performance Analysis tool (see section 5.15).    
+**        This macro logs the exit or end event/marker for the specified
+**        entry \c id. This macro, in conjunction with the #CFE_ES_PerfLogEntry,
+**        is used by the Software Performance Analysis tool (see section 5.15).
 **
 ** \par Assumptions, External Events, and Notes:
 **        None
@@ -1654,15 +1662,14 @@ CFE_Status_t CFE_ES_GetMemPoolStats(CFE_ES_MemPoolStats_t *BufPtr, CFE_ES_MemHan
 ******************************************************************************/
 #define CFE_ES_PerfLogExit(id) (CFE_ES_PerfLogAdd(id, 1))
 
-
 /*****************************************************************************/
 /**
 ** \brief Function called by #CFE_ES_PerfLogEntry and #CFE_ES_PerfLogExit macros
 **
 ** \par Description
-**        This function logs the entry and exit marker for the specified 
-**        \c id. This function is used by the Software Performance Analysis 
-**        tool (see section 5.15).    
+**        This function logs the entry and exit marker for the specified
+**        \c id. This function is used by the Software Performance Analysis
+**        tool (see section 5.15).
 **
 ** \par Assumptions, External Events, and Notes:
 **        None
@@ -1685,7 +1692,7 @@ void CFE_ES_PerfLogAdd(uint32 Marker, uint32 EntryExit);
 ** \brief Register a generic counter
 **
 ** \par Description
-**        This routine registers a generic counter. 
+**        This routine registers a generic counter.
 **
 ** \par Assumptions, External Events, and Notes:
 **        None.
@@ -1698,7 +1705,8 @@ void CFE_ES_PerfLogAdd(uint32 Marker, uint32 EntryExit);
 ** \retval #CFE_SUCCESS         \copybrief CFE_SUCCESS
 ** \retval #CFE_ES_BAD_ARGUMENT \copybrief CFE_ES_BAD_ARGUMENT
 **
-** \sa #CFE_ES_IncrementGenCounter, #CFE_ES_DeleteGenCounter, #CFE_ES_SetGenCount, #CFE_ES_GetGenCount, #CFE_ES_GetGenCounterIDByName
+** \sa #CFE_ES_IncrementGenCounter, #CFE_ES_DeleteGenCounter, #CFE_ES_SetGenCount, #CFE_ES_GetGenCount,
+*#CFE_ES_GetGenCounterIDByName
 **
 ******************************************************************************/
 CFE_Status_t CFE_ES_RegisterGenCounter(CFE_ES_ResourceID_t *CounterIdPtr, const char *CounterName);
@@ -1708,7 +1716,7 @@ CFE_Status_t CFE_ES_RegisterGenCounter(CFE_ES_ResourceID_t *CounterIdPtr, const 
 ** \brief Delete a generic counter
 **
 ** \par Description
-**        This routine deletes a previously registered generic counter. 
+**        This routine deletes a previously registered generic counter.
 **
 ** \par Assumptions, External Events, and Notes:
 **        None.
@@ -1719,7 +1727,8 @@ CFE_Status_t CFE_ES_RegisterGenCounter(CFE_ES_ResourceID_t *CounterIdPtr, const 
 ** \retval #CFE_SUCCESS          \copybrief CFE_SUCCESS
 ** \retval #CFE_ES_BAD_ARGUMENT  \copybrief CFE_ES_BAD_ARGUMENT
 **
-** \sa #CFE_ES_IncrementGenCounter, #CFE_ES_RegisterGenCounter, #CFE_ES_SetGenCount, #CFE_ES_GetGenCount, #CFE_ES_GetGenCounterIDByName
+** \sa #CFE_ES_IncrementGenCounter, #CFE_ES_RegisterGenCounter, #CFE_ES_SetGenCount, #CFE_ES_GetGenCount,
+*#CFE_ES_GetGenCounterIDByName
 **
 ******************************************************************************/
 CFE_Status_t CFE_ES_DeleteGenCounter(CFE_ES_ResourceID_t CounterId);
@@ -1729,7 +1738,7 @@ CFE_Status_t CFE_ES_DeleteGenCounter(CFE_ES_ResourceID_t CounterId);
 ** \brief Increments the specified generic counter
 **
 ** \par Description
-**        This routine increments the specified generic counter. 
+**        This routine increments the specified generic counter.
 **
 ** \par Assumptions, External Events, and Notes:
 **        None.
@@ -1740,7 +1749,8 @@ CFE_Status_t CFE_ES_DeleteGenCounter(CFE_ES_ResourceID_t CounterId);
 ** \retval #CFE_SUCCESS         \copybrief CFE_SUCCESS
 ** \retval #CFE_ES_BAD_ARGUMENT \copybrief CFE_ES_BAD_ARGUMENT
 **
-** \sa #CFE_ES_RegisterGenCounter, #CFE_ES_DeleteGenCounter, #CFE_ES_SetGenCount, #CFE_ES_GetGenCount, #CFE_ES_GetGenCounterIDByName
+** \sa #CFE_ES_RegisterGenCounter, #CFE_ES_DeleteGenCounter, #CFE_ES_SetGenCount, #CFE_ES_GetGenCount,
+*#CFE_ES_GetGenCounterIDByName
 **
 ******************************************************************************/
 CFE_Status_t CFE_ES_IncrementGenCounter(CFE_ES_ResourceID_t CounterId);
@@ -1750,7 +1760,7 @@ CFE_Status_t CFE_ES_IncrementGenCounter(CFE_ES_ResourceID_t CounterId);
 ** \brief Set the specified generic counter
 **
 ** \par Description
-**        This routine sets the specified generic counter to the specified value. 
+**        This routine sets the specified generic counter to the specified value.
 **
 ** \par Assumptions, External Events, and Notes:
 **        None.
@@ -1763,7 +1773,8 @@ CFE_Status_t CFE_ES_IncrementGenCounter(CFE_ES_ResourceID_t CounterId);
 ** \retval #CFE_SUCCESS          \copybrief CFE_SUCCESS
 ** \retval #CFE_ES_BAD_ARGUMENT  \copybrief CFE_ES_BAD_ARGUMENT
 **
-** \sa #CFE_ES_RegisterGenCounter, #CFE_ES_DeleteGenCounter, #CFE_ES_IncrementGenCounter, #CFE_ES_GetGenCount, #CFE_ES_GetGenCounterIDByName
+** \sa #CFE_ES_RegisterGenCounter, #CFE_ES_DeleteGenCounter, #CFE_ES_IncrementGenCounter, #CFE_ES_GetGenCount,
+*#CFE_ES_GetGenCounterIDByName
 **
 ******************************************************************************/
 CFE_Status_t CFE_ES_SetGenCount(CFE_ES_ResourceID_t CounterId, uint32 Count);
@@ -1773,7 +1784,7 @@ CFE_Status_t CFE_ES_SetGenCount(CFE_ES_ResourceID_t CounterId, uint32 Count);
 ** \brief Get the specified generic counter count
 **
 ** \par Description
-**        This routine gets the value of a generic counter. 
+**        This routine gets the value of a generic counter.
 **
 ** \par Assumptions, External Events, and Notes:
 **        None.
@@ -1786,11 +1797,11 @@ CFE_Status_t CFE_ES_SetGenCount(CFE_ES_ResourceID_t CounterId, uint32 Count);
 ** \retval #CFE_SUCCESS          \copybrief CFE_SUCCESS
 ** \retval #CFE_ES_BAD_ARGUMENT  \copybrief CFE_ES_BAD_ARGUMENT
 **
-** \sa #CFE_ES_RegisterGenCounter, #CFE_ES_DeleteGenCounter, #CFE_ES_SetGenCount, #CFE_ES_IncrementGenCounter, #CFE_ES_GetGenCounterIDByName
+** \sa #CFE_ES_RegisterGenCounter, #CFE_ES_DeleteGenCounter, #CFE_ES_SetGenCount, #CFE_ES_IncrementGenCounter,
+*#CFE_ES_GetGenCounterIDByName
 **
 ******************************************************************************/
 CFE_Status_t CFE_ES_GetGenCount(CFE_ES_ResourceID_t CounterId, uint32 *Count);
-
 
 /*****************************************************************************/
 /**
@@ -1847,4 +1858,4 @@ CFE_Status_t CFE_ES_GetGenCounterName(char *CounterName, CFE_ES_ResourceID_t Cou
 
 /**@}*/
 
-#endif  /* _cfe_es_ */
+#endif /* _cfe_es_ */

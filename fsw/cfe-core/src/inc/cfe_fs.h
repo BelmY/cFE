@@ -33,7 +33,6 @@
 #ifndef _cfe_fs_
 #define _cfe_fs_
 
-
 /*
 ** Required header files...
 */
@@ -41,7 +40,6 @@
 #include "cfe_error.h"
 #include "common_types.h"
 #include "cfe_time.h"
-
 
 /** @defgroup CFEAPIFSHeader cFE File Header Management APIs
  * @{
@@ -64,7 +62,8 @@
 **                    that is associated with the file whose header is to be read.
 **
 ** \param[in, out] Hdr     Pointer to a variable of type #CFE_FS_Header_t that will be
-**                    filled with the contents of the Standard cFE File Header. *Hdr is the contents of the Standard cFE File Header for the specified file.
+**                    filled with the contents of the Standard cFE File Header. *Hdr is the contents of the Standard cFE
+*File Header for the specified file.
 **
 ** \return Execution status, see \ref CFEReturnCodes
 **
@@ -108,10 +107,12 @@ void CFE_FS_InitHeader(CFE_FS_Header_t *Hdr, const char *Description, uint32 Sub
 **      -# \link #CFE_FS_Header_t::SpacecraftID \c SpacecraftID \endlink - Filled with the Spacecraft ID
 **      -# \link #CFE_FS_Header_t::ProcessorID \c ProcessorID \endlink - Filled with the Processor ID
 **      -# \link #CFE_FS_Header_t::ApplicationID \c ApplicationID \endlink -  Filled with the Application ID
-**      -# \link #CFE_FS_Header_t::TimeSeconds \c TimeSeconds \endlink - Filled with the Time, in seconds, as obtained by #CFE_TIME_GetTime
-**      -# \link #CFE_FS_Header_t::TimeSubSeconds \c TimeSubSeconds \endlink - Filled with the Time, subseconds, as obtained by #CFE_TIME_GetTime
-**        
-**        
+**      -# \link #CFE_FS_Header_t::TimeSeconds \c TimeSeconds \endlink - Filled with the Time, in seconds, as obtained
+*by #CFE_TIME_GetTime
+**      -# \link #CFE_FS_Header_t::TimeSubSeconds \c TimeSubSeconds \endlink - Filled with the Time, subseconds, as
+*obtained by #CFE_TIME_GetTime
+**
+**
 ** \par Assumptions, External Events, and Notes:
 **        -# The File has already been successfully opened using #OS_OpenCreate and
 **           the caller has a legitimate File Descriptor.
@@ -122,7 +123,8 @@ void CFE_FS_InitHeader(CFE_FS_Header_t *Hdr, const char *Description, uint32 Sub
 **                    that is associated with the file whose header is to be read.
 **
 ** \param[in, out] Hdr     Pointer to a variable of type #CFE_FS_Header_t that will be
-**                    filled with the contents of the Standard cFE File Header. *Hdr is the contents of the Standard cFE File Header for the specified file.
+**                    filled with the contents of the Standard cFE File Header. *Hdr is the contents of the Standard cFE
+*File Header for the specified file.
 **
 ** \return Execution status, see \ref CFEReturnCodes
 **
@@ -152,11 +154,10 @@ CFE_Status_t CFE_FS_WriteHeader(osal_id_t FileDes, CFE_FS_Header_t *Hdr);
 **                         to be put into the file's Standard cFE File Header.
 **
 ** \return Execution status, see \ref CFEReturnCodes
-**               
+**
 ******************************************************************************/
 CFE_Status_t CFE_FS_SetTimestamp(osal_id_t FileDes, CFE_TIME_SysTime_t NewTimestamp);
 /**@}*/
-
 
 /** @defgroup CFEAPIFSUtil cFE File Utility APIs
  * @{
@@ -174,7 +175,7 @@ CFE_Status_t CFE_FS_SetTimestamp(osal_id_t FileDes, CFE_TIME_SysTime_t NewTimest
 ** \par Assumptions, External Events, and Notes:
 **        -# The paths and filenames used here are the standard unix style
 **            filenames separated by "/" characters.
-**        -# The extracted filename (including terminator) is no longer than #OS_MAX_PATH_LEN 
+**        -# The extracted filename (including terminator) is no longer than #OS_MAX_PATH_LEN
 **
 ** \param[in] OriginalPath The original path.
 ** \param[out] FileNameOnly The filename that is extracted from the path.

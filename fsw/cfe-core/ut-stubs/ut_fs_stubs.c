@@ -23,7 +23,7 @@
 **
 ** Purpose:
 ** Unit test stubs for File Service routines
-** 
+**
 ** Notes:
 ** Minimal work is done, only what is required for unit testing
 **
@@ -35,7 +35,6 @@
 #include <string.h>
 #include "cfe.h"
 #include "utstubs.h"
-
 
 /*
 ** Functions
@@ -61,7 +60,7 @@ void CFE_FS_InitHeader(CFE_FS_Header_t *Hdr, const char *Description, uint32 Sub
     UT_Stub_RegisterContext(UT_KEY(CFE_FS_InitHeader), Description);
     UT_Stub_RegisterContextGenericArg(UT_KEY(CFE_FS_InitHeader), SubType);
 
-    memset(Hdr,0,sizeof(CFE_FS_Header_t));
+    memset(Hdr, 0, sizeof(CFE_FS_Header_t));
     UT_DEFAULT_IMPL(CFE_FS_InitHeader);
 }
 
@@ -98,7 +97,7 @@ int32 CFE_FS_WriteHeader(osal_id_t FileDes, CFE_FS_Header_t *Hdr)
 
     if (status > 0)
     {
-        UT_Stub_CopyFromLocal(UT_KEY(CFE_FS_WriteHeader), (const uint8*)Hdr, status);
+        UT_Stub_CopyFromLocal(UT_KEY(CFE_FS_WriteHeader), (const uint8 *)Hdr, status);
     }
 
     return status;
@@ -137,7 +136,7 @@ int32 CFE_FS_ReadHeader(CFE_FS_Header_t *Hdr, osal_id_t FileDes)
 
     if (status > 0)
     {
-        UT_Stub_CopyToLocal(UT_KEY(CFE_FS_ReadHeader), (uint8*)Hdr, status);
+        UT_Stub_CopyToLocal(UT_KEY(CFE_FS_ReadHeader), (uint8 *)Hdr, status);
     }
 
     return status;
@@ -199,7 +198,6 @@ int32 CFE_FS_EarlyInit(void)
     return status;
 }
 
-
 /*****************************************************************************/
 /**
 ** \brief CFE_FS_ExtractFilenameFromPath stub function
@@ -227,10 +225,10 @@ int32 CFE_FS_ExtractFilenameFromPath(const char *OriginalPath, char *FileNameOnl
     UT_Stub_RegisterContext(UT_KEY(CFE_FS_ExtractFilenameFromPath), OriginalPath);
     UT_Stub_RegisterContext(UT_KEY(CFE_FS_ExtractFilenameFromPath), FileNameOnly);
 
-    int   i,j;
-    int   StringLength;
-    int   DirMarkIdx;
-    int32 status;
+    int    i, j;
+    int    StringLength;
+    int    DirMarkIdx;
+    int32  status;
     uint32 UserBuffLen;
 
     status = UT_DEFAULT_IMPL(CFE_FS_ExtractFilenameFromPath);
@@ -243,7 +241,8 @@ int32 CFE_FS_ExtractFilenameFromPath(const char *OriginalPath, char *FileNameOnl
         }
         else
         {
-            UserBuffLen = UT_Stub_CopyToLocal(UT_KEY(CFE_FS_ExtractFilenameFromPath), (uint8*)FileNameOnly, OS_MAX_FILE_NAME);
+            UserBuffLen =
+                UT_Stub_CopyToLocal(UT_KEY(CFE_FS_ExtractFilenameFromPath), (uint8 *)FileNameOnly, OS_MAX_FILE_NAME);
 
             if (UserBuffLen >= OS_MAX_FILE_NAME)
             {
@@ -295,12 +294,11 @@ int32 CFE_FS_ExtractFilenameFromPath(const char *OriginalPath, char *FileNameOnl
                 }
                 else
                 {
-                   status = CFE_FS_FNAME_TOO_LONG;
+                    status = CFE_FS_FNAME_TOO_LONG;
                 }
             }
         }
     }
-   
+
     return status;
 }
-

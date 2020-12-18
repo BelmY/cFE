@@ -49,8 +49,8 @@
 /** \cfeescmd Executive Services No-Op
 **
 **  \par Description
-**       This command performs no other function than to increment the 
-**       command execution counter. The command may be used to verify 
+**       This command performs no other function than to increment the
+**       command execution counter. The command may be used to verify
 **       general aliveness of the Executive Services task.
 **
 **  \cfecmdmnemonic \ES_NOOP
@@ -59,17 +59,17 @@
 **       #CFE_ES_NoopCmd_t
 **
 **  \par Command Verification
-**       Successful execution of this command may be verified with the 
+**       Successful execution of this command may be verified with the
 **       following telemetry:
-**       - \b \c \ES_CMDPC - command execution counter will 
+**       - \b \c \ES_CMDPC - command execution counter will
 **         increment
-**       - The #CFE_ES_NOOP_INF_EID informational event message will 
+**       - The #CFE_ES_NOOP_INF_EID informational event message will
 **         be generated
 **
 **  \par Error Conditions
 **       This command may fail for the following reason(s):
 **       - The command packet length is incorrect
-**       
+**
 **       Evidence of failure may be found in the following telemetry:
 **       - \b \c \ES_CMDEC - command error counter will increment
 **       - the #CFE_ES_LEN_ERR_EID error event message will be generated
@@ -77,14 +77,14 @@
 **  \par Criticality
 **       None
 **
-**  \sa 
+**  \sa
 */
-#define CFE_ES_NOOP_CC                 0
+#define CFE_ES_NOOP_CC 0
 
 /** \cfeescmd Executive Services Reset Counters
 **
 **  \par Description
-**       This command resets the following counters within the Executive 
+**       This command resets the following counters within the Executive
 **       Services housekeeping telemetry:
 **       - Command Execution Counter
 **       - Command Error Counter
@@ -95,30 +95,30 @@
 **       #CFE_ES_ResetCountersCmd_t
 **
 **  \par Command Verification
-**       Successful execution of this command may be verified with 
+**       Successful execution of this command may be verified with
 **       the following telemetry:
-**       - \b \c \ES_CMDPC - command execution counter will 
+**       - \b \c \ES_CMDPC - command execution counter will
 **         increment
-**       - The #CFE_ES_RESET_INF_EID informational event message will be 
+**       - The #CFE_ES_RESET_INF_EID informational event message will be
 **         generated
 **
 **  \par Error Conditions
 **       This command may fail for the following reason(s):
 **       - The command packet length is incorrect
-**       
+**
 **       Evidence of failure may be found in the following telemetry:
 **       - \b \c \ES_CMDEC - command error counter will increment
 **       - the #CFE_ES_LEN_ERR_EID error event message will be generated
 **
 **  \par Criticality
-**       This command is not inherently dangerous.  However, it is 
-**       possible for ground systems and on-board safing procedures 
-**       to be designed such that they react to changes in the counter 
+**       This command is not inherently dangerous.  However, it is
+**       possible for ground systems and on-board safing procedures
+**       to be designed such that they react to changes in the counter
 **       values that are reset by this command.
 **
 **  \sa  #CFE_ES_RESET_PR_COUNT_CC
 */
-#define CFE_ES_RESET_COUNTERS_CC                1
+#define CFE_ES_RESET_COUNTERS_CC 1
 
 /** \cfeescmd Executive Services Processor / Power-On Reset
 **
@@ -127,10 +127,10 @@
 **       will cause the cFE to restart as though the power were first applied
 **       to the processor.  The Processor Reset will attempt to retain the contents
 **       of the volatile disk and the contents of the Critical Data Store.
-**       NOTE: If a requested Processor Reset should cause the 
+**       NOTE: If a requested Processor Reset should cause the
 **       Processor Reset Counter (\b \c \ES_PROCRESETCNT)
 **       to exceed OR EQUAL the limit #CFE_PLATFORM_ES_MAX_PROCESSOR_RESETS (which is reported in
-**       housekeeping telemetry as \b \c \ES_MAXPROCRESETS), 
+**       housekeeping telemetry as \b \c \ES_MAXPROCRESETS),
 **       the command is \b AUTOMATICALLY upgraded to a Power-On Reset.
 **
 **  \cfecmdmnemonic \ES_RESET
@@ -139,7 +139,7 @@
 **       #CFE_ES_RestartCmd_t
 **
 **  \par Command Verification
-**       Successful execution of this command (as a Processor Reset)  
+**       Successful execution of this command (as a Processor Reset)
 **       may be verified with the following telemetry:
 **       - \b \c \ES_PROCRESETCNT - processor reset counter will increment
 **       - New entries in the Exception Reset Log and System Log can be found<BR>
@@ -153,8 +153,8 @@
 **       This command may fail for the following reason(s):
 **       - The command packet length is incorrect
 **       - The \link #CFE_ES_RestartCmd_Payload_t Restart Type \endlink was
-**         not a recognized value. 
-**       
+**         not a recognized value.
+**
 **       Evidence of failure may be found in the following telemetry:
 **       - \b \c \ES_CMDEC - command error counter will increment
 **       - the #CFE_ES_BOOT_ERR_EID error event message will be generated
@@ -168,13 +168,12 @@
 **
 **  \sa  #CFE_ES_RESET_PR_COUNT_CC, #CFE_ES_SET_MAX_PR_COUNT_CC
 */
-#define CFE_ES_RESTART_CC              2
-
+#define CFE_ES_RESTART_CC 2
 
 /** \cfeescmd Load and Start an Application
 **
 **  \par Description
-**       This command starts the specified application with the 
+**       This command starts the specified application with the
 **       specified start address, stack size, etc options.
 **
 **  \cfecmdmnemonic \ES_STARTAPP
@@ -183,11 +182,11 @@
 **       #CFE_ES_StartAppCmd_t
 **
 **  \par Command Verification
-**       Successful execution of this command may be verified with 
+**       Successful execution of this command may be verified with
 **       the following telemetry:
-**       - \b \c \ES_CMDPC - command execution counter will 
+**       - \b \c \ES_CMDPC - command execution counter will
 **         increment
-**       - The #CFE_ES_START_INF_EID informational event message will be 
+**       - The #CFE_ES_START_INF_EID informational event message will be
 **         generated
 **
 **  \par Error Conditions
@@ -205,7 +204,7 @@
 **
 **       Evidence of failure may be found in the following telemetry:
 **       - \b \c \ES_CMDEC - command error counter will increment
-**       - A command specific error event message is issued for all error 
+**       - A command specific error event message is issued for all error
 **         cases
 **
 **  \par Criticality
@@ -215,7 +214,7 @@
 **
 **  \sa #CFE_ES_STOP_APP_CC, #CFE_ES_RESTART_APP_CC, #CFE_ES_RELOAD_APP_CC
 */
-#define CFE_ES_START_APP_CC            4
+#define CFE_ES_START_APP_CC 4
 
 /** \cfeescmd Stop and Unload Application
 **
@@ -224,7 +223,7 @@
 **       from the system. \b NOTE: This command should never be used
 **       on the Command Ingest application.  This would prevent further
 **       commands from entering the system.  If Command Ingest needs to
-**       be stopped and restarted, use #CFE_ES_RESTART_APP_CC or 
+**       be stopped and restarted, use #CFE_ES_RESTART_APP_CC or
 **       #CFE_ES_RELOAD_APP_CC.
 **
 **  \cfecmdmnemonic \ES_STOPAPP
@@ -233,16 +232,16 @@
 **       #CFE_ES_StopAppCmd_t
 **
 **  \par Command Verification
-**       Successful execution of this command may be verified with 
+**       Successful execution of this command may be verified with
 **       the following telemetry:
-**       - \b \c \ES_CMDPC - command execution counter will 
+**       - \b \c \ES_CMDPC - command execution counter will
 **         increment
-**       - The #CFE_ES_STOP_DBG_EID debug event message will be 
+**       - The #CFE_ES_STOP_DBG_EID debug event message will be
 **         generated. NOTE: This event message only identifies that the
 **         stop has been started, not that is has completed.
 **       - Once the stop has successfully completed, the list of Applications
-**         and Tasks created in response to the \b \c \ES_WRITEAPPINFO2FILE, 
-**         \b \c \ES_WRITETASKINFO2FILE should no longer contain the 
+**         and Tasks created in response to the \b \c \ES_WRITEAPPINFO2FILE,
+**         \b \c \ES_WRITETASKINFO2FILE should no longer contain the
 **         specified application.
 **
 **  \par Error Conditions
@@ -253,7 +252,7 @@
 **
 **       Evidence of failure may be found in the following telemetry:
 **       - \b \c \ES_CMDEC - command error counter will increment
-**       - A command specific error event message is issued for all error 
+**       - A command specific error event message is issued for all error
 **         cases
 **       - Additional information on the reason for command failure may be found
 **         in the System Log
@@ -265,7 +264,7 @@
 **
 **  \sa #CFE_ES_START_APP_CC, #CFE_ES_RESTART_APP_CC, #CFE_ES_RELOAD_APP_CC
 */
-#define CFE_ES_STOP_APP_CC             5
+#define CFE_ES_STOP_APP_CC 5
 
 /** \cfeescmd Stops and Restarts an Application
 **
@@ -280,11 +279,11 @@
 **       #CFE_ES_RestartAppCmd_t
 **
 **  \par Command Verification
-**       Successful execution of this command may be verified with 
+**       Successful execution of this command may be verified with
 **       the following telemetry:
-**       - \b \c \ES_CMDPC - command execution counter will 
+**       - \b \c \ES_CMDPC - command execution counter will
 **         increment
-**       - The #CFE_ES_RESTART_APP_DBG_EID debug event message will be 
+**       - The #CFE_ES_RESTART_APP_DBG_EID debug event message will be
 **         generated. NOTE: This event message only identifies that the
 **         act of stopping the application has begun, not that is has completed.
 **
@@ -296,7 +295,7 @@
 **
 **       Evidence of failure may be found in the following telemetry:
 **       - \b \c \ES_CMDEC - command error counter will increment
-**       - A command specific error event message is issued for all error 
+**       - A command specific error event message is issued for all error
 **         cases
 **       - Additional information on the reason for command failure may be found
 **         in the System Log
@@ -308,17 +307,17 @@
 **
 **  \sa #CFE_ES_START_APP_CC, #CFE_ES_STOP_APP_CC, #CFE_ES_RELOAD_APP_CC
 */
-#define CFE_ES_RESTART_APP_CC          6
+#define CFE_ES_RESTART_APP_CC 6
 
 /** \cfeescmd Stops, Unloads, Loads from a File and Restarts an Application
 **
 **  \par Description
 **       This command halts and removes the specified Application
 **       from the system.  Then it immediately loads the Application from
-**       the command specified file and restarts it.  This command is 
+**       the command specified file and restarts it.  This command is
 **       especially useful for restarting a Command Ingest Application
 **       since once it has been stopped, no further commands can come in
-**       to restart it.  
+**       to restart it.
 **
 **  \cfecmdmnemonic \ES_RELOADAPP
 **
@@ -326,11 +325,11 @@
 **       #CFE_ES_ReloadAppCmd_t
 **
 **  \par Command Verification
-**       Successful execution of this command may be verified with 
+**       Successful execution of this command may be verified with
 **       the following telemetry:
-**       - \b \c \ES_CMDPC - command execution counter will 
+**       - \b \c \ES_CMDPC - command execution counter will
 **         increment
-**       - The #CFE_ES_RELOAD_APP_DBG_EID debug event message will be 
+**       - The #CFE_ES_RELOAD_APP_DBG_EID debug event message will be
 **         generated. NOTE: This event message only identifies that the
 **         act of stopping the application has begun, not that is has completed.
 **
@@ -342,7 +341,7 @@
 **
 **       Evidence of failure may be found in the following telemetry:
 **       - \b \c \ES_CMDEC - command error counter will increment
-**       - A command specific error event message is issued for all error 
+**       - A command specific error event message is issued for all error
 **         cases
 **       - Additional information on the reason for command failure may be found
 **         in the System Log
@@ -354,7 +353,7 @@
 **
 **  \sa #CFE_ES_START_APP_CC, #CFE_ES_STOP_APP_CC, #CFE_ES_RESTART_APP_CC
 */
-#define CFE_ES_RELOAD_APP_CC           7
+#define CFE_ES_RELOAD_APP_CC 7
 
 /** \cfeescmd Request Executive Services Information on a Specified Application
 **
@@ -368,11 +367,11 @@
 **       #CFE_ES_QueryOneCmd_t
 **
 **  \par Command Verification
-**       Successful execution of this command may be verified with 
+**       Successful execution of this command may be verified with
 **       the following telemetry:
-**       - \b \c \ES_CMDPC - command execution counter will 
+**       - \b \c \ES_CMDPC - command execution counter will
 **         increment
-**       - The #CFE_ES_ONE_APP_EID debug event message will be 
+**       - The #CFE_ES_ONE_APP_EID debug event message will be
 **         generated. NOTE: This event message only identifies that the
 **         act of stopping the application has begun, not that is has completed.
 **       - Receipt of the #CFE_ES_OneAppTlm_t telemetry packet
@@ -384,7 +383,7 @@
 **
 **       Evidence of failure may be found in the following telemetry:
 **       - \b \c \ES_CMDEC - command error counter will increment
-**       - A command specific error event message is issued for all error 
+**       - A command specific error event message is issued for all error
 **         cases
 **
 **  \par Criticality
@@ -392,7 +391,7 @@
 **
 **  \sa #CFE_ES_QUERY_ALL_CC, #CFE_ES_QUERY_ALL_TASKS_CC
 */
-#define CFE_ES_QUERY_ONE_CC            8
+#define CFE_ES_QUERY_ONE_CC 8
 
 /** \cfeescmd Writes all Executive Services Information on All Applications to a File
 **
@@ -406,14 +405,14 @@
 **       #CFE_ES_QueryAllCmd_t
 **
 **  \par Command Verification
-**       Successful execution of this command may be verified with 
+**       Successful execution of this command may be verified with
 **       the following telemetry:
-**       - \b \c \ES_CMDPC - command execution counter will 
+**       - \b \c \ES_CMDPC - command execution counter will
 **         increment
-**       - The #CFE_ES_ALL_APPS_EID debug event message will be 
+**       - The #CFE_ES_ALL_APPS_EID debug event message will be
 **         generated.
 **       - The file specified in the command (or the default specified
-**         by the #CFE_PLATFORM_ES_DEFAULT_APP_LOG_FILE configuration parameter) will be 
+**         by the #CFE_PLATFORM_ES_DEFAULT_APP_LOG_FILE configuration parameter) will be
 **         updated with the lastest information.
 **
 **  \par Error Conditions
@@ -423,18 +422,18 @@
 **
 **       Evidence of failure may be found in the following telemetry:
 **       - \b \c \ES_CMDEC - command error counter will increment
-**       - A command specific error event message is issued for all error 
+**       - A command specific error event message is issued for all error
 **         cases
 **
 **  \par Criticality
-**       This command is not inherently dangerous.  It will create a new 
-**       file in the file system (or overwrite an existing one) and could, 
-**       if performed repeatedly without sufficient file management by the 
+**       This command is not inherently dangerous.  It will create a new
+**       file in the file system (or overwrite an existing one) and could,
+**       if performed repeatedly without sufficient file management by the
 **       operator, fill the file system.
 **
 **  \sa #CFE_ES_QUERY_ONE_CC, #CFE_ES_QUERY_ALL_TASKS_CC
 */
-#define CFE_ES_QUERY_ALL_CC            9
+#define CFE_ES_QUERY_ALL_CC 9
 
 /** \cfeescmd Clear Executive Services System Log
 **
@@ -447,11 +446,11 @@
 **       #CFE_ES_ClearSysLogCmd_t
 **
 **  \par Command Verification
-**       Successful execution of this command may be verified with 
+**       Successful execution of this command may be verified with
 **       the following telemetry:
-**       - \b \c \ES_CMDPC - command execution counter will 
+**       - \b \c \ES_CMDPC - command execution counter will
 **         increment
-**       - The #CFE_ES_SYSLOG1_INF_EID informational event message will be 
+**       - The #CFE_ES_SYSLOG1_INF_EID informational event message will be
 **         generated.
 **       - \b \c \ES_SYSLOGBYTEUSED - System Log Bytes Used will go to zero
 **       - \b \c \ES_SYSLOGENTRIES - Number of System Log Entries will go to zero
@@ -462,7 +461,7 @@
 **
 **       Evidence of failure may be found in the following telemetry:
 **       - \b \c \ES_CMDEC - command error counter will increment
-**       - A command specific error event message is issued for all error 
+**       - A command specific error event message is issued for all error
 **         cases
 **
 **  \par Criticality
@@ -472,7 +471,7 @@
 **  \sa #CFE_ES_WRITE_SYSLOG_CC, #CFE_ES_CLEAR_ER_LOG_CC, #CFE_ES_WRITE_ER_LOG_CC,
 **      #CFE_ES_OVER_WRITE_SYSLOG_CC
 */
-#define CFE_ES_CLEAR_SYSLOG_CC        10  
+#define CFE_ES_CLEAR_SYSLOG_CC 10
 
 /** \cfeescmd Writes contents of Executive Services System Log to a File
 **
@@ -486,14 +485,14 @@
 **       #CFE_ES_WriteSysLogCmd_t
 **
 **  \par Command Verification
-**       Successful execution of this command may be verified with 
+**       Successful execution of this command may be verified with
 **       the following telemetry:
-**       - \b \c \ES_CMDPC - command execution counter will 
+**       - \b \c \ES_CMDPC - command execution counter will
 **         increment
-**       - The #CFE_ES_SYSLOG2_EID debug event message will be 
+**       - The #CFE_ES_SYSLOG2_EID debug event message will be
 **         generated.
 **       - The file specified in the command (or the default specified
-**         by the #CFE_PLATFORM_ES_DEFAULT_SYSLOG_FILE configuration parameter) will be 
+**         by the #CFE_PLATFORM_ES_DEFAULT_SYSLOG_FILE configuration parameter) will be
 **         updated with the lastest information.
 **
 **  \par Error Conditions
@@ -503,19 +502,19 @@
 **
 **       Evidence of failure may be found in the following telemetry:
 **       - \b \c \ES_CMDEC - command error counter will increment
-**       - A command specific error event message is issued for all error 
+**       - A command specific error event message is issued for all error
 **         cases
 **
 **  \par Criticality
-**       This command is not inherently dangerous.  It will create a new 
-**       file in the file system (or overwrite an existing one) and could, 
-**       if performed repeatedly without sufficient file management by the 
+**       This command is not inherently dangerous.  It will create a new
+**       file in the file system (or overwrite an existing one) and could,
+**       if performed repeatedly without sufficient file management by the
 **       operator, fill the file system.
 **
 **  \sa #CFE_ES_CLEAR_SYSLOG_CC, #CFE_ES_CLEAR_ER_LOG_CC, #CFE_ES_WRITE_ER_LOG_CC,
 **      #CFE_ES_OVER_WRITE_SYSLOG_CC
 */
-#define CFE_ES_WRITE_SYSLOG_CC        11  
+#define CFE_ES_WRITE_SYSLOG_CC 11
 
 /** \cfeescmd Clears the contents of the Exeception and Reset Log
 **
@@ -529,11 +528,11 @@
 **       #CFE_ES_ClearERLogCmd_t
 **
 **  \par Command Verification
-**       Successful execution of this command may be verified with 
+**       Successful execution of this command may be verified with
 **       the following telemetry:
-**       - \b \c \ES_CMDPC - command execution counter will 
+**       - \b \c \ES_CMDPC - command execution counter will
 **         increment
-**       - The #CFE_ES_ERLOG1_INF_EID informational event message will be 
+**       - The #CFE_ES_ERLOG1_INF_EID informational event message will be
 **         generated.
 **       - \b \c \ES_ERLOGINDEX - Index into Exception Reset Log goes to zero
 **
@@ -543,7 +542,7 @@
 **
 **       Evidence of failure may be found in the following telemetry:
 **       - \b \c \ES_CMDEC - command error counter will increment
-**       - A command specific error event message is issued for all error 
+**       - A command specific error event message is issued for all error
 **         cases
 **
 **  \par Criticality
@@ -552,7 +551,7 @@
 **
 **  \sa #CFE_ES_CLEAR_SYSLOG_CC, #CFE_ES_WRITE_SYSLOG_CC, #CFE_ES_WRITE_ER_LOG_CC
 */
-#define CFE_ES_CLEAR_ER_LOG_CC         12  
+#define CFE_ES_CLEAR_ER_LOG_CC 12
 
 /** \cfeescmd Writes Exeception and Reset Log to a File
 **
@@ -566,14 +565,14 @@
 **       #CFE_ES_WriteERLogCmd_t
 **
 **  \par Command Verification
-**       Successful execution of this command may be verified with 
+**       Successful execution of this command may be verified with
 **       the following telemetry:
-**       - \b \c \ES_CMDPC - command execution counter will 
+**       - \b \c \ES_CMDPC - command execution counter will
 **         increment
-**       - The #CFE_ES_ERLOG2_EID debug event message will be 
+**       - The #CFE_ES_ERLOG2_EID debug event message will be
 **         generated.
 **       - The file specified in the command (or the default specified
-**         by the #CFE_PLATFORM_ES_DEFAULT_ER_LOG_FILE configuration parameter) will be 
+**         by the #CFE_PLATFORM_ES_DEFAULT_ER_LOG_FILE configuration parameter) will be
 **         updated with the lastest information.
 **
 **  \par Error Conditions
@@ -583,18 +582,18 @@
 **
 **       Evidence of failure may be found in the following telemetry:
 **       - \b \c \ES_CMDEC - command error counter will increment
-**       - A command specific error event message is issued for all error 
+**       - A command specific error event message is issued for all error
 **         cases
 **
 **  \par Criticality
-**       This command is not inherently dangerous.  It will create a new 
-**       file in the file system (or overwrite an existing one) and could, 
-**       if performed repeatedly without sufficient file management by the 
+**       This command is not inherently dangerous.  It will create a new
+**       file in the file system (or overwrite an existing one) and could,
+**       if performed repeatedly without sufficient file management by the
 **       operator, fill the file system.
 **
 **  \sa #CFE_ES_CLEAR_SYSLOG_CC, #CFE_ES_WRITE_SYSLOG_CC, #CFE_ES_CLEAR_ER_LOG_CC
 */
-#define CFE_ES_WRITE_ER_LOG_CC         13  
+#define CFE_ES_WRITE_ER_LOG_CC 13
 
 /** \cfeescmd Start Performance Analyzer
 **
@@ -607,20 +606,20 @@
 **       #CFE_ES_StartPerfDataCmd_t
 **
 **  \par Command Verification
-**       Successful execution of this command may be verified with 
+**       Successful execution of this command may be verified with
 **       the following telemetry:
-**       - \b \c \ES_CMDPC - command execution counter will 
+**       - \b \c \ES_CMDPC - command execution counter will
 **         increment
 **       - \b \c \ES_PERFSTATE - Current performance analyzer state will change to
 **         either WAITING FOR TRIGGER or, if conditions are appropriate fast enough,
 **         TRIGGERED.
-**       - \b \c \ES_PERFMODE - Performance Analyzer Mode will change to the commanded trigger mode (TRIGGER START, 
+**       - \b \c \ES_PERFMODE - Performance Analyzer Mode will change to the commanded trigger mode (TRIGGER START,
 **         TRIGGER CENTER, or TRIGGER END).
 **       - \b \c \ES_PERFTRIGCNT - Performance Trigger Count will go to zero
 **       - \b \c \ES_PERFDATASTART - Data Start Index will go to zero
 **       - \b \c \ES_PERFDATAEND - Data End Index will go to zero
 **       - \b \c \ES_PERFDATACNT - Performance Data Counter will go to zero
-**       - The #CFE_ES_PERF_STARTCMD_EID debug event message will be 
+**       - The #CFE_ES_PERF_STARTCMD_EID debug event message will be
 **         generated.
 **
 **  \par Error Conditions
@@ -631,7 +630,7 @@
 **
 **       Evidence of failure may be found in the following telemetry:
 **       - \b \c \ES_CMDEC - command error counter will increment
-**       - A command specific error event message is issued for all error 
+**       - A command specific error event message is issued for all error
 **         cases
 **
 **  \par Criticality
@@ -640,7 +639,7 @@
 **
 **  \sa #CFE_ES_STOP_PERF_DATA_CC, #CFE_ES_SET_PERF_FILTER_MASK_CC, #CFE_ES_SET_PERF_TRIGGER_MASK_CC
 */
-#define CFE_ES_START_PERF_DATA_CC      14  
+#define CFE_ES_START_PERF_DATA_CC 14
 
 /** \cfeescmd Stop Performance Analyzer
 **
@@ -653,16 +652,16 @@
 **       #CFE_ES_StopPerfDataCmd_t
 **
 **  \par Command Verification
-**       Successful execution of this command may be verified with 
+**       Successful execution of this command may be verified with
 **       the following telemetry:
-**       - \b \c \ES_CMDPC - command execution counter will 
+**       - \b \c \ES_CMDPC - command execution counter will
 **         increment
 **       - \b \c \ES_PERFSTATE - Current performance analyzer state will change to
-**         IDLE. 
-**       - The #CFE_ES_PERF_STOPCMD_EID debug event message will be 
+**         IDLE.
+**       - The #CFE_ES_PERF_STOPCMD_EID debug event message will be
 **         generated.
 **       - The file specified in the command (or the default specified
-**         by the #CFE_PLATFORM_ES_DEFAULT_PERF_DUMP_FILENAME configuration parameter) will be 
+**         by the #CFE_PLATFORM_ES_DEFAULT_PERF_DUMP_FILENAME configuration parameter) will be
 **         updated with the lastest information.
 **
 **  \par Error Conditions
@@ -674,7 +673,7 @@
 **
 **       Evidence of failure may be found in the following telemetry:
 **       - \b \c \ES_CMDEC - command error counter will increment
-**       - A command specific error event message is issued for all error 
+**       - A command specific error event message is issued for all error
 **         cases
 **
 **  \par Criticality
@@ -683,7 +682,7 @@
 **
 **  \sa #CFE_ES_START_PERF_DATA_CC, #CFE_ES_SET_PERF_FILTER_MASK_CC, #CFE_ES_SET_PERF_TRIGGER_MASK_CC
 */
-#define CFE_ES_STOP_PERF_DATA_CC       15                
+#define CFE_ES_STOP_PERF_DATA_CC 15
 
 /** \cfeescmd Set Performance Analyzer's Filter Masks
 **
@@ -696,13 +695,13 @@
 **       #CFE_ES_SetPerfFilterMaskCmd_t
 **
 **  \par Command Verification
-**       Successful execution of this command may be verified with 
+**       Successful execution of this command may be verified with
 **       the following telemetry:
-**       - \b \c \ES_CMDPC - command execution counter will 
+**       - \b \c \ES_CMDPC - command execution counter will
 **         increment
 **       - \b \c \ES_PERFFLTRMASK - the current performance filter mask
 **         value(s) should reflect the commanded value
-**       - The #CFE_ES_PERF_FILTMSKCMD_EID debug event message will be 
+**       - The #CFE_ES_PERF_FILTMSKCMD_EID debug event message will be
 **         generated.
 **
 **  \par Error Conditions
@@ -712,7 +711,7 @@
 **
 **       Evidence of failure may be found in the following telemetry:
 **       - \b \c \ES_CMDEC - command error counter will increment
-**       - A command specific error event message is issued for all error 
+**       - A command specific error event message is issued for all error
 **         cases
 **
 **  \par Criticality
@@ -721,7 +720,7 @@
 **
 **  \sa #CFE_ES_START_PERF_DATA_CC, #CFE_ES_STOP_PERF_DATA_CC, #CFE_ES_SET_PERF_TRIGGER_MASK_CC
 */
-#define CFE_ES_SET_PERF_FILTER_MASK_CC  16  
+#define CFE_ES_SET_PERF_FILTER_MASK_CC 16
 
 /** \cfeescmd Set Performance Analyzer's Trigger Masks
 **
@@ -734,13 +733,13 @@
 **       #CFE_ES_SetPerfTriggerMaskCmd_t
 **
 **  \par Command Verification
-**       Successful execution of this command may be verified with 
+**       Successful execution of this command may be verified with
 **       the following telemetry:
-**       - \b \c \ES_CMDPC - command execution counter will 
+**       - \b \c \ES_CMDPC - command execution counter will
 **         increment
 **       - \b \c \ES_PERFTRIGMASK - the current performance trigger mask
 **         value(s) should reflect the commanded value
-**       - The #CFE_ES_PERF_TRIGMSKCMD_EID debug event message will be 
+**       - The #CFE_ES_PERF_TRIGMSKCMD_EID debug event message will be
 **         generated.
 **
 **  \par Error Conditions
@@ -750,7 +749,7 @@
 **
 **       Evidence of failure may be found in the following telemetry:
 **       - \b \c \ES_CMDEC - command error counter will increment
-**       - A command specific error event message is issued for all error 
+**       - A command specific error event message is issued for all error
 **         cases
 **
 **  \par Criticality
@@ -759,7 +758,7 @@
 **
 **  \sa #CFE_ES_START_PERF_DATA_CC, #CFE_ES_STOP_PERF_DATA_CC, #CFE_ES_SET_PERF_FILTER_MASK_CC
 */
-#define CFE_ES_SET_PERF_TRIGGER_MASK_CC    17  
+#define CFE_ES_SET_PERF_TRIGGER_MASK_CC 17
 
 /** \cfeescmd Set Executive Services System Log Mode to Discard/Overwrite
 **
@@ -774,13 +773,13 @@
 **       #CFE_ES_OverWriteSysLogCmd_t
 **
 **  \par Command Verification
-**       Successful execution of this command may be verified with 
+**       Successful execution of this command may be verified with
 **       the following telemetry:
-**       - \b \c \ES_CMDPC - command execution counter will 
+**       - \b \c \ES_CMDPC - command execution counter will
 **         increment
 **       - \b \c \ES_SYSLOGMODE - Current System Log Mode should reflect
 **         the commanded value
-**       - The #CFE_ES_SYSLOGMODE_EID debug event message will be 
+**       - The #CFE_ES_SYSLOGMODE_EID debug event message will be
 **         generated.
 **
 **  \par Error Conditions
@@ -790,7 +789,7 @@
 **
 **       Evidence of failure may be found in the following telemetry:
 **       - \b \c \ES_CMDEC - command error counter will increment
-**       - A command specific error event message is issued for all error 
+**       - A command specific error event message is issued for all error
 **         cases
 **
 **  \par Criticality
@@ -800,13 +799,13 @@
 **
 **  \sa #CFE_ES_CLEAR_SYSLOG_CC, #CFE_ES_WRITE_SYSLOG_CC
 */
-#define CFE_ES_OVER_WRITE_SYSLOG_CC    18
+#define CFE_ES_OVER_WRITE_SYSLOG_CC 18
 
 /** \cfeescmd Resets the Processor Reset Counter to Zero
 **
 **  \par Description
 **       This command allows the user to reset the Processor Reset Counter to zero.
-**       The Processor Reset Counter counts the number of Processor Resets that 
+**       The Processor Reset Counter counts the number of Processor Resets that
 **       have occurred so as to identify when a Processor Reset should automatically
 **       be upgraded to a full Power-On Reset.
 **
@@ -816,12 +815,12 @@
 **       #CFE_ES_ResetPRCountCmd_t
 **
 **  \par Command Verification
-**       Successful execution of this command may be verified with 
+**       Successful execution of this command may be verified with
 **       the following telemetry:
-**       - \b \c \ES_CMDPC - command execution counter will 
+**       - \b \c \ES_CMDPC - command execution counter will
 **         increment
 **       - \b \c \ES_PROCRESETCNT - Current number of processor resets will go to zero
-**       - The #CFE_ES_RESET_PR_COUNT_EID informational event message will be 
+**       - The #CFE_ES_RESET_PR_COUNT_EID informational event message will be
 **         generated.
 **
 **  \par Error Conditions
@@ -830,7 +829,7 @@
 **
 **       Evidence of failure may be found in the following telemetry:
 **       - \b \c \ES_CMDEC - command error counter will increment
-**       - A command specific error event message is issued for all error 
+**       - A command specific error event message is issued for all error
 **         cases
 **
 **  \par Criticality
@@ -840,7 +839,7 @@
 **
 **  \sa #CFE_ES_SET_MAX_PR_COUNT_CC, #CFE_ES_RESET_COUNTERS_CC
 */
-#define CFE_ES_RESET_PR_COUNT_CC      19
+#define CFE_ES_RESET_PR_COUNT_CC 19
 
 /** \cfeescmd Configure the Maximum Number of Processor Resets before a Power-On Reset
 **
@@ -854,13 +853,13 @@
 **       #CFE_ES_SetMaxPRCountCmd_t
 **
 **  \par Command Verification
-**       Successful execution of this command may be verified with 
+**       Successful execution of this command may be verified with
 **       the following telemetry:
-**       - \b \c \ES_CMDPC - command execution counter will 
+**       - \b \c \ES_CMDPC - command execution counter will
 **         increment
-**       - \b \c \ES_MAXPROCRESETS - Current maximum number of processor resets 
+**       - \b \c \ES_MAXPROCRESETS - Current maximum number of processor resets
 **         before an automatic power-on reset will go to the command specified value.
-**       - The #CFE_ES_SET_MAX_PR_COUNT_EID informational event message will be 
+**       - The #CFE_ES_SET_MAX_PR_COUNT_EID informational event message will be
 **         generated.
 **
 **  \par Error Conditions
@@ -869,7 +868,7 @@
 **
 **       Evidence of failure may be found in the following telemetry:
 **       - \b \c \ES_CMDEC - command error counter will increment
-**       - A command specific error event message is issued for all error 
+**       - A command specific error event message is issued for all error
 **         cases
 **
 **  \par Criticality
@@ -881,7 +880,7 @@
 **
 **  \sa #CFE_ES_RESET_PR_COUNT_CC
 */
-#define CFE_ES_SET_MAX_PR_COUNT_CC    20
+#define CFE_ES_SET_MAX_PR_COUNT_CC 20
 
 /** \cfeescmd Delete Critical Data Store
 **
@@ -895,11 +894,11 @@
 **       #CFE_ES_DeleteCDSCmd_t
 **
 **  \par Command Verification
-**       Successful execution of this command may be verified with 
+**       Successful execution of this command may be verified with
 **       the following telemetry:
-**       - \b \c \ES_CMDPC - command execution counter will 
+**       - \b \c \ES_CMDPC - command execution counter will
 **         increment
-**       - The #CFE_ES_CDS_DELETED_INFO_EID informational event message will be 
+**       - The #CFE_ES_CDS_DELETED_INFO_EID informational event message will be
 **         generated.
 **       - The specified CDS should no longer appear in a CDS Registry dump generated
 **         upon receipt of the #CFE_ES_DUMP_CDS_REGISTRY_CC command
@@ -914,7 +913,7 @@
 **
 **       Evidence of failure may be found in the following telemetry:
 **       - \b \c \ES_CMDEC - command error counter will increment
-**       - A command specific error event message is issued for all error 
+**       - A command specific error event message is issued for all error
 **         cases
 **
 **  \par Criticality
@@ -924,7 +923,7 @@
 **
 **  \sa #CFE_ES_DUMP_CDS_REGISTRY_CC, #CFE_TBL_DELETE_CDS_CC
 */
-#define CFE_ES_DELETE_CDS_CC          21
+#define CFE_ES_DELETE_CDS_CC 21
 
 /** \cfeescmd Telemeter Memory Pool Statistics
 **
@@ -938,11 +937,11 @@
 **       #CFE_ES_SendMemPoolStatsCmd_t
 **
 **  \par Command Verification
-**       Successful execution of this command may be verified with 
+**       Successful execution of this command may be verified with
 **       the following telemetry:
-**       - \b \c \ES_CMDPC - command execution counter will 
+**       - \b \c \ES_CMDPC - command execution counter will
 **         increment
-**       - The #CFE_ES_TLM_POOL_STATS_INFO_EID debug event message will be 
+**       - The #CFE_ES_TLM_POOL_STATS_INFO_EID debug event message will be
 **         generated.
 **       - The \link #CFE_ES_MemStatsTlm_t Memory Pool Statistics Telemetry Packet \endlink
 **         is produced
@@ -956,7 +955,7 @@
 **
 **       Evidence of failure may be found in the following telemetry:
 **       - \b \c \ES_CMDEC - command error counter will increment
-**       - A command specific error event message is issued for all error 
+**       - A command specific error event message is issued for all error
 **         cases
 **
 **  \par Criticality
@@ -964,9 +963,9 @@
 **       Extreme care should be taken to ensure the memory handle value
 **       used in the command is correct.
 **
-**  \sa 
+**  \sa
 */
-#define CFE_ES_SEND_MEM_POOL_STATS_CC      22
+#define CFE_ES_SEND_MEM_POOL_STATS_CC 22
 
 /** \cfeescmd Dump Critical Data Store Registry to a File
 **
@@ -980,14 +979,14 @@
 **       #CFE_ES_DumpCDSRegistryCmd_t
 **
 **  \par Command Verification
-**       Successful execution of this command may be verified with 
+**       Successful execution of this command may be verified with
 **       the following telemetry:
-**       - \b \c \ES_CMDPC - command execution counter will 
+**       - \b \c \ES_CMDPC - command execution counter will
 **         increment
-**       - The #CFE_ES_CDS_REG_DUMP_INF_EID debug event message will be 
+**       - The #CFE_ES_CDS_REG_DUMP_INF_EID debug event message will be
 **         generated.
 **       - The file specified in the command (or the default specified
-**         by the #CFE_PLATFORM_ES_DEFAULT_CDS_REG_DUMP_FILE configuration parameter) will be 
+**         by the #CFE_PLATFORM_ES_DEFAULT_CDS_REG_DUMP_FILE configuration parameter) will be
 **         updated with the lastest information.
 **
 **  \par Error Conditions
@@ -996,18 +995,18 @@
 **
 **       Evidence of failure may be found in the following telemetry:
 **       - \b \c \ES_CMDEC - command error counter will increment
-**       - A command specific error event message is issued for all error 
+**       - A command specific error event message is issued for all error
 **         cases
 **
 **  \par Criticality
-**       This command is not inherently dangerous.  It will create a new 
-**       file in the file system (or overwrite an existing one) and could, 
-**       if performed repeatedly without sufficient file management by the 
+**       This command is not inherently dangerous.  It will create a new
+**       file in the file system (or overwrite an existing one) and could,
+**       if performed repeatedly without sufficient file management by the
 **       operator, fill the file system.
 **
 **  \sa  #CFE_ES_DELETE_CDS_CC, #CFE_TBL_DELETE_CDS_CC
 */
-#define CFE_ES_DUMP_CDS_REGISTRY_CC        23
+#define CFE_ES_DUMP_CDS_REGISTRY_CC 23
 
 /** \cfeescmd Writes a list of All Executive Services Tasks to a File
 **
@@ -1021,14 +1020,14 @@
 **       #CFE_ES_QueryAllTasksCmd_t
 **
 **  \par Command Verification
-**       Successful execution of this command may be verified with 
+**       Successful execution of this command may be verified with
 **       the following telemetry:
-**       - \b \c \ES_CMDPC - command execution counter will 
+**       - \b \c \ES_CMDPC - command execution counter will
 **         increment
-**       - The #CFE_ES_TASKINFO_EID debug event message will be 
+**       - The #CFE_ES_TASKINFO_EID debug event message will be
 **         generated.
 **       - The file specified in the command (or the default specified
-**         by the #CFE_PLATFORM_ES_DEFAULT_TASK_LOG_FILE configuration parameter) will be 
+**         by the #CFE_PLATFORM_ES_DEFAULT_TASK_LOG_FILE configuration parameter) will be
 **         updated with the lastest information.
 **
 **  \par Error Conditions
@@ -1038,22 +1037,20 @@
 **
 **       Evidence of failure may be found in the following telemetry:
 **       - \b \c \ES_CMDEC - command error counter will increment
-**       - A command specific error event message is issued for all error 
+**       - A command specific error event message is issued for all error
 **         cases
 **
 **  \par Criticality
-**       This command is not inherently dangerous.  It will create a new 
-**       file in the file system (or overwrite an existing one) and could, 
-**       if performed repeatedly without sufficient file management by the 
+**       This command is not inherently dangerous.  It will create a new
+**       file in the file system (or overwrite an existing one) and could,
+**       if performed repeatedly without sufficient file management by the
 **       operator, fill the file system.
 **
 **  \sa #CFE_ES_QUERY_ALL_CC, CFE_ES_QUERY_ONE_CC
 */
-#define CFE_ES_QUERY_ALL_TASKS_CC     24
-
+#define CFE_ES_QUERY_ALL_TASKS_CC 24
 
 /** \} */
-
 
 /*************************************************************************/
 /********************************/
@@ -1094,8 +1091,8 @@ typedef CFE_ES_NoArgsCmd_t CFE_ES_ResetPRCountCmd_t;
 **/
 typedef struct CFE_ES_RestartCmd_Payload
 {
-  uint16                RestartType;                       /**< \brief #CFE_PSP_RST_TYPE_PROCESSOR=Processor Reset
-                                                                or #CFE_PSP_RST_TYPE_POWERON=Power-On Reset        */
+    uint16 RestartType; /**< \brief #CFE_PSP_RST_TYPE_PROCESSOR=Processor Reset
+                             or #CFE_PSP_RST_TYPE_POWERON=Power-On Reset        */
 } CFE_ES_RestartCmd_Payload_t;
 
 /**
@@ -1117,8 +1114,8 @@ typedef struct CFE_ES_RestartCmd
 **/
 typedef struct CFE_ES_FileNameCmd_Payload
 {
-  char                  FileName[CFE_MISSION_MAX_PATH_LEN]; /**< \brief ASCII text string containing full path and
-                                                                filename of file in which Application data is to be dumped */
+    char FileName[CFE_MISSION_MAX_PATH_LEN]; /**< \brief ASCII text string containing full path and
+                                                 filename of file in which Application data is to be dumped */
 } CFE_ES_FileNameCmd_Payload_t;
 
 /**
@@ -1131,7 +1128,7 @@ typedef struct CFE_ES_FileNameCmd
 } CFE_ES_FileNameCmd_t;
 
 /*
- * Unique typedefs for each of the commands that utilize the FileNameCmd 
+ * Unique typedefs for each of the commands that utilize the FileNameCmd
  * packet format
  */
 typedef CFE_ES_FileNameCmd_t CFE_ES_QueryAllCmd_t;
@@ -1147,8 +1144,8 @@ typedef CFE_ES_FileNameCmd_t CFE_ES_WriteERLogCmd_t;
 **/
 typedef struct CFE_ES_OverWriteSysLogCmd_Payload
 {
-   uint32               Mode;                            /**< \brief #CFE_ES_LogMode_DISCARD=Throw away most recent messages,
-                                                                     #CFE_ES_LogMode_OVERWRITE=Overwrite oldest with most recent */
+    uint32 Mode; /**< \brief #CFE_ES_LogMode_DISCARD=Throw away most recent messages,
+                             #CFE_ES_LogMode_OVERWRITE=Overwrite oldest with most recent */
 
 } CFE_ES_OverWriteSysLogCmd_Payload_t;
 
@@ -1169,18 +1166,18 @@ typedef struct CFE_ES_OverWriteSysLogCmd
 **/
 typedef struct CFE_ES_StartAppCmd_Payload
 {
-  char                  Application[CFE_MISSION_MAX_API_LEN];    /**< \brief Name of Application to be started */
-  char                  AppEntryPoint[CFE_MISSION_MAX_API_LEN];  /**< \brief Symbolic name of Application's entry point */
-  char                  AppFileName[CFE_MISSION_MAX_PATH_LEN];    /**< \brief Full path and filename of Application's 
-                                                                     executable image */
+    char Application[CFE_MISSION_MAX_API_LEN];   /**< \brief Name of Application to be started */
+    char AppEntryPoint[CFE_MISSION_MAX_API_LEN]; /**< \brief Symbolic name of Application's entry point */
+    char AppFileName[CFE_MISSION_MAX_PATH_LEN];  /**< \brief Full path and filename of Application's
+                                                    executable image */
 
-  CFE_ES_MemOffset_t            StackSize;                       /**< \brief Desired stack size for the new application */
+    CFE_ES_MemOffset_t StackSize; /**< \brief Desired stack size for the new application */
 
-  CFE_ES_ExceptionAction_Enum_t ExceptionAction;                 /**< \brief #CFE_ES_ExceptionAction_RESTART_APP=On exception,
-                                                                     restart Application,
-                                                                     #CFE_ES_ExceptionAction_PROC_RESTART=On exception,
-                                                                     perform a Processor Reset */
-  CFE_ES_TaskPriority_Atom_t    Priority;                        /**< \brief The new Applications runtime priority. */
+    CFE_ES_ExceptionAction_Enum_t ExceptionAction; /**< \brief #CFE_ES_ExceptionAction_RESTART_APP=On exception,
+                                                       restart Application,
+                                                       #CFE_ES_ExceptionAction_PROC_RESTART=On exception,
+                                                       perform a Processor Reset */
+    CFE_ES_TaskPriority_Atom_t Priority;           /**< \brief The new Applications runtime priority. */
 
 } CFE_ES_StartAppCmd_Payload_t;
 
@@ -1201,7 +1198,7 @@ typedef struct CFE_ES_StartApp
 **/
 typedef struct CFE_ES_AppNameCmd_Payload
 {
-  char                  Application[CFE_MISSION_MAX_API_LEN];    /**< \brief ASCII text string containing Application Name */
+    char Application[CFE_MISSION_MAX_API_LEN]; /**< \brief ASCII text string containing Application Name */
 } CFE_ES_AppNameCmd_Payload_t;
 
 /**
@@ -1230,9 +1227,9 @@ typedef CFE_ES_AppNameCmd_t CFE_ES_QueryOneCmd_t;
 **/
 typedef struct CFE_ES_AppReloadCmd_Payload
 {
-  char                  Application[CFE_MISSION_MAX_API_LEN];   /**< \brief ASCII text string containing Application Name */
-  char                  AppFileName[CFE_MISSION_MAX_PATH_LEN];   /**< \brief Full path and filename of Application's 
-                                                                    executable image */
+    char Application[CFE_MISSION_MAX_API_LEN];  /**< \brief ASCII text string containing Application Name */
+    char AppFileName[CFE_MISSION_MAX_PATH_LEN]; /**< \brief Full path and filename of Application's
+                                                   executable image */
 } CFE_ES_AppReloadCmd_Payload_t;
 
 /**
@@ -1252,8 +1249,8 @@ typedef struct CFE_ES_ReloadAppCmd
 **/
 typedef struct CFE_ES_SetMaxPRCountCmd_Payload
 {
-  uint16                MaxPRCount;                     /**< \brief New maximum number of Processor Resets before
-                                                                    an automatic Power-On Reset is performed */
+    uint16 MaxPRCount; /**< \brief New maximum number of Processor Resets before
+                                   an automatic Power-On Reset is performed */
 } CFE_ES_SetMaxPRCountCmd_Payload_t;
 
 /**
@@ -1273,7 +1270,8 @@ typedef struct CFE_ES_SetMaxPRCountCmd
 **/
 typedef struct CFE_ES_DeleteCDSCmd_Payload
 {
-  char                  CdsName[CFE_MISSION_ES_CDS_MAX_FULL_NAME_LEN]; /**< \brief ASCII text string containing name of CDS to delete */
+    char
+        CdsName[CFE_MISSION_ES_CDS_MAX_FULL_NAME_LEN]; /**< \brief ASCII text string containing name of CDS to delete */
 
 } CFE_ES_DeleteCDSCmd_Payload_t;
 
@@ -1294,7 +1292,7 @@ typedef struct CFE_ES_DeleteCDSCmd
 **/
 typedef struct CFE_ES_StartPerfCmd_Payload
 {
-  uint32                TriggerMode;                    /**< \brief Desired trigger position (Start, Center, End) */
+    uint32 TriggerMode; /**< \brief Desired trigger position (Start, Center, End) */
 } CFE_ES_StartPerfCmd_Payload_t;
 
 /**
@@ -1314,8 +1312,8 @@ typedef struct CFE_ES_StartPerfDataCmd
 **/
 typedef struct CFE_ES_StopPerfCmd_Payload
 {
-  char                  DataFileName[CFE_MISSION_MAX_PATH_LEN];  /**< \brief ASCII text string of full path and filename 
-                                                                    of file Performance Analyzer data is to be written */
+    char DataFileName[CFE_MISSION_MAX_PATH_LEN]; /**< \brief ASCII text string of full path and filename
+                                                    of file Performance Analyzer data is to be written */
 } CFE_ES_StopPerfCmd_Payload_t;
 
 /**
@@ -1327,7 +1325,6 @@ typedef struct CFE_ES_StopPerfDataCmd
     CFE_ES_StopPerfCmd_Payload_t Payload;   /**< \brief Command payload */
 } CFE_ES_StopPerfDataCmd_t;
 
-
 /**
 ** \brief Set Performance Analyzer Filter Mask Command Payload
 **
@@ -1336,8 +1333,8 @@ typedef struct CFE_ES_StopPerfDataCmd
 **/
 typedef struct CFE_ES_SetPerfFilterMaskCmd_Payload
 {
-  uint32                FilterMaskNum;                   /**< \brief Index into array of Filter Masks */
-  uint32                FilterMask;                      /**< \brief New Mask for specified entry in array of Filter Masks */
+    uint32 FilterMaskNum; /**< \brief Index into array of Filter Masks */
+    uint32 FilterMask;    /**< \brief New Mask for specified entry in array of Filter Masks */
 
 } CFE_ES_SetPerfFilterMaskCmd_Payload_t;
 
@@ -1358,8 +1355,8 @@ typedef struct CFE_ES_SetPerfFilterMaskCmd
 **/
 typedef struct CFE_ES_SetPerfTrigMaskCmd_Payload
 {
-  uint32                TriggerMaskNum;                 /**< \brief Index into array of Trigger Masks */
-  uint32                TriggerMask;                    /**< \brief New Mask for specified entry in array of Trigger Masks */
+    uint32 TriggerMaskNum; /**< \brief Index into array of Trigger Masks */
+    uint32 TriggerMask;    /**< \brief New Mask for specified entry in array of Trigger Masks */
 
 } CFE_ES_SetPerfTrigMaskCmd_Payload_t;
 
@@ -1380,8 +1377,8 @@ typedef struct CFE_ES_SetPerfTriggerMaskCmd
 **/
 typedef struct CFE_ES_SendMemPoolStatsCmd_Payload
 {
-  char                  Application[CFE_MISSION_MAX_API_LEN];   /**< \brief - RESERVED - should be all zeroes */
-  CFE_ES_MemHandle_t    PoolHandle;                     /**< \brief Handle of Pool whose statistics are to be telemetered */
+    char               Application[CFE_MISSION_MAX_API_LEN]; /**< \brief - RESERVED - should be all zeroes */
+    CFE_ES_MemHandle_t PoolHandle; /**< \brief Handle of Pool whose statistics are to be telemetered */
 
 } CFE_ES_SendMemPoolStatsCmd_Payload_t;
 
@@ -1402,8 +1399,8 @@ typedef struct CFE_ES_SendMemPoolStatsCmd
 **/
 typedef struct CFE_ES_DumpCDSRegistryCmd_Payload
 {
-  char                  DumpFilename[CFE_MISSION_MAX_PATH_LEN];  /**< \brief ASCII text string of full path and filename 
-                                                                    of file CDS Registry is to be written */
+    char DumpFilename[CFE_MISSION_MAX_PATH_LEN]; /**< \brief ASCII text string of full path and filename
+                                                    of file CDS Registry is to be written */
 } CFE_ES_DumpCDSRegistryCmd_Payload_t;
 
 /**
@@ -1429,49 +1426,49 @@ typedef struct CFE_ES_DumpCDSRegistryCmd
  */
 typedef struct CFE_ES_AppInfo
 {
-   CFE_ES_ResourceID_t   AppId;                /**< \cfetlmmnemonic \ES_APP_ID
-                                                    \brief Application ID for this Application */
-   uint32   Type;                              /**< \cfetlmmnemonic \ES_APPTYPE
-                                                    \brief The type of App: CORE or EXTERNAL */
+    CFE_ES_ResourceID_t AppId; /**< \cfetlmmnemonic \ES_APP_ID
+                                    \brief Application ID for this Application */
+    uint32 Type;               /**< \cfetlmmnemonic \ES_APPTYPE
+                                    \brief The type of App: CORE or EXTERNAL */
 
-   char Name[CFE_MISSION_MAX_API_LEN];         /**< \cfetlmmnemonic \ES_APPNAME
-                                                    \brief The Registered Name of the Application */
-   char EntryPoint[CFE_MISSION_MAX_API_LEN];   /**< \cfetlmmnemonic \ES_APPENTRYPT
-                                                    \brief The Entry Point label for the Application */
-   char FileName[CFE_MISSION_MAX_PATH_LEN];    /**< \cfetlmmnemonic \ES_APPFILENAME
-                                                    \brief The Filename of the file containing the Application */
+    char Name[CFE_MISSION_MAX_API_LEN];       /**< \cfetlmmnemonic \ES_APPNAME
+                                                   \brief The Registered Name of the Application */
+    char EntryPoint[CFE_MISSION_MAX_API_LEN]; /**< \cfetlmmnemonic \ES_APPENTRYPT
+                                                   \brief The Entry Point label for the Application */
+    char FileName[CFE_MISSION_MAX_PATH_LEN];  /**< \cfetlmmnemonic \ES_APPFILENAME
+                                                   \brief The Filename of the file containing the Application */
 
-   CFE_ES_MemOffset_t   StackSize;             /**< \cfetlmmnemonic \ES_STACKSIZE
-                                                    \brief The Stack Size of the Application */
-   uint32   AddressesAreValid;                 /**< \cfetlmmnemonic \ES_ADDRVALID
-                                                    \brief Indicates that the Code, Data, and BSS addresses/sizes are valid */
-   CFE_ES_MemAddress_t CodeAddress;            /**< \cfetlmmnemonic \ES_CODEADDR
-                                                    \brief The Address of the Application Code Segment*/
-   CFE_ES_MemOffset_t  CodeSize;               /**< \cfetlmmnemonic \ES_CODESIZE
-                                                    \brief The Code Size of the Application */
-   CFE_ES_MemAddress_t DataAddress;            /**< \cfetlmmnemonic \ES_DATAADDR
-                                                    \brief The Address of the Application Data Segment*/
-   CFE_ES_MemOffset_t  DataSize;               /**< \cfetlmmnemonic \ES_DATASIZE
-                                                    \brief The Data Size of the Application */
-   CFE_ES_MemAddress_t BSSAddress;             /**< \cfetlmmnemonic \ES_BSSADDR
-                                                    \brief The Address of the Application BSS Segment*/
-   CFE_ES_MemOffset_t  BSSSize;                /**< \cfetlmmnemonic \ES_BSSSIZE
-                                                    \brief The BSS Size of the Application */
-   CFE_ES_MemAddress_t StartAddress;           /**< \cfetlmmnemonic \ES_STARTADDR
-                                                    \brief The Start Address of the Application */
-   CFE_ES_ExceptionAction_Enum_t ExceptionAction;   /**< \cfetlmmnemonic \ES_EXCEPTNACTN
-                                                    \brief What should occur if Application has an exception
-                                                    (Restart Application OR Restart Processor) */
-   CFE_ES_TaskPriority_Atom_t   Priority;        /**< \cfetlmmnemonic \ES_PRIORITY
-                                                    \brief The Priority of the Application */
-   CFE_ES_ResourceID_t   MainTaskId;           /**< \cfetlmmnemonic \ES_MAINTASKID
-                                                    \brief The Application's Main Task ID */
-   uint32   ExecutionCounter;                  /**< \cfetlmmnemonic \ES_MAINTASKEXECNT
-                                                    \brief The Application's Main Task Execution Counter */
-   char MainTaskName[CFE_MISSION_MAX_API_LEN]; /**< \cfetlmmnemonic \ES_MAINTASKNAME
-                                                    \brief The Application's Main Task ID */
-   uint32   NumOfChildTasks;                   /**< \cfetlmmnemonic \ES_CHILDTASKS
-                                                    \brief Number of Child tasks for an App */
+    CFE_ES_MemOffset_t StackSize;                  /**< \cfetlmmnemonic \ES_STACKSIZE
+                                                        \brief The Stack Size of the Application */
+    uint32 AddressesAreValid;                      /**< \cfetlmmnemonic \ES_ADDRVALID
+                                                        \brief Indicates that the Code, Data, and BSS addresses/sizes are valid */
+    CFE_ES_MemAddress_t CodeAddress;               /**< \cfetlmmnemonic \ES_CODEADDR
+                                                        \brief The Address of the Application Code Segment*/
+    CFE_ES_MemOffset_t CodeSize;                   /**< \cfetlmmnemonic \ES_CODESIZE
+                                                        \brief The Code Size of the Application */
+    CFE_ES_MemAddress_t DataAddress;               /**< \cfetlmmnemonic \ES_DATAADDR
+                                                        \brief The Address of the Application Data Segment*/
+    CFE_ES_MemOffset_t DataSize;                   /**< \cfetlmmnemonic \ES_DATASIZE
+                                                        \brief The Data Size of the Application */
+    CFE_ES_MemAddress_t BSSAddress;                /**< \cfetlmmnemonic \ES_BSSADDR
+                                                        \brief The Address of the Application BSS Segment*/
+    CFE_ES_MemOffset_t BSSSize;                    /**< \cfetlmmnemonic \ES_BSSSIZE
+                                                        \brief The BSS Size of the Application */
+    CFE_ES_MemAddress_t StartAddress;              /**< \cfetlmmnemonic \ES_STARTADDR
+                                                        \brief The Start Address of the Application */
+    CFE_ES_ExceptionAction_Enum_t ExceptionAction; /**< \cfetlmmnemonic \ES_EXCEPTNACTN
+                                                   \brief What should occur if Application has an exception
+                                                   (Restart Application OR Restart Processor) */
+    CFE_ES_TaskPriority_Atom_t Priority;           /**< \cfetlmmnemonic \ES_PRIORITY
+                                                      \brief The Priority of the Application */
+    CFE_ES_ResourceID_t MainTaskId;                /**< \cfetlmmnemonic \ES_MAINTASKID
+                                                        \brief The Application's Main Task ID */
+    uint32 ExecutionCounter;                       /**< \cfetlmmnemonic \ES_MAINTASKEXECNT
+                                                        \brief The Application's Main Task Execution Counter */
+    char MainTaskName[CFE_MISSION_MAX_API_LEN];    /**< \cfetlmmnemonic \ES_MAINTASKNAME
+                                                        \brief The Application's Main Task ID */
+    uint32 NumOfChildTasks;                        /**< \cfetlmmnemonic \ES_CHILDTASKS
+                                                        \brief Number of Child tasks for an App */
 
 } CFE_ES_AppInfo_t;
 
@@ -1488,11 +1485,11 @@ typedef struct CFE_ES_AppInfo
  */
 typedef struct CFE_ES_TaskInfo
 {
-   CFE_ES_ResourceID_t TaskId;                            /**< \brief Task Id */
-   uint32              ExecutionCounter;                  /**< \brief Task Execution Counter */
-   char                TaskName[CFE_MISSION_MAX_API_LEN]; /**< \brief Task Name */
-   CFE_ES_ResourceID_t AppId;                             /**< \brief Parent Application ID */
-   char                AppName[CFE_MISSION_MAX_API_LEN];  /**< \brief Parent Application Name */
+    CFE_ES_ResourceID_t TaskId;                            /**< \brief Task Id */
+    uint32              ExecutionCounter;                  /**< \brief Task Execution Counter */
+    char                TaskName[CFE_MISSION_MAX_API_LEN]; /**< \brief Task Name */
+    CFE_ES_ResourceID_t AppId;                             /**< \brief Parent Application ID */
+    char                AppName[CFE_MISSION_MAX_API_LEN];  /**< \brief Parent Application Name */
 } CFE_ES_TaskInfo_t;
 
 /**
@@ -1509,11 +1506,11 @@ typedef struct CFE_ES_TaskInfo
  */
 typedef struct CFE_ES_CDSRegDumpRec
 {
-    CFE_ES_CDSHandle_t    Handle;          /**< \brief Handle of CDS */
-    CFE_ES_MemOffset_t    Size;            /**< \brief Size, in bytes, of the CDS memory block */
-    bool                  Table;           /**< \brief Flag that indicates whether CDS contains a Critical Table */
-    char                  Name[CFE_MISSION_ES_CDS_MAX_FULL_NAME_LEN]; /**< \brief Processor Unique Name of CDS */
-    uint8                 ByteAlignSpare[3]; /**< \brief Spare bytes to ensure structure size is multiple of 4 bytes */
+    CFE_ES_CDSHandle_t Handle; /**< \brief Handle of CDS */
+    CFE_ES_MemOffset_t Size;   /**< \brief Size, in bytes, of the CDS memory block */
+    bool               Table;  /**< \brief Flag that indicates whether CDS contains a Critical Table */
+    char               Name[CFE_MISSION_ES_CDS_MAX_FULL_NAME_LEN]; /**< \brief Processor Unique Name of CDS */
+    uint8              ByteAlignSpare[3]; /**< \brief Spare bytes to ensure structure size is multiple of 4 bytes */
 } CFE_ES_CDSRegDumpRec_t;
 
 /**
@@ -1524,9 +1521,9 @@ typedef struct CFE_ES_CDSRegDumpRec
  */
 typedef struct CFE_ES_BlockStats
 {
-    CFE_ES_MemOffset_t BlockSize;    /**< \brief Number of bytes in each of these blocks */
-    uint32  NumCreated;              /**< \brief Number of Memory Blocks of this size created */
-    uint32  NumFree;                 /**< \brief Number of Memory Blocks of this size that are free */
+    CFE_ES_MemOffset_t BlockSize;  /**< \brief Number of bytes in each of these blocks */
+    uint32             NumCreated; /**< \brief Number of Memory Blocks of this size created */
+    uint32             NumFree;    /**< \brief Number of Memory Blocks of this size that are free */
 } CFE_ES_BlockStats_t;
 
 /**
@@ -1539,29 +1536,28 @@ typedef struct CFE_ES_BlockStats
  */
 typedef struct CFE_ES_MemPoolStats
 {
-    CFE_ES_MemOffset_t    PoolSize;                /**< \cfetlmmnemonic \ES_POOLSIZE
-                                                        \brief  Size of Memory Pool (in bytes) */
-    uint32                NumBlocksRequested;      /**< \cfetlmmnemonic \ES_BLKSREQ
-                                                        \brief Number of times a memory block has been allocated */
-    uint32                CheckErrCtr;             /**< \cfetlmmnemonic \ES_BLKERRCTR
-                                                        \brief Number of errors detected when freeing a memory block */
-    CFE_ES_MemOffset_t    NumFreeBytes;            /**< \cfetlmmnemonic \ES_FREEBYTES
-                                                        \brief Number of bytes never allocated to a block */
-    CFE_ES_BlockStats_t   BlockStats[CFE_MISSION_ES_POOL_MAX_BUCKETS]; /**< \cfetlmmnemonic \ES_BLKSTATS
-                                                                            \brief Contains stats on each block size */
+    CFE_ES_MemOffset_t PoolSize;                                     /**< \cfetlmmnemonic \ES_POOLSIZE
+                                                                          \brief  Size of Memory Pool (in bytes) */
+    uint32 NumBlocksRequested;                                       /**< \cfetlmmnemonic \ES_BLKSREQ
+                                                                          \brief Number of times a memory block has been allocated */
+    uint32 CheckErrCtr;                                              /**< \cfetlmmnemonic \ES_BLKERRCTR
+                                                                          \brief Number of errors detected when freeing a memory block */
+    CFE_ES_MemOffset_t NumFreeBytes;                                 /**< \cfetlmmnemonic \ES_FREEBYTES
+                                                                          \brief Number of bytes never allocated to a block */
+    CFE_ES_BlockStats_t BlockStats[CFE_MISSION_ES_POOL_MAX_BUCKETS]; /**< \cfetlmmnemonic \ES_BLKSTATS
+                                                                          \brief Contains stats on each block size */
 } CFE_ES_MemPoolStats_t;
-
 
 /**********************************/
 /* Telemetry Message Data Formats */
 /**********************************/
-/** 
+/**
 **  \cfeestlm Single Application Information Packet
 **/
 typedef struct CFE_ES_OneAppTlm_Payload
 {
-  CFE_ES_AppInfo_t      AppInfo;                        /**< \brief For more information, see #CFE_ES_AppInfo_t */
-  
+    CFE_ES_AppInfo_t AppInfo; /**< \brief For more information, see #CFE_ES_AppInfo_t */
+
 } CFE_ES_OneAppTlm_Payload_t;
 
 typedef struct CFE_ES_OneAppTlm
@@ -1570,14 +1566,14 @@ typedef struct CFE_ES_OneAppTlm
     CFE_ES_OneAppTlm_Payload_t Payload;   /**< \brief Telemetry payload */
 } CFE_ES_OneAppTlm_t;
 
-/** 
+/**
 **  \cfeestlm Memory Pool Statistics Packet
 **/
 typedef struct CFE_ES_PoolStatsTlm_Payload
 {
-  CFE_ES_MemHandle_t    PoolHandle;                     /**< \cfetlmmnemonic \ES_POOLHANDLE
-                                                             \brief Handle of memory pool whose stats are being telemetered */
-  CFE_ES_MemPoolStats_t PoolStats;                      /**< \brief For more info, see #CFE_ES_MemPoolStats_t */
+    CFE_ES_MemHandle_t PoolHandle;   /**< \cfetlmmnemonic \ES_POOLHANDLE
+                                          \brief Handle of memory pool whose stats are being telemetered */
+    CFE_ES_MemPoolStats_t PoolStats; /**< \brief For more info, see #CFE_ES_MemPoolStats_t */
 } CFE_ES_PoolStatsTlm_Payload_t;
 
 typedef struct CFE_ES_MemStatsTlm
@@ -1588,106 +1584,106 @@ typedef struct CFE_ES_MemStatsTlm
 
 /*************************************************************************/
 
-/** 
+/**
 **  \cfeestlm Executive Services Housekeeping Packet
 **/
 typedef struct CFE_ES_HousekeepingTlm_Payload
 {
-  uint8                 CommandCounter;  /**< \cfetlmmnemonic \ES_CMDPC 
-                                          \brief The ES Application Command Counter */
-  uint8                 CommandErrorCounter;  /**< \cfetlmmnemonic \ES_CMDEC 
-                                          \brief The ES Application Command Error Counter */
-  
-  uint16                CFECoreChecksum;    /**< \cfetlmmnemonic \ES_CKSUM 
-                                                 \brief Checksum of cFE Core Code */
-  uint8                 CFEMajorVersion;    /**< \cfetlmmnemonic \ES_CFEMAJORVER 
-                                                 \brief Major Version Number of cFE */
-  uint8                 CFEMinorVersion;    /**< \cfetlmmnemonic \ES_CFEMINORVER 
-                                                 \brief Minor Version Number of cFE */
-  uint8                 CFERevision;        /**< \cfetlmmnemonic \ES_CFEREVISION 
-                                                 \brief Sub-Minor Version Number of cFE */
-  uint8                 CFEMissionRevision; /**< \cfetlmmnemonic \ES_CFEMISSIONREV 
-                                                 \brief Mission Version Number of cFE */
-  uint8                 OSALMajorVersion;   /**< \cfetlmmnemonic \ES_OSMAJORVER 
-                                                 \brief OS Abstraction Layer Major Version Number */
-  uint8                 OSALMinorVersion;   /**< \cfetlmmnemonic \ES_OSMINORVER 
-                                                 \brief OS Abstraction Layer Minor Version Number */
-  uint8                 OSALRevision;       /**< \cfetlmmnemonic \ES_OSREVISION 
-                                                 \brief OS Abstraction Layer Revision Number */
-  uint8                 OSALMissionRevision;/**< \cfetlmmnemonic \ES_OSMISSIONREV 
-                                                 \brief OS Abstraction Layer MissionRevision Number */
+    uint8 CommandCounter;      /**< \cfetlmmnemonic \ES_CMDPC
+                                \brief The ES Application Command Counter */
+    uint8 CommandErrorCounter; /**< \cfetlmmnemonic \ES_CMDEC
+                           \brief The ES Application Command Error Counter */
 
-  CFE_ES_MemOffset_t    SysLogBytesUsed; /**< \cfetlmmnemonic \ES_SYSLOGBYTEUSED
-                                              \brief Total number of bytes used in system log */
-  CFE_ES_MemOffset_t    SysLogSize;      /**< \cfetlmmnemonic \ES_SYSLOGSIZE
-                                              \brief Total size of the system log */
-  uint32                SysLogEntries;   /**< \cfetlmmnemonic \ES_SYSLOGENTRIES 
-                                              \brief Number of entries in the system log */
-  uint32                SysLogMode;      /**< \cfetlmmnemonic \ES_SYSLOGMODE 
-                                              \brief Write/Overwrite Mode */
-  
-  uint32                ERLogIndex;       /**< \cfetlmmnemonic \ES_ERLOGINDEX 
-                                               \brief Current index of the ER Log (wraps around) */
-  uint32                ERLogEntries;     /**< \cfetlmmnemonic \ES_ERLOGENTRIES 
-                                               \brief Number of entries made in the ER Log since the power on */
+    uint16 CFECoreChecksum;    /**< \cfetlmmnemonic \ES_CKSUM
+                                    \brief Checksum of cFE Core Code */
+    uint8 CFEMajorVersion;     /**< \cfetlmmnemonic \ES_CFEMAJORVER
+                                    \brief Major Version Number of cFE */
+    uint8 CFEMinorVersion;     /**< \cfetlmmnemonic \ES_CFEMINORVER
+                                    \brief Minor Version Number of cFE */
+    uint8 CFERevision;         /**< \cfetlmmnemonic \ES_CFEREVISION
+                                    \brief Sub-Minor Version Number of cFE */
+    uint8 CFEMissionRevision;  /**< \cfetlmmnemonic \ES_CFEMISSIONREV
+                                    \brief Mission Version Number of cFE */
+    uint8 OSALMajorVersion;    /**< \cfetlmmnemonic \ES_OSMAJORVER
+                                    \brief OS Abstraction Layer Major Version Number */
+    uint8 OSALMinorVersion;    /**< \cfetlmmnemonic \ES_OSMINORVER
+                                    \brief OS Abstraction Layer Minor Version Number */
+    uint8 OSALRevision;        /**< \cfetlmmnemonic \ES_OSREVISION
+                                    \brief OS Abstraction Layer Revision Number */
+    uint8 OSALMissionRevision; /**< \cfetlmmnemonic \ES_OSMISSIONREV
+                                    \brief OS Abstraction Layer MissionRevision Number */
 
-  uint32                RegisteredCoreApps;      /**< \cfetlmmnemonic \ES_REGCOREAPPS 
-                                                      \brief Number of Applications registered with ES */
-  uint32                RegisteredExternalApps;  /**< \cfetlmmnemonic \ES_REGEXTAPPS 
-                                                      \brief Number of Applications registered with ES */
-  uint32                RegisteredTasks;         /**< \cfetlmmnemonic \ES_REGTASKS 
-                                                      \brief Number of Tasks ( main AND child tasks ) registered with ES */
-  uint32                RegisteredLibs;  /**< \cfetlmmnemonic \ES_REGLIBS 
-                                              \brief Number of Libraries registered with ES */
+    CFE_ES_MemOffset_t SysLogBytesUsed; /**< \cfetlmmnemonic \ES_SYSLOGBYTEUSED
+                                             \brief Total number of bytes used in system log */
+    CFE_ES_MemOffset_t SysLogSize;      /**< \cfetlmmnemonic \ES_SYSLOGSIZE
+                                             \brief Total size of the system log */
+    uint32 SysLogEntries;               /**< \cfetlmmnemonic \ES_SYSLOGENTRIES
+                                             \brief Number of entries in the system log */
+    uint32 SysLogMode;                  /**< \cfetlmmnemonic \ES_SYSLOGMODE
+                                             \brief Write/Overwrite Mode */
 
-  uint32                ResetType;       /**< \cfetlmmnemonic \ES_RESETTYPE 
-                                              \brief Reset type ( PROCESSOR or POWERON ) */
-  uint32                ResetSubtype;    /**< \cfetlmmnemonic \ES_RESETSUBTYPE 
-                                              \brief Reset Sub Type */
-  uint32                ProcessorResets; /**< \cfetlmmnemonic \ES_PROCRESETCNT 
-                                              \brief Number of processor resets since last power on */
-  uint32                MaxProcessorResets; /**< \cfetlmmnemonic \ES_MAXPROCRESETS 
-                                                 \brief Max processor resets before a power on is done */
-  uint32                BootSource;      /**< \cfetlmmnemonic \ES_BOOTSOURCE 
-                                              \brief Boot source ( as provided from BSP ) */
+    uint32 ERLogIndex;   /**< \cfetlmmnemonic \ES_ERLOGINDEX
+                              \brief Current index of the ER Log (wraps around) */
+    uint32 ERLogEntries; /**< \cfetlmmnemonic \ES_ERLOGENTRIES
+                              \brief Number of entries made in the ER Log since the power on */
 
-  uint32                PerfState;       /**< \cfetlmmnemonic \ES_PERFSTATE 
-                                              \brief Current state of Performance Analyzer */
-  uint32                PerfMode;        /**< \cfetlmmnemonic \ES_PERFMODE 
-                                              \brief Current mode of Performance Analyzer */
-  uint32                PerfTriggerCount;                           /**< \cfetlmmnemonic \ES_PERFTRIGCNT 
-                                                                         \brief Number of Times Perfomance Analyzer has Triggered */
-  uint32                PerfFilterMask[CFE_MISSION_ES_PERF_MAX_IDS / 32];   /**< \cfetlmmnemonic \ES_PERFFLTRMASK
-                                                                         \brief Current Setting of Performance Analyzer Filter Masks */
-  uint32                PerfTriggerMask[CFE_MISSION_ES_PERF_MAX_IDS / 32];  /**< \cfetlmmnemonic \ES_PERFTRIGMASK
-                                                                         \brief Current Setting of Performance Analyzer Trigger Masks */
-  uint32                PerfDataStart;   /**< \cfetlmmnemonic \ES_PERFDATASTART 
-                                              \brief Identifies First Stored Entry in Performance Analyzer Log */
-  uint32                PerfDataEnd;     /**< \cfetlmmnemonic \ES_PERFDATAEND 
-                                              \brief Identifies Last Stored Entry in Performance Analyzer Log */
-  uint32                PerfDataCount;   /**< \cfetlmmnemonic \ES_PERFDATACNT 
-                                              \brief Number of Entries Put Into the Performance Analyzer Log */
-  uint32                PerfDataToWrite; /**< \cfetlmmnemonic \ES_PERFDATA2WRITE 
+    uint32 RegisteredCoreApps;     /**< \cfetlmmnemonic \ES_REGCOREAPPS
+                                        \brief Number of Applications registered with ES */
+    uint32 RegisteredExternalApps; /**< \cfetlmmnemonic \ES_REGEXTAPPS
+                                        \brief Number of Applications registered with ES */
+    uint32 RegisteredTasks;        /**< \cfetlmmnemonic \ES_REGTASKS
+                                        \brief Number of Tasks ( main AND child tasks ) registered with ES */
+    uint32 RegisteredLibs;         /**< \cfetlmmnemonic \ES_REGLIBS
+                                        \brief Number of Libraries registered with ES */
+
+    uint32 ResetType;          /**< \cfetlmmnemonic \ES_RESETTYPE
+                                    \brief Reset type ( PROCESSOR or POWERON ) */
+    uint32 ResetSubtype;       /**< \cfetlmmnemonic \ES_RESETSUBTYPE
+                                    \brief Reset Sub Type */
+    uint32 ProcessorResets;    /**< \cfetlmmnemonic \ES_PROCRESETCNT
+                                    \brief Number of processor resets since last power on */
+    uint32 MaxProcessorResets; /**< \cfetlmmnemonic \ES_MAXPROCRESETS
+                                    \brief Max processor resets before a power on is done */
+    uint32 BootSource;         /**< \cfetlmmnemonic \ES_BOOTSOURCE
+                                    \brief Boot source ( as provided from BSP ) */
+
+    uint32 PerfState;                                        /**< \cfetlmmnemonic \ES_PERFSTATE
+                                                                  \brief Current state of Performance Analyzer */
+    uint32 PerfMode;                                         /**< \cfetlmmnemonic \ES_PERFMODE
+                                                                  \brief Current mode of Performance Analyzer */
+    uint32 PerfTriggerCount;                                 /**< \cfetlmmnemonic \ES_PERFTRIGCNT
+                                                                  \brief Number of Times Perfomance Analyzer has Triggered */
+    uint32 PerfFilterMask[CFE_MISSION_ES_PERF_MAX_IDS / 32]; /**< \cfetlmmnemonic \ES_PERFFLTRMASK
+                                                          \brief Current Setting of Performance Analyzer Filter Masks */
+    uint32
+        PerfTriggerMask[CFE_MISSION_ES_PERF_MAX_IDS / 32]; /**< \cfetlmmnemonic \ES_PERFTRIGMASK
+                                                        \brief Current Setting of Performance Analyzer Trigger Masks */
+    uint32 PerfDataStart;                                  /**< \cfetlmmnemonic \ES_PERFDATASTART
+                                                                \brief Identifies First Stored Entry in Performance Analyzer Log */
+    uint32 PerfDataEnd;                                    /**< \cfetlmmnemonic \ES_PERFDATAEND
+                                                                \brief Identifies Last Stored Entry in Performance Analyzer Log */
+    uint32 PerfDataCount;                                  /**< \cfetlmmnemonic \ES_PERFDATACNT
+                                                                \brief Number of Entries Put Into the Performance Analyzer Log */
+    uint32
+        PerfDataToWrite;                 /**< \cfetlmmnemonic \ES_PERFDATA2WRITE
                                               \brief Number of Performance Analyzer Log Entries Left to be Written to Log Dump File */
-  CFE_ES_MemOffset_t    HeapBytesFree;     /**< \cfetlmmnemonic \ES_HEAPBYTESFREE
-                                              \brief Number of free bytes remaining in the OS heap */
-  CFE_ES_MemOffset_t    HeapBlocksFree;    /**< \cfetlmmnemonic \ES_HEAPBLKSFREE
-                                              \brief Number of free blocks remaining in the OS heap */
-  CFE_ES_MemOffset_t    HeapMaxBlockSize;  /**< \cfetlmmnemonic \ES_HEAPMAXBLK
-                                              \brief Number of bytes in the largest free block */
+    CFE_ES_MemOffset_t HeapBytesFree;    /**< \cfetlmmnemonic \ES_HEAPBYTESFREE
+                                            \brief Number of free bytes remaining in the OS heap */
+    CFE_ES_MemOffset_t HeapBlocksFree;   /**< \cfetlmmnemonic \ES_HEAPBLKSFREE
+                                            \brief Number of free blocks remaining in the OS heap */
+    CFE_ES_MemOffset_t HeapMaxBlockSize; /**< \cfetlmmnemonic \ES_HEAPMAXBLK
+                                            \brief Number of bytes in the largest free block */
 } CFE_ES_HousekeepingTlm_Payload_t;
 
 typedef struct CFE_ES_HousekeepingTlm
 {
     CFE_MSG_TelemetryHeader_t        TlmHeader; /**< \brief Telemetry header */
     CFE_ES_HousekeepingTlm_Payload_t Payload;   /**< \brief Telemetry payload */
-  
-} CFE_ES_HousekeepingTlm_t;
 
+} CFE_ES_HousekeepingTlm_t;
 
 #endif /* _cfe_es_msg_ */
 
 /************************/
 /*  End of File Comment */
 /************************/
-
